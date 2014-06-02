@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E959F3D4-00F7-4165-8221-98287B1D19DF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Booster</RootNamespace>
+    <AssemblyName>Booster</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\WindowsGL\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\WindowsGL\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Levels\Entities\EntityBuilder\BlockBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\EntityCreator.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\ISimpleTileBuilder.cs" />
+    <Compile Include="Util\Animations\AnimationBuilder.cs" />
+    <Compile Include="Util\Animations\IAnimationBuilder.cs" />
+    <Compile Include="States\Menus\StateLevelPause.cs" />
+    <Compile Include="States\StateLevelPlaying.cs" />
+    <Compile Include="States\IGameStateContext.cs" />
+    <Compile Include="Util\Animations\Animation.cs" />
+    <Compile Include="Util\Camera2D.cs" />
+    <Compile Include="Util\Animations\Frame.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Input\InputSystem.cs" />
+    <Compile Include="Input\VirtualButtonConfig.cs" />
+    <Compile Include="Input\VirtualButtons.cs" />
+    <Compile Include="Levels\Entities\AnimatedEntity.cs" />
+    <Compile Include="Levels\Entities\SimpleTile.cs" />
+    <Compile Include="Util\Box.cs" />
+    <Compile Include="Levels\Entities\CollisionTypes.cs" />
+    <Compile Include="Levels\Entities\DamageBlock.cs" />
+    <Compile Include="Util\Duration.cs" />
+    <Compile Include="Levels\Entities\Entity.cs" />
+    <Compile Include="Levels\EntityFactory.cs" />
+    <Compile Include="Levels\Entities\EntityStates.cs" />
+    <Compile Include="Levels\Entities\ExitEntity.cs" />
+    <Compile Include="Levels\Entities\ICollisionable.cs" />
+    <Compile Include="Levels\Entities\IDamageable.cs" />
+    <Compile Include="Levels\Entities\IDrawable.cs" />
+    <Compile Include="Levels\Entities\IMovable.cs" />
+    <Compile Include="Levels\Entities\IScoreable.cs" />
+    <Compile Include="Levels\Entities\IStateable.cs" />
+    <Compile Include="Levels\StateMove\IStateMovePlayer.cs" />
+    <Compile Include="Levels\Entities\IUpdateable.cs" />
+    <Compile Include="Levels\Level.cs" />
+    <Compile Include="Levels\Map.cs" />
+    <Compile Include="Levels\Entities\Player.cs" />
+    <Compile Include="Levels\Entities\ScoreObject.cs" />
+    <Compile Include="Levels\Entities\Spike.cs" />
+    <Compile Include="Levels\StateMove\StateMovePlayer.cs" />
+    <Compile Include="Levels\StateMove\StateMovePlayerDown.cs" />
+    <Compile Include="Levels\StateMove\StateMovePlayerLeft.cs" />
+    <Compile Include="Levels\StateMove\StateMovePlayerLeftDown.cs" />
+    <Compile Include="Levels\StateMove\StateMovePlayerLeftUp.cs" />
+    <Compile Include="Levels\StateMove\StateMovePlayerRight.cs" />
+    <Compile Include="Levels\StateMove\StateMovePlayerRightDown.cs" />
+    <Compile Include="Levels\StateMove\StateMovePlayerRightUp.cs" />
+    <Compile Include="Levels\StateMove\StateMovePlayerUp.cs" />
+    <Compile Include="Levels\Entities\StaticEntity.cs" />
+    <Compile Include="States\Menus\MainMenu.cs" />
+    <Compile Include="States\Menus\Menu.cs" />
+    <Compile Include="States\Menus\MenuItem.cs" />
+    <Compile Include="States\Menus\StoryMenu.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\Range.cs" />
+    <Compile Include="States\GameIntro.cs" />
+    <Compile Include="States\GameStates.cs" />
+    <Compile Include="States\IGameState.cs" />
+    <Compile Include="States\GameStateContext.cs" />
+    <Compile Include="Util\Resources.cs" />
+    <Compile Include="Util\SpriteSheetInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="OpenTK">
+      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Lidgren.Network">
+      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Sdl">
+      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\Tao.Sdl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\WindowsGL\SDL.dll">
+      <Link>SDL.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\hud_spritesheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\items_spritesheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\p1_spritesheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\preview.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\spriteSheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles_spritesheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Levels\Level 1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Levels\Level 2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Levels\Level 3.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Content\Fonts\menu.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\knight-sprites.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
