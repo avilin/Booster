@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Booster.States;
 using Booster.Levels;
 using System;
+using Booster.Util;
 
 namespace Booster
 {
@@ -18,6 +19,7 @@ namespace Booster
         private SpriteFont spriteFont;
 
         private GameStateContext gameStateContext;
+        private Resources resources;
 
         public Game1()
         {
@@ -43,7 +45,7 @@ namespace Booster
 
             base.Initialize();
 
-            gameStateContext = new GameStateContext(this);
+            gameStateContext = new GameStateContext(this, resources);
 
             gameStateContext.Initialize();
         }
@@ -55,6 +57,8 @@ namespace Booster
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
+            resources = new Resources(this);
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Services.AddService(typeof(SpriteBatch), spriteBatch);
             // TODO: use this.Content to load your game content here

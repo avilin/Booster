@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,23 +8,24 @@ namespace Booster.Util
 {
     public class Resources
     {
-        private static Resources instance = null;
-
+        private Game game;
         public Dictionary<string, SpriteSheetInfo> SpriteSheets { get; set; }
 
-        public static Resources GetInstance()
+        public Resources(Game game)
         {
-            if (instance == null)
-            {
-                instance = new Resources();
-            }
+            this.game = game;
+            SpriteSheets = new Dictionary<string, SpriteSheetInfo>();
 
-            return instance;
+            LoadSpriteSheet("p1");
+            LoadSpriteSheet("tiles");
+            LoadSpriteSheet("items");
+            LoadSpriteSheet("hud");
         }
 
-        private Resources()
+        public void LoadSpriteSheet(string name)
         {
-
+            SpriteSheetInfo spriteSheetInfo = new SpriteSheetInfo(game, name);
+            SpriteSheets[name] = spriteSheetInfo;
         }
     }
 }

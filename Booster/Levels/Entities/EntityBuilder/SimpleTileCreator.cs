@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Booster.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace Booster.Levels.Entities.EntityBuilder
             simpleTileBuilder.BuildSourceRect();
             simpleTileBuilder.BuildDestinationRect();
             simpleTileBuilder.BuildLayerDepth();
+            simpleTileBuilder.BuildBoundingBox();
             simpleTileBuilder.BuildCollisionType();
         }
     }

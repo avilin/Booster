@@ -15,19 +15,17 @@ namespace Booster.States
     public class StateLevelPlaying : IGameState
     {
         private IGameStateContext stateManager;
+        private Resources resources;
 
         private Map map;
         private Camera2D camera2D;
 
-        private Dictionary<string, Texture2D> spriteSheets;
-
-        public StateLevelPlaying(IGameStateContext stateManager)
+        public StateLevelPlaying(IGameStateContext stateManager, Resources resources)
         {
             this.stateManager = stateManager;
+            this.resources = resources;
 
-            spriteSheets = new Dictionary<string, Texture2D>();
-            LoadContent();
-            map = new Map(spriteSheets);
+            map = new Map(resources);
             camera2D = new Camera2D();
         }
 
@@ -40,14 +38,6 @@ namespace Booster.States
         {
             camera2D.Initialize(stateManager.Game.GraphicsDevice.Viewport);
             map.Initialize();
-        }
-
-        private void LoadContent()
-        {
-            spriteSheets["player"] = stateManager.Game.Content.Load<Texture2D>(@"Graphics\p1_spritesheet.png");
-            spriteSheets["tiles"] = stateManager.Game.Content.Load<Texture2D>(@"Graphics\tiles_spritesheet.png");
-            spriteSheets["items"] = stateManager.Game.Content.Load<Texture2D>(@"Graphics\items_spritesheet.png");
-            spriteSheets["hud"] = stateManager.Game.Content.Load<Texture2D>(@"Graphics\hud_spritesheet.png");
         }
 
         public void Update(GameTime gameTime)
@@ -125,7 +115,7 @@ namespace Booster.States
             spriteBatch.End();
 
             spriteBatch.Begin();
-            map.Player.DrawLifes(spriteBatch, spriteSheets["hud"]);
+            map.Player.DrawLifes(spriteBatch, resources);
             spriteBatch.DrawString(spriteFont, "Score: " + map.Player.Score, new Vector2(10, 50), Color.Black);
             spriteBatch.End();
         }

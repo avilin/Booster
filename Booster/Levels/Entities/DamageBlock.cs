@@ -9,36 +9,17 @@ using Booster.Util;
 
 namespace Booster.Levels.Entities
 {
-    public class DamageBlock : StaticEntity, ICollisionableObject
+    public class DamageBlock : SimpleTile
     {
         public int Damage { get; set; }
 
-        public CollisionTypes CollisionType
+        public DamageBlock(Vector2 position)
+            : base(position)
         {
-            get
-            {
-                return CollisionTypes.Block;
-            }
+            Damage = 0;
         }
 
-        public Box BoundingBox { get; set; }
-
-        public Rectangle HitBox
-        {
-            get
-            {
-                return BoundingBox.BoxInPosition(Position);
-            }
-        }
-
-        public DamageBlock(Vector2 position, Texture2D texture, Rectangle sourceRect, Box box, Box boundingBox, int damage)
-            : base(position, texture, sourceRect, box)
-        {
-            BoundingBox = boundingBox;
-            Damage = damage;
-        }
-
-        public void OnCollision(ICollisionableObject collisionableObject)
+        public override void OnCollision(ICollisionableObject collisionableObject)
         {
             if (collisionableObject is IDamageable)
             {

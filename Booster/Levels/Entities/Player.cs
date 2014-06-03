@@ -480,11 +480,11 @@ namespace Booster.Levels.Entities
             }
         }
 
-        public void DrawLifes(SpriteBatch spriteBatch, Texture2D spriteSheet)
+        public void DrawLifes(SpriteBatch spriteBatch, Resources resources)
         {
-            Rectangle sourceRectFull = new Rectangle(0, 94, 53, 45);
-            Rectangle sourceRectHalf = new Rectangle(0, 0, 53, 45);
-            Rectangle sourceRectEmpty = new Rectangle(0, 47, 53, 45);
+            Rectangle sourceRectFull = resources.SpriteSheets["hud"].ObjectLocation["hud_heartFull.png"];
+            Rectangle sourceRectHalf = resources.SpriteSheets["hud"].ObjectLocation["hud_heartHalf.png"];
+            Rectangle sourceRectEmpty = resources.SpriteSheets["hud"].ObjectLocation["hud_heartEmpty.png"];
 
             Rectangle sourceRect = sourceRectEmpty;
             int lifes = Health;
@@ -504,7 +504,7 @@ namespace Booster.Levels.Entities
                     sourceRect = sourceRectFull;
                 }
 
-                DrawHeart(spriteBatch, spriteSheet, destinationRect, sourceRect);
+                DrawHeart(spriteBatch, resources.SpriteSheets["hud"].SpriteSheet, destinationRect, sourceRect);
                 destinationRect.Offset(55, 0);
             }
         }

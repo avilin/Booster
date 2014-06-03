@@ -1,5 +1,6 @@
 ﻿using Booster.Levels;
 using Booster.States.Menus;
+using Booster.Util;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace Booster.States
 {
     public class GameStateContext : IGameStateContext
     {
+        private Resources resources;
         public Game Game { get; set; }
         public Dictionary<GameStates, IGameState> States { get; set; }
 
@@ -27,9 +29,10 @@ namespace Booster.States
             }
         }
 
-        public GameStateContext(Game game)
+        public GameStateContext(Game game, Resources resources)
         {
             this.Game = game;
+            this.resources = resources;
         }
 
         public void Initialize()
@@ -38,7 +41,7 @@ namespace Booster.States
             States[GameStates.GameIntro] = new GameIntro(this);
             States[GameStates.MainMenu] = new MainMenu(this);
             States[GameStates.StoryMenu] = new StoryMenu(this);
-            States[GameStates.Level] = new Level(this, Game);
+            States[GameStates.Level] = new Level(this, Game, resources);
 
             CurrentState = GameStates.GameIntro;
         }

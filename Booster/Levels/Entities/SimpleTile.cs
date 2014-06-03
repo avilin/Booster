@@ -22,15 +22,13 @@ namespace Booster.Levels.Entities
             }
         }
 
-        public SimpleTile(Vector2 position, Texture2D texture, Rectangle sourceRect, Box box, Box boundingBox, CollisionTypes collisionType)
-            : base(position, texture, sourceRect, box)
+        public SimpleTile(Vector2 position)
+            : base(position)
         {
-            CollisionType = collisionType;
-            BoundingBox = boundingBox;
-            LayerDepth = 0.5f;
+
         }
 
-        public void OnCollision(ICollisionableObject collisionableObject)
+        public virtual void OnCollision(ICollisionableObject collisionableObject)
         {
 
         }

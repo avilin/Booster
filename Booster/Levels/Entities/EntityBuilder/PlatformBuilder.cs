@@ -7,50 +7,50 @@ using System.Text;
 
 namespace Booster.Levels.Entities.EntityBuilder
 {
-    public class BlockBuilder : ISimpleTileBuilder
+    public class PlatformBuilder : ISimpleTileBuilder
     {
-        private SimpleTile block;
+        private SimpleTile platform;
         private Resources resources;
 
-        public BlockBuilder(Resources resources, Vector2 position)
+        public PlatformBuilder(Resources resources, Vector2 position)
         {
-            block = new SimpleTile(position);
+            platform = new SimpleTile(position);
             this.resources = resources;
         }
 
         public void BuildTexture()
         {
-            block.Texture = resources.SpriteSheets["tiles"].SpriteSheet;
+            platform.Texture = resources.SpriteSheets["tiles"].SpriteSheet;
         }
 
         public void BuildSourceRect()
         {
-            block.SourceRect = resources.SpriteSheets["tiles"].ObjectLocation["dirtCenter.png"];
+            platform.SourceRect = resources.SpriteSheets["tiles"].ObjectLocation["snowHalf.png"];
         }
 
         public void BuildDestinationRect()
         {
-            block.destinationRect = new Box(16, 16, 16, 16);
+            platform.destinationRect = new Box(16, 16, 16, 0);
         }
 
         public void BuildLayerDepth()
         {
-            block.LayerDepth = 0.5f;
+            platform.LayerDepth = 0.5f;
         }
 
         public void BuildBoundingBox()
         {
-            block.BoundingBox = new Box(16, 16, 16, 16);
+            platform.BoundingBox = new Box(16, 16, 16, 0);
         }
 
         public void BuildCollisionType()
         {
-            block.CollisionType = CollisionTypes.Block;
+            platform.CollisionType = CollisionTypes.Top;
         }
 
         public SimpleTile GetResult()
         {
-            return block;
+            return platform;
         }
     }
 }

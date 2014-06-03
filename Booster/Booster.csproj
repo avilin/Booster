@@ -35,9 +35,22 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Levels\Entities\DamageObjectHighBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\BlockBuilder.cs" />
-    <Compile Include="Levels\Entities\EntityBuilder\EntityCreator.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectCreator.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectLowBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectMidBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectSpikeBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileCreator.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\IDamageObjectBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\ISimpleTileBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\PlatformBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\ExitBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\IScoreObjectBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectHighBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectLowBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectCreator.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectMidBuilder.cs" />
     <Compile Include="Util\Animations\AnimationBuilder.cs" />
     <Compile Include="Util\Animations\IAnimationBuilder.cs" />
     <Compile Include="States\Menus\StateLevelPause.cs" />
@@ -107,6 +120,7 @@
     <Reference Include="Lidgren.Network">
       <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\Lidgren.Network.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="Tao.Sdl">
       <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\Tao.Sdl.dll</HintPath>
     </Reference>
@@ -121,20 +135,27 @@
     <Content Include="Content\Graphics\hud_spritesheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Graphics\hud_spritesheet.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Graphics\items_spritesheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\items_spritesheet.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Graphics\p1_spritesheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Graphics\preview.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Graphics\spriteSheet.png">
+    <Content Include="Content\Graphics\p1_spritesheet.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Graphics\tiles_spritesheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles_spritesheet.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\Levels\Level 1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -150,9 +171,6 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Content\Fonts\menu.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Graphics\knight-sprites.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

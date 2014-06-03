@@ -6,11 +6,13 @@ using Booster.States;
 using Booster.Input;
 using System.IO;
 using Booster.States.Menus;
+using Booster.Util;
 
 namespace Booster.Levels
 {
     public class Level : IGameState, IGameStateContext
     {
+        private Resources resources;
         public Game Game { get; set; }
 
         private IGameStateContext stateManager;
@@ -41,10 +43,11 @@ namespace Booster.Levels
             }
         }
 
-        public Level(IGameStateContext stateManager, Game game)
+        public Level(IGameStateContext stateManager, Game game, Resources resources)
         {
             this.Game = game;
             this.stateManager = stateManager;
+            this.resources = resources;
         }
 
         public void LoadMap(string file)
@@ -61,7 +64,7 @@ namespace Booster.Levels
         public void Initialize()
         {
             States = new Dictionary<GameStates, IGameState>();
-            States[GameStates.Playing] = new StateLevelPlaying(this);
+            States[GameStates.Playing] = new StateLevelPlaying(this, resources);
             States[GameStates.Pause] = new StateLevelPause(this);
 
             CurrentState = GameStates.Playing;

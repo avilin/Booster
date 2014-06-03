@@ -8,36 +8,17 @@ using System.Text;
 
 namespace Booster.Levels.Entities
 {
-    public class ScoreObject : StaticEntity, ICollisionableObject
+    public class ScoreObject : SimpleTile
     {
         public int Score { get; set; }
 
-        public CollisionTypes CollisionType
+        public ScoreObject(Vector2 position)
+            : base(position)
         {
-            get
-            {
-                return CollisionTypes.None;
-            }
+            Score = 0;
         }
 
-        public Box BoundingBox { get; set; }
-
-        public Rectangle HitBox
-        {
-            get
-            {
-                return BoundingBox.BoxInPosition(Position);
-            }
-        }
-
-        public ScoreObject(Vector2 position, Texture2D texture, Rectangle sourceRect, Box box, Box boundingBox, int score)
-            : base(position, texture, sourceRect, box)
-        {
-            BoundingBox = boundingBox;
-            Score = score;
-        }
-
-        public void OnCollision(ICollisionableObject collisionableObject)
+        public override void OnCollision(ICollisionableObject collisionableObject)
         {
             if (collisionableObject is IScoreable)
             {

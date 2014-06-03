@@ -17,7 +17,7 @@ namespace Booster.Levels
                 return 32;
             }
         }
-        private Dictionary<string, Texture2D> spriteSheets;
+        private Resources resources;
         private List<string> levelFile;
 
         public Player Player { get; set; }
@@ -26,9 +26,9 @@ namespace Booster.Levels
         private List<IUpdateableObject> updateableElements;
         private List<IDrawableObject> drawableElements;
 
-        public Map(Dictionary<string, Texture2D> spriteSheets)
+        public Map(Resources resources)
         {
-            this.spriteSheets = spriteSheets;
+            this.resources = resources;
         }
 
         public void LoadMap(string file)
@@ -76,58 +76,58 @@ namespace Booster.Levels
                     int playerPositionX = mapCell.X * TileSide + TileSide / 2;
                     int playerPositionY = mapCell.Y * TileSide + TileSide;
                     Vector2 playerPosition = new Vector2(playerPositionX, playerPositionY);
-                    Player = EntityFactory.CreatePlayer(spriteSheets["player"], TileSide, playerPosition);
+                    Player = EntityFactory.CreatePlayer(resources, TileSide, playerPosition);
                     updateableElements.Add((Player));
                     drawableElements.Add((Player));
                     break;
                 case "BLO":
-                    SimpleTile block = EntityFactory.CreateBlock(spriteSheets["tiles"], TileSide, mapCell);
+                    SimpleTile block = EntityFactory.CreateBlock(resources, TileSide, mapCell);
                     Tiles[mapCell.X, mapCell.Y] = block;
                     drawableElements.Add(block);
                     break;
                 case "SPK":
-                    Spike spike = EntityFactory.CreateSpike(spriteSheets["items"], TileSide, mapCell);
+                    Spike spike = EntityFactory.CreateSpike(resources, TileSide, mapCell);
                     Tiles[mapCell.X, mapCell.Y] = spike;
                     updateableElements.Add(spike);
                     drawableElements.Add(spike);
                     break;
                 case "DBL":
-                    DamageBlock damageBlockLow = EntityFactory.CreateDamageBlockLow(spriteSheets["tiles"], TileSide, mapCell);
+                    DamageBlock damageBlockLow = EntityFactory.CreateDamageBlockLow(resources, TileSide, mapCell);
                     Tiles[mapCell.X, mapCell.Y] = damageBlockLow;
                     drawableElements.Add(damageBlockLow);
                     break;
                 case "DBM":
-                    DamageBlock damageBlockMid = EntityFactory.CreateDamageBlockMid(spriteSheets["tiles"], TileSide, mapCell);
+                    DamageBlock damageBlockMid = EntityFactory.CreateDamageBlockMid(resources, TileSide, mapCell);
                     Tiles[mapCell.X, mapCell.Y] = damageBlockMid;
                     drawableElements.Add(damageBlockMid);
                     break;
                 case "DBH":
-                    DamageBlock damageBlockHigh = EntityFactory.CreateDamageBlockHigh(spriteSheets["tiles"], TileSide, mapCell);
+                    DamageBlock damageBlockHigh = EntityFactory.CreateDamageBlockHigh(resources, TileSide, mapCell);
                     Tiles[mapCell.X, mapCell.Y] = damageBlockHigh;
                     drawableElements.Add(damageBlockHigh);
                     break;
                 case "OWP":
-                    SimpleTile oneWayPlatform = EntityFactory.CreateOneWayPlatform(spriteSheets["tiles"], TileSide, mapCell);
+                    SimpleTile oneWayPlatform = EntityFactory.CreateOneWayPlatform(resources, TileSide, mapCell);
                     Tiles[mapCell.X, mapCell.Y] = oneWayPlatform;
                     drawableElements.Add(oneWayPlatform);
                     break;
                 case "SOL":
-                    ScoreObject scoreObjectLow = EntityFactory.CreateScoreObjectLow(spriteSheets["items"], TileSide, mapCell);
+                    ScoreObject scoreObjectLow = EntityFactory.CreateScoreObjectLow(resources, TileSide, mapCell);
                     Tiles[mapCell.X, mapCell.Y] = scoreObjectLow;
                     drawableElements.Add((scoreObjectLow));
                     break;
                 case "SOM":
-                    ScoreObject scoreObjectMid = EntityFactory.CreateScoreObjectMid(spriteSheets["items"], TileSide, mapCell);
+                    ScoreObject scoreObjectMid = EntityFactory.CreateScoreObjectMid(resources, TileSide, mapCell);
                     Tiles[mapCell.X, mapCell.Y] = scoreObjectMid;
                     drawableElements.Add(scoreObjectMid);
                     break;
                 case "SOH":
-                    ScoreObject scoreObjectHigh = EntityFactory.CreateScoreObjectHigh(spriteSheets["items"], TileSide, mapCell);
+                    ScoreObject scoreObjectHigh = EntityFactory.CreateScoreObjectHigh(resources, TileSide, mapCell);
                     Tiles[mapCell.X, mapCell.Y] = scoreObjectHigh;
                     drawableElements.Add(scoreObjectHigh);
                     break;
                 case "EXT":
-                    ExitEntity exit = EntityFactory.CreateExit(spriteSheets["tiles"], TileSide, mapCell);
+                    SimpleTile exit = EntityFactory.CreateExit(resources, TileSide, mapCell);
                     Tiles[mapCell.X, mapCell.Y] = exit;
                     drawableElements.Add(exit);
                     break;

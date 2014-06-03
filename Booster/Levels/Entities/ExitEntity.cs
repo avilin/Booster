@@ -8,33 +8,15 @@ using System.Text;
 
 namespace Booster.Levels.Entities
 {
-    public class ExitEntity : StaticEntity, ICollisionableObject
+    public class ExitEntity : SimpleTile
     {
-        public ExitEntity(Vector2 position, Texture2D texture, Rectangle sourceRect, Box box, Box boundingBox)
-            : base(position, texture, sourceRect, box)
+        public ExitEntity(Vector2 position)
+            : base(position)
         {
-            BoundingBox = boundingBox;
+
         }
 
-        public CollisionTypes CollisionType
-        {
-            get
-            {
-                return CollisionTypes.None;
-            }
-        }
-
-        public Box BoundingBox { get; set; }
-
-        public Rectangle HitBox
-        {
-            get
-            {
-                return BoundingBox.BoxInPosition(Position);
-            }
-        }
-
-        public void OnCollision(ICollisionableObject collisionableObject)
+        public override void OnCollision(ICollisionableObject collisionableObject)
         {
             if (collisionableObject is IStateable)
             {

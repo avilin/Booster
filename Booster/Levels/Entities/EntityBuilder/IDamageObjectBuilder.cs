@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Booster.Levels.Entities.EntityBuilder
 {
-    public interface ISimpleTileBuilder
+    public interface IDamageObjectBuilder
     {
         void BuildTexture();
         void BuildSourceRect();
@@ -13,6 +13,7 @@ namespace Booster.Levels.Entities.EntityBuilder
         void BuildLayerDepth();
         void BuildBoundingBox();
         void BuildCollisionType();
-        SimpleTile GetResult();
+        void BuildDamage();
+        DamageBlock GetResult();
     }
 }
