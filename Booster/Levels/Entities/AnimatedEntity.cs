@@ -8,17 +8,16 @@ namespace Booster.Levels.Entities
 {
     public abstract class AnimatedEntity : Entity, IDrawableObject
     {
-        protected Dictionary<String, Animation> animations;
+        public Dictionary<String, Animation> Animations { get; set; }
         protected string currentAnimation;
 
         public Rectangle DestinationRect
         {
-            get { return animations[currentAnimation].DestinationRect; }
+            get { return Animations[currentAnimation].DestinationRect; }
         }
 
-        protected AnimatedEntity(Vector2 position, Dictionary<String, Animation> animations) : base(position)
+        protected AnimatedEntity(Vector2 position) : base(position)
         {
-            this.animations = animations;
             this.currentAnimation = "default";
             Position = position;
         }
@@ -28,7 +27,7 @@ namespace Booster.Levels.Entities
         {
             if (Active)
             {
-                animations[currentAnimation].Draw(spriteBatch, SpriteEffects.None);
+                Animations[currentAnimation].Draw(spriteBatch, SpriteEffects.None);
             }
         }
     }

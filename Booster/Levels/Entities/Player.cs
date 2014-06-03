@@ -22,10 +22,7 @@ namespace Booster.Levels.Entities
 
         public Dictionary<EntityStates, Duration> StatesTime { get; set; }
 
-        public CollisionTypes CollisionType
-        {
-            get { return CollisionTypes.Block; }
-        }
+        public CollisionTypes CollisionType { get; set; }
 
         public Box BoundingBox { get; set; }
 
@@ -34,27 +31,19 @@ namespace Booster.Levels.Entities
             get { return BoundingBox.BoxInPosition(Position); }
         }
 
-        public Player(Vector2 position, Dictionary<String, Animation> animations,
-            Box boundingBox)
-            : base(position, animations)
+        public Player(Vector2 position)
+            : base(position)
         {
             stateMovePlayer = null;
 
             Score = 0;
-            BoundingBox = boundingBox;
             Position = position;
-            animations[currentAnimation].Position = position;
 
             Speed = Vector2.Zero;
 
             Active = true;
 
-            Health = 10;
-
             CurrentEntityStates = new HashSet<EntityStates>();
-            StatesTime = new Dictionary<EntityStates, Duration>();
-            StatesTime[EntityStates.Hit] = new Duration(animations["hurt"].Frames[0].FrameTime);
-            StatesTime[EntityStates.Dead] = new Duration(animations["dead"].Frames[0].FrameTime);
             CurrentEntityStates.Add(EntityStates.OnAir);
         }
 
@@ -418,8 +407,8 @@ namespace Booster.Levels.Entities
         public override void UpdateAnimation(GameTime gameTime)
         {
             ChangeAnimation();
-            animations[currentAnimation].Position = Position;
-            animations[currentAnimation].Update(gameTime);
+            Animations[currentAnimation].Position = Position;
+            Animations[currentAnimation].Update(gameTime);
         }
 
         public void ChangeAnimation()
@@ -430,19 +419,19 @@ namespace Booster.Levels.Entities
             }
             if (CurrentEntityStates.Contains(EntityStates.Move))
             {
-                currentAnimation = animations.ContainsKey("move") ? "move" : currentAnimation;
+                currentAnimation = Animations.ContainsKey("move") ? "move" : currentAnimation;
             }
             if (CurrentEntityStates.Contains(EntityStates.OnAir))
             {
-                currentAnimation = animations.ContainsKey("onAir") ? "onAir" : currentAnimation;
+                currentAnimation = Animations.ContainsKey("onAir") ? "onAir" : currentAnimation;
             }
             if (CurrentEntityStates.Contains(EntityStates.Hit))
             {
-                currentAnimation = animations.ContainsKey("hurt") ? "hurt" : currentAnimation;
+                currentAnimation = Animations.ContainsKey("hurt") ? "hurt" : currentAnimation;
             }
             if (CurrentEntityStates.Contains(EntityStates.Dead))
             {
-                currentAnimation = animations.ContainsKey("dead") ? "dead" : currentAnimation;
+                currentAnimation = Animations.ContainsKey("dead") ? "dead" : currentAnimation;
             }
         }
 
@@ -476,7 +465,7 @@ namespace Booster.Levels.Entities
             if (Active)
             {
                 SpriteEffects flip = CurrentEntityStates.Contains(EntityStates.Left) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                animations[currentAnimation].Draw(spriteBatch, flip);
+                Animations[currentAnimation].Draw(spriteBatch, flip);
             }
         }
 

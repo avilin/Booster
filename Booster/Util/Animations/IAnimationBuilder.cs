@@ -9,11 +9,12 @@ namespace Booster.Util.Animations
 {
     public interface IAnimationBuilder
     {
-        void BuildScale(float scale);
-        void BuildLooping(bool looping);
-        void BuildColor(Color color);
-        void BuildLayerDepth(float layerDepth);
-        void BuildPosition(Vector2 position);
+        void BuildTexture();
+        void BuildFrames();
+        void BuildDestinationRect();
+        void BuildScale();
+        void BuildLooping();
+        void BuildLayerDepth();
         Animation GetProduct();
     }
 }

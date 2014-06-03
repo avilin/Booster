@@ -13,53 +13,10 @@ namespace Booster.Levels
     {
         public static Player CreatePlayer(Resources resources, int tileSide, Vector2 position)
         {
-            Texture2D texture = resources.SpriteSheets["p1"].SpriteSheet;
-            List<Frame> frames = new List<Frame>();
-            frames.Add(new Frame(new Rectangle(67, 196, 66, 92), 1000));
-            Box box = new Box(20, tileSide, 20, tileSide);
-            IAnimationBuilder animationBuilder = new AnimationBuilder(texture, frames, box);
-            animationBuilder.BuildPosition(position);
-            Dictionary<String, Animation> playerAnimations = new Dictionary<string, Animation>();
-            playerAnimations.Add("default", animationBuilder.GetProduct());
-
-            frames = new List<Frame>();
-            frames.Add(new Frame(new Rectangle(0, 0, 72, 97), 50));
-            frames.Add(new Frame(new Rectangle(73, 0, 72, 97), 50));
-            frames.Add(new Frame(new Rectangle(146, 0, 72, 97), 50));
-            frames.Add(new Frame(new Rectangle(0, 98, 72, 97), 50));
-            frames.Add(new Frame(new Rectangle(73, 98, 72, 97), 50));
-            frames.Add(new Frame(new Rectangle(146, 98, 72, 97), 50));
-            frames.Add(new Frame(new Rectangle(219, 0, 72, 97), 50));
-            frames.Add(new Frame(new Rectangle(292, 0, 72, 97), 50));
-            frames.Add(new Frame(new Rectangle(219, 98, 72, 97), 50));
-            frames.Add(new Frame(new Rectangle(365, 0, 72, 97), 50));
-            frames.Add(new Frame(new Rectangle(292, 98, 72, 97), 50));
-            animationBuilder = new AnimationBuilder(texture, frames, box);
-            animationBuilder.BuildPosition(position);
-            playerAnimations.Add("move", animationBuilder.GetProduct());
-
-            frames = new List<Frame>();
-            frames.Add(new Frame(new Rectangle(438, 0, 69, 92), 1000));
-            animationBuilder = new AnimationBuilder(texture, frames, box);
-            animationBuilder.BuildPosition(position);
-            playerAnimations.Add("hurt", animationBuilder.GetProduct());
-
-            frames = new List<Frame>();
-            frames.Add(new Frame(new Rectangle(365, 98, 69, 71), 1000));
-            animationBuilder = new AnimationBuilder(texture, frames, box);
-            animationBuilder.BuildPosition(position);
-            playerAnimations.Add("dead", animationBuilder.GetProduct());
-
-            frames = new List<Frame>();
-            frames.Add(new Frame(new Rectangle(438, 93, 67, 94), 1000));
-            animationBuilder = new AnimationBuilder(texture, frames, box);
-            animationBuilder.BuildPosition(position);
-            playerAnimations.Add("onAir", animationBuilder.GetProduct());
-
-            Vector2 playerPosition = position;
-            Box hitBoxOffSetFromPosition = new Box(tileSide / 2, tileSide, tileSide / 2, tileSide);
-            Player player = new Player(playerPosition, playerAnimations, hitBoxOffSetFromPosition);
-            return player;
+            PlayerCreator director = new PlayerCreator();
+            PlayerBuilder builder = new PlayerBuilder(resources, position);
+            director.Contruct(builder);
+            return builder.GetResult();
         }
 
         public static SimpleTile CreateBlock(Resources resources, int tileSide, Point mapCell)
@@ -107,7 +64,7 @@ namespace Booster.Levels
             Vector2 position = new Vector2(mapCell.X * tileSide + tileSide / 2, mapCell.Y * tileSide + tileSide / 2);
 
             DamageObjectCreator director = new DamageObjectCreator();
-            DamageObjectLowBuilder builder = new DamageObjectLowBuilder(resources, position);
+            DamageObjectMidBuilder builder = new DamageObjectMidBuilder(resources, position);
             director.Construct(builder);
             return builder.GetResult();
         }
@@ -117,7 +74,7 @@ namespace Booster.Levels
             Vector2 position = new Vector2(mapCell.X * tileSide + tileSide / 2, mapCell.Y * tileSide + tileSide / 2);
 
             DamageObjectCreator director = new DamageObjectCreator();
-            DamageObjectLowBuilder builder = new DamageObjectLowBuilder(resources, position);
+            DamageObjectHighBuilder builder = new DamageObjectHighBuilder(resources, position);
             director.Construct(builder);
             return builder.GetResult();
         }
