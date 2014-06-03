@@ -128,14 +128,14 @@ namespace Booster.Levels.StateMove
                 player.Position = Vector2.UnitX * nextPlayerPosition + Vector2.UnitY * nextPlayerPosition;
                 if (xBlocked)
                 {
-                    Rectangle playerLeftSide = new Rectangle(player.HitBox.X, player.HitBox.Y, 1, player.HitBox.Height);
+                    Rectangle playerLeftSide = new Rectangle(player.HitBox.X - 1, player.HitBox.Y, 1, player.HitBox.Height);
                     CheckPlayerTilesCollisions(player, playerLeftSide, map);
                     player.Speed *= Vector2.UnitY;
                     MovePlayerDown(player, nextPosition, map);
                 }
                 else
                 {
-                    Rectangle playerBottomSide = new Rectangle(player.HitBox.X, player.HitBox.Y - 1, player.HitBox.Width, 1);
+                    Rectangle playerBottomSide = new Rectangle(player.HitBox.X, player.HitBox.Y + player.HitBox.Height, player.HitBox.Width, 1);
                     CheckPlayerTilesCollisions(player, playerBottomSide, map);
                     //player.Speed *= Vector2.UnitX;
                     MovePlayerLeft(player, nextPosition, map);

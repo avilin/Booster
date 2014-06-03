@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Booster.Levels;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Booster.Util
         private Game game;
         public Dictionary<string, SpriteSheetInfo> SpriteSheets { get; set; }
 
+        public Dictionary<string, EntityType> StringType { get; set; }
+
         public Resources(Game game)
         {
             this.game = game;
@@ -20,6 +23,19 @@ namespace Booster.Util
             LoadSpriteSheet("tiles");
             LoadSpriteSheet("items");
             LoadSpriteSheet("hud");
+
+            StringType = new Dictionary<string, EntityType>();
+            StringType.Add("PLA", EntityType.Player);
+            StringType.Add("BLO", EntityType.Block);
+            StringType.Add("OWP", EntityType.Platform);
+            StringType.Add("SPK", EntityType.Spike);
+            StringType.Add("DBL", EntityType.DamageObjectLow);
+            StringType.Add("DBM", EntityType.DamageObjectMid);
+            StringType.Add("DBH", EntityType.DamageObjectHigh);
+            StringType.Add("SOL", EntityType.ScoreObjectLow);
+            StringType.Add("SOM", EntityType.ScoreObjectMid);
+            StringType.Add("SOH", EntityType.ScoreObjectHigh);
+            StringType.Add("EXT", EntityType.Exit);
         }
 
         public void LoadSpriteSheet(string name)

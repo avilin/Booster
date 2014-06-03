@@ -1,6 +1,7 @@
 ﻿using Booster.Levels.Entities;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace Booster.Levels.StateMove
 {
@@ -50,10 +51,9 @@ namespace Booster.Levels.StateMove
 
                         hitBoxInNextPositionToCheck = player.BoundingBox.BoxInPosition(playerIntermediatePosition);
                         borderHitBox = new Rectangle(hitBoxInNextPositionToCheck.X, hitBoxInNextPositionToCheck.Y + hitBoxInNextPositionToCheck.Height, hitBoxInNextPositionToCheck.Width, 1);
-
-                        if (tile.CollisionType == CollisionTypes.Block || tile.CollisionType == CollisionTypes.Top)
+                        if (tile.HitBox.Intersects(borderHitBox))
                         {
-                            if (tile.HitBox.Intersects(borderHitBox))
+                            if (tile.CollisionType == CollisionTypes.Block || tile.CollisionType == CollisionTypes.Top)
                             {
                                 nextPlayerPosition = playerIntermediatePosition;
                                 lastXTileToCheck = (hitBoxInNextPositionToCheck.X + hitBoxInNextPositionToCheck.Width - 1) / map.TileSide;
@@ -69,9 +69,9 @@ namespace Booster.Levels.StateMove
 
                         hitBoxInNextPositionToCheck = player.BoundingBox.BoxInPosition(playerIntermediatePosition);
                         borderHitBox = new Rectangle(player.HitBox.X + player.HitBox.Width, player.HitBox.Y, 1, player.HitBox.Height);
-                        if (tile.CollisionType == CollisionTypes.Block)
+                        if (tile.HitBox.Intersects(borderHitBox))
                         {
-                            if (tile.HitBox.Intersects(borderHitBox))
+                            if (tile.CollisionType == CollisionTypes.Block)
                             {
                                 nextPlayerPosition = playerIntermediatePosition;
                                 lastXTileToCheck = (hitBoxInNextPositionToCheck.X + hitBoxInNextPositionToCheck.Width - 1) / map.TileSide;
@@ -87,10 +87,9 @@ namespace Booster.Levels.StateMove
 
                         hitBoxInNextPositionToCheck = player.BoundingBox.BoxInPosition(playerIntermediatePosition);
                         borderHitBox = new Rectangle(player.HitBox.X + player.HitBox.Width, player.HitBox.Y, 1, player.HitBox.Height);
-
-                        if (tile.CollisionType == CollisionTypes.Block)
+                        if (tile.HitBox.Intersects(borderHitBox))
                         {
-                            if (tile.HitBox.Intersects(borderHitBox))
+                            if (tile.CollisionType == CollisionTypes.Block)
                             {
                                 nextPlayerPosition = playerIntermediatePosition;
                                 lastXTileToCheck = (hitBoxInNextPositionToCheck.X + hitBoxInNextPositionToCheck.Width - 1) / map.TileSide;
@@ -134,7 +133,7 @@ namespace Booster.Levels.StateMove
                 }
                 else
                 {
-                    Rectangle playerBottomSide = new Rectangle(player.HitBox.X, player.HitBox.Y - 1, player.HitBox.Width, 1);
+                    Rectangle playerBottomSide = new Rectangle(player.HitBox.X, player.HitBox.Y + player.HitBox.Height, player.HitBox.Width, 1);
                     CheckPlayerTilesCollisions(player, playerBottomSide, map);
                     //player.Speed *= Vector2.UnitX;
                     MovePlayerRight(player, nextPosition, map);

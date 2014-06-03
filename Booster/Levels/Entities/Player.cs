@@ -69,7 +69,14 @@ namespace Booster.Levels.Entities
 
         public void ApplyAcceleration(GameTime gameTime, Vector2 acceleration)
         {
-            Speed += Vector2.UnitX * acceleration / 400 * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (CurrentEntityStates.Contains(EntityStates.Boost))
+            {
+                Speed += Vector2.UnitX * acceleration / 200 * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            }
+            else
+            {
+                Speed += Vector2.UnitX * acceleration / 400 * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            }
 
             if (acceleration.Y != 0 && !CurrentEntityStates.Contains(EntityStates.OnAir))
             {
@@ -97,6 +104,10 @@ namespace Booster.Levels.Entities
 
         public Vector2 GetNextPosition(GameTime gameTime)
         {
+            if (CurrentEntityStates.Contains(EntityStates.Boost))
+            {
+                Speed *= Vector2.UnitX;
+            }
             Vector2 nextPosition = Position + Speed * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             return nextPosition;
         }
@@ -421,7 +432,7 @@ namespace Booster.Levels.Entities
             {
                 currentAnimation = Animations.ContainsKey("move") ? "move" : currentAnimation;
             }
-            if (CurrentEntityStates.Contains(EntityStates.OnAir))
+            if (CurrentEntityStates.Contains(EntityStates.OnAir) || CurrentEntityStates.Contains(EntityStates.Boost))
             {
                 currentAnimation = Animations.ContainsKey("onAir") ? "onAir" : currentAnimation;
             }

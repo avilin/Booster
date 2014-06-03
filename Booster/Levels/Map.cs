@@ -58,79 +58,43 @@ namespace Booster.Levels
                 for (int i = 0; i < width; i++)
                 {
                     Point mapCell = new Point(i, j);
-                    if (i == 0 || j == 0 || i == width - 1 || j == height - 1)
+                    Vector2 position = new Vector2(mapCell.X * TileSide + TileSide / 2, mapCell.Y * TileSide + TileSide / 2);
+                    Entity entity;
+                    EntityType entityType = EntityType.Block;
+                    if (i != 0 && j != 0 && i != width - 1 && j != height - 1)
                     {
-                        InitializeElement("BLO", mapCell);
+                        if (i < row.Count)
+                        {
+                            if (resources.StringType.ContainsKey(row[i]))
+                            {
+                                entityType = resources.StringType[row[i]];
+                            }
+                            else
+                            {
+                                entityType = EntityType.Null;
+                            }
+                        }
+                    }
+
+                    entity = EntityFactory.CreateEntity(entityType, resources, position);
+                    if (entity is IUpdateableObject)
+                    {
+                        updateableElements.Add((IUpdateableObject)entity);
+                    }
+                    if (entity is IDrawableObject)
+                    {
+                        drawableElements.Add((IDrawableObject)entity);
+                    }
+                    if (entity is Player)
+                    {
+                        Player = (Player)entity;
                         continue;
                     }
-                    InitializeElement(i >= row.Count ? "BLO" : row[i], mapCell);
+                    if (entity is ICollisionableObject)
+                    {
+                        Tiles[mapCell.X, mapCell.Y] = (ICollisionableObject)entity;
+                    }
                 }
-            }
-        }
-
-        public void InitializeElement(string type, Point mapCell)
-        {
-            switch (type)
-            {
-                case "PLA":
-                    int playerPositionX = mapCell.X * TileSide + TileSide / 2;
-                    int playerPositionY = mapCell.Y * TileSide + TileSide;
-                    Vector2 playerPosition = new Vector2(playerPositionX, playerPositionY);
-                    Player = EntityFactory.CreatePlayer(resources, TileSide, playerPosition);
-                    updateableElements.Add((Player));
-                    drawableElements.Add((Player));
-                    break;
-                case "BLO":
-                    SimpleTile block = EntityFactory.CreateBlock(resources, TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = block;
-                    drawableElements.Add(block);
-                    break;
-                case "SPK":
-                    Spike spike = EntityFactory.CreateSpike(resources, TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = spike;
-                    updateableElements.Add(spike);
-                    drawableElements.Add(spike);
-                    break;
-                case "DBL":
-                    DamageBlock damageBlockLow = EntityFactory.CreateDamageBlockLow(resources, TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = damageBlockLow;
-                    drawableElements.Add(damageBlockLow);
-                    break;
-                case "DBM":
-                    DamageBlock damageBlockMid = EntityFactory.CreateDamageBlockMid(resources, TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = damageBlockMid;
-                    drawableElements.Add(damageBlockMid);
-                    break;
-                case "DBH":
-                    DamageBlock damageBlockHigh = EntityFactory.CreateDamageBlockHigh(resources, TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = damageBlockHigh;
-                    drawableElements.Add(damageBlockHigh);
-                    break;
-                case "OWP":
-                    SimpleTile oneWayPlatform = EntityFactory.CreateOneWayPlatform(resources, TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = oneWayPlatform;
-                    drawableElements.Add(oneWayPlatform);
-                    break;
-                case "SOL":
-                    ScoreObject scoreObjectLow = EntityFactory.CreateScoreObjectLow(resources, TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = scoreObjectLow;
-                    drawableElements.Add((scoreObjectLow));
-                    break;
-                case "SOM":
-                    ScoreObject scoreObjectMid = EntityFactory.CreateScoreObjectMid(resources, TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = scoreObjectMid;
-                    drawableElements.Add(scoreObjectMid);
-                    break;
-                case "SOH":
-                    ScoreObject scoreObjectHigh = EntityFactory.CreateScoreObjectHigh(resources, TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = scoreObjectHigh;
-                    drawableElements.Add(scoreObjectHigh);
-                    break;
-                case "EXT":
-                    SimpleTile exit = EntityFactory.CreateExit(resources, TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = exit;
-                    drawableElements.Add(exit);
-                    break;
             }
         }
 
