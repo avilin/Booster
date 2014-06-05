@@ -1,4 +1,6 @@
 ﻿using Booster.Levels;
+using Booster.Levels.Entities.CreateEntityCommand;
+using Booster.Levels.Entities.EntityBuilder;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ namespace Booster.Util
         public Dictionary<string, SpriteSheetInfo> SpriteSheets { get; set; }
 
         public Dictionary<string, EntityType> StringType { get; set; }
+        public Dictionary<EntityType, ICreateEntityCommand> EntityTypeCommand { get; set; }
 
         public Resources(Game game)
         {
@@ -36,6 +39,25 @@ namespace Booster.Util
             StringType.Add("SOM", EntityType.ScoreObjectMid);
             StringType.Add("SOH", EntityType.ScoreObjectHigh);
             StringType.Add("EXT", EntityType.Exit);
+
+            PlayerCreator playerCreator = new PlayerCreator();
+            SimpleTileCreator simpleTileCreator = new SimpleTileCreator();
+            DamageObjectCreator damageObjectCreator = new DamageObjectCreator();
+            ScoreObjectCreator scoreObjectCreator = new ScoreObjectCreator();
+
+            EntityTypeCommand = new Dictionary<EntityType, ICreateEntityCommand>();
+            EntityTypeCommand.Add(EntityType.Player, new CreatePlayerCommand(playerCreator));
+            EntityTypeCommand.Add(EntityType.Block, new CreateBlockCommand(simpleTileCreator));
+            EntityTypeCommand.Add(EntityType.Platform, new CreatePlatformCommand(simpleTileCreator));
+            EntityTypeCommand.Add(EntityType.Spike, new CreateSpikeCommand(damageObjectCreator));
+            EntityTypeCommand.Add(EntityType.DamageObjectLow, new CreateDamageBlockLowCommand(damageObjectCreator));
+            EntityTypeCommand.Add(EntityType.DamageObjectMid, new CreateDamageBlockMidCommand(damageObjectCreator));
+            EntityTypeCommand.Add(EntityType.DamageObjectHigh, new CreateDamageBlockHighCommand(damageObjectCreator));
+            EntityTypeCommand.Add(EntityType.ScoreObjectLow, new CreateScoreObjectLowCommand(scoreObjectCreator));
+            EntityTypeCommand.Add(EntityType.ScoreObjectMid, new CreateScoreObjectMidCommand(scoreObjectCreator));
+            EntityTypeCommand.Add(EntityType.ScoreObjectHigh, new CreateScoreObjectHighCommand(scoreObjectCreator));
+            EntityTypeCommand.Add(EntityType.Exit, new CreateExitCommand(simpleTileCreator));
+            EntityTypeCommand.Add(EntityType.Null, new CreateNullCommand());
         }
 
         public void LoadSpriteSheet(string name)

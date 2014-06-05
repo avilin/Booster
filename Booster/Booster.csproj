@@ -35,6 +35,18 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Levels\Entities\CreateEntityCommand\CreateBlockCommand.cs" />
+    <Compile Include="Levels\Entities\CreateEntityCommand\CreateDamageBlockHighCommand.cs" />
+    <Compile Include="Levels\Entities\CreateEntityCommand\CreateDamageBlockLowCommand.cs" />
+    <Compile Include="Levels\Entities\CreateEntityCommand\CreateDamageBlockMidCommand.cs" />
+    <Compile Include="Levels\Entities\CreateEntityCommand\CreateExitCommand.cs" />
+    <Compile Include="Levels\Entities\CreateEntityCommand\CreatePlatformCommand.cs" />
+    <Compile Include="Levels\Entities\CreateEntityCommand\CreatePlayerCommand.cs" />
+    <Compile Include="Levels\Entities\CreateEntityCommand\CreateScoreObjectHighCommand.cs" />
+    <Compile Include="Levels\Entities\CreateEntityCommand\CreateScoreObjectLowCommand.cs" />
+    <Compile Include="Levels\Entities\CreateEntityCommand\CreateScoreObjectMidCommand.cs" />
+    <Compile Include="Levels\Entities\CreateEntityCommand\CreateSpikeCommand.cs" />
+    <Compile Include="Levels\Entities\CreateEntityCommand\ICreateEntityCommand.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageObjectHighBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageObjectCreator.cs" />
@@ -77,6 +89,7 @@
     <Compile Include="Util\Box.cs" />
     <Compile Include="Levels\Entities\CollisionTypes.cs" />
     <Compile Include="Levels\Entities\DamageBlock.cs" />
+    <Compile Include="Levels\Entities\CreateEntityCommand\CreateNullCommand.cs" />
     <Compile Include="Util\Duration.cs" />
     <Compile Include="Levels\Entities\Entity.cs" />
     <Compile Include="Levels\EntityFactory.cs" />

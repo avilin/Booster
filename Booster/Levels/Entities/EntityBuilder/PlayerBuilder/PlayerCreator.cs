@@ -7,7 +7,7 @@ namespace Booster.Levels.Entities.EntityBuilder
 {
     public class PlayerCreator
     {
-        public void Contruct(IPlayerBuilder playerBuider)
+        public void Construct(IPlayerBuilder playerBuider)
         {
             playerBuider.BuildAnimations();
             playerBuider.BuildBoundingBox();

@@ -1,4 +1,5 @@
 ﻿using Booster.Levels.Entities;
+using Booster.Levels.Entities.CreateEntityCommand;
 using Booster.Levels.Entities.EntityBuilder;
 using Booster.Util;
 using Booster.Util.Animations;
@@ -15,42 +16,45 @@ namespace Booster.Levels
         {
             Entity entity = null;
 
-            switch (entityType)
-            {
-                case EntityType.Player:
-                    entity = EntityFactory.CreatePlayer(resources, position);
-                    break;
-                case EntityType.Block:
-                    entity = EntityFactory.CreateBlock(resources, position);
-                    break;
-                case EntityType.Platform:
-                    entity = EntityFactory.CreatePlatform(resources, position);
-                    break;
-                case EntityType.Spike:
-                    entity = EntityFactory.CreateSpike(resources, position);
-                    break;
-                case EntityType.DamageObjectLow:
-                    entity = EntityFactory.CreateDamageBlockLow(resources, position);
-                    break;
-                case EntityType.DamageObjectMid:
-                    entity = EntityFactory.CreateDamageBlockMid(resources, position);
-                    break;
-                case EntityType.DamageObjectHigh:
-                    entity = EntityFactory.CreateDamageBlockHigh(resources, position);
-                    break;
-                case EntityType.ScoreObjectLow:
-                    entity = EntityFactory.CreateScoreObjectLow(resources, position);
-                    break;
-                case EntityType.ScoreObjectMid:
-                    entity = EntityFactory.CreateScoreObjectMid(resources, position);
-                    break;
-                case EntityType.ScoreObjectHigh:
-                    entity = EntityFactory.CreateScoreObjectHigh(resources, position);
-                    break;
-                case EntityType.Exit:
-                    entity = EntityFactory.CreateExit(resources, position);
-                    break;
-            }
+            //switch (entityType)
+            //{
+            //    case EntityType.Player:
+            //        entity = EntityFactory.CreatePlayer(resources, position);
+            //        break;
+            //    case EntityType.Block:
+            //        entity = EntityFactory.CreateBlock(resources, position);
+            //        break;
+            //    case EntityType.Platform:
+            //        entity = EntityFactory.CreatePlatform(resources, position);
+            //        break;
+            //    case EntityType.Spike:
+            //        entity = EntityFactory.CreateSpike(resources, position);
+            //        break;
+            //    case EntityType.DamageObjectLow:
+            //        entity = EntityFactory.CreateDamageBlockLow(resources, position);
+            //        break;
+            //    case EntityType.DamageObjectMid:
+            //        entity = EntityFactory.CreateDamageBlockMid(resources, position);
+            //        break;
+            //    case EntityType.DamageObjectHigh:
+            //        entity = EntityFactory.CreateDamageBlockHigh(resources, position);
+            //        break;
+            //    case EntityType.ScoreObjectLow:
+            //        entity = EntityFactory.CreateScoreObjectLow(resources, position);
+            //        break;
+            //    case EntityType.ScoreObjectMid:
+            //        entity = EntityFactory.CreateScoreObjectMid(resources, position);
+            //        break;
+            //    case EntityType.ScoreObjectHigh:
+            //        entity = EntityFactory.CreateScoreObjectHigh(resources, position);
+            //        break;
+            //    case EntityType.Exit:
+            //        entity = EntityFactory.CreateExit(resources, position);
+            //        break;
+            //}
+
+            ICreateEntityCommand command = resources.EntityTypeCommand[entityType];
+            command.Execute(ref entity, position, resources);
 
             return entity;
         }
@@ -58,7 +62,7 @@ namespace Booster.Levels
         {
             PlayerCreator director = new PlayerCreator();
             PlayerBuilder builder = new PlayerBuilder(resources, position);
-            director.Contruct(builder);
+            director.Construct(builder);
             return builder.GetResult();
         }
 
