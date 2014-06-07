@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Booster.Levels.Entities.EntityBuilder
 {
-    public class PlayerCreator
+    public class PlayerDirector
     {
         public void Construct(IPlayerBuilder playerBuider)
         {

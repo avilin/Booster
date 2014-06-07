@@ -76,7 +76,7 @@ namespace Booster.Levels
                         }
                     }
 
-                    entity = EntityFactory.CreateEntity(entityType, resources, position);
+                    entity = resources.EntityTypeCreator[entityType].FactoryMethod(resources, position);
                     if (entity is IUpdateableObject)
                     {
                         updateableElements.Add((IUpdateableObject)entity);

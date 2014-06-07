@@ -1,10 +1,13 @@
 ﻿using Booster.Levels;
-using Booster.Levels.Entities.CreateEntityCommand;
+using Booster.Levels.Entities;
 using Booster.Levels.Entities.EntityBuilder;
+using Booster.Levels.Entities.EntityFactoryMethod;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Booster.Util
@@ -15,7 +18,7 @@ namespace Booster.Util
         public Dictionary<string, SpriteSheetInfo> SpriteSheets { get; set; }
 
         public Dictionary<string, EntityType> StringType { get; set; }
-        public Dictionary<EntityType, ICreateEntityCommand> EntityTypeCommand { get; set; }
+        public Dictionary<EntityType, EntityCreator> EntityTypeCreator { get; set; }
 
         public Resources(Game game)
         {
@@ -40,24 +43,19 @@ namespace Booster.Util
             StringType.Add("SOH", EntityType.ScoreObjectHigh);
             StringType.Add("EXT", EntityType.Exit);
 
-            PlayerCreator playerCreator = new PlayerCreator();
-            SimpleTileCreator simpleTileCreator = new SimpleTileCreator();
-            DamageObjectCreator damageObjectCreator = new DamageObjectCreator();
-            ScoreObjectCreator scoreObjectCreator = new ScoreObjectCreator();
-
-            EntityTypeCommand = new Dictionary<EntityType, ICreateEntityCommand>();
-            EntityTypeCommand.Add(EntityType.Player, new CreatePlayerCommand(playerCreator));
-            EntityTypeCommand.Add(EntityType.Block, new CreateBlockCommand(simpleTileCreator));
-            EntityTypeCommand.Add(EntityType.Platform, new CreatePlatformCommand(simpleTileCreator));
-            EntityTypeCommand.Add(EntityType.Spike, new CreateSpikeCommand(damageObjectCreator));
-            EntityTypeCommand.Add(EntityType.DamageObjectLow, new CreateDamageBlockLowCommand(damageObjectCreator));
-            EntityTypeCommand.Add(EntityType.DamageObjectMid, new CreateDamageBlockMidCommand(damageObjectCreator));
-            EntityTypeCommand.Add(EntityType.DamageObjectHigh, new CreateDamageBlockHighCommand(damageObjectCreator));
-            EntityTypeCommand.Add(EntityType.ScoreObjectLow, new CreateScoreObjectLowCommand(scoreObjectCreator));
-            EntityTypeCommand.Add(EntityType.ScoreObjectMid, new CreateScoreObjectMidCommand(scoreObjectCreator));
-            EntityTypeCommand.Add(EntityType.ScoreObjectHigh, new CreateScoreObjectHighCommand(scoreObjectCreator));
-            EntityTypeCommand.Add(EntityType.Exit, new CreateExitCommand(simpleTileCreator));
-            EntityTypeCommand.Add(EntityType.Null, new CreateNullCommand());
+            EntityTypeCreator = new Dictionary<EntityType, EntityCreator>();
+            EntityTypeCreator.Add(EntityType.Player, new PlayerCreator());
+            EntityTypeCreator.Add(EntityType.Block, new BlockCreator());
+            EntityTypeCreator.Add(EntityType.Platform, new PlatformCreator());
+            EntityTypeCreator.Add(EntityType.Spike, new SpikeCreator());
+            EntityTypeCreator.Add(EntityType.DamageObjectLow, new DamageBlockLowCreator());
+            EntityTypeCreator.Add(EntityType.DamageObjectMid, new DamageBlockMidCreator());
+            EntityTypeCreator.Add(EntityType.DamageObjectHigh, new DamageBlockHighCreator());
+            EntityTypeCreator.Add(EntityType.ScoreObjectLow, new ScoreObjectLowCreator());
+            EntityTypeCreator.Add(EntityType.ScoreObjectMid, new ScoreObjectMidCreator());
+            EntityTypeCreator.Add(EntityType.ScoreObjectHigh, new ScoreObjectHighCreator());
+            EntityTypeCreator.Add(EntityType.Exit, new ExitCreator());
+            EntityTypeCreator.Add(EntityType.Null, new NullEntityCreator());
         }
 
         public void LoadSpriteSheet(string name)

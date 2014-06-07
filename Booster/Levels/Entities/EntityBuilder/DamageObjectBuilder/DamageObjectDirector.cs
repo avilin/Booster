@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Booster.Levels.Entities.EntityBuilder
 {
-    public class DamageObjectCreator
+    public class DamageObjectDirector
     {
         public void Construct(IDamageObjectBuilder damageObjectBuilder)
         {

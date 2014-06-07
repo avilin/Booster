@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Booster.Levels
 {
-    public class ScoreObjectCreator
+    public class ScoreObjectDirector
     {
         public void Construct(IScoreObjectBuilder scoreObjectBuilder)
         {

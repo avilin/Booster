@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Booster.Levels.Entities.EntityBuilder
 {
-    public class SimpleTileCreator
+    public class SimpleTileDirector
     {
         public void Construct(ISimpleTileBuilder simpleTileBuilder)
         {
