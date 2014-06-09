@@ -58,10 +58,10 @@ namespace Booster.Util
             EntityTypeCreator.Add(EntityType.Null, new NullEntityCreator());
         }
 
-        public void LoadSpriteSheet(string name)
+        public void LoadSpriteSheet(string spriteSheetName)
         {
-            SpriteSheetInfo spriteSheetInfo = new SpriteSheetInfo(game, name);
-            SpriteSheets[name] = spriteSheetInfo;
+            SpriteSheetInfo spriteSheetInfo = new SpriteSheetInfo(game, spriteSheetName);
+            SpriteSheets[spriteSheetName] = spriteSheetInfo;
         }
     }
 }

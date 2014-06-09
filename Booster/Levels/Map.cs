@@ -23,6 +23,7 @@ namespace Booster.Levels
         public Player Player { get; set; }
         public ICollisionableObject[,] Tiles { get; set; }
 
+        public List<IMovable> MovableElements { get; set; }
         private List<IUpdateableObject> updateableElements;
         private List<IDrawableObject> drawableElements;
 
@@ -42,7 +43,7 @@ namespace Booster.Levels
             {
                 return;
             }
-
+            MovableElements = new List<IMovable>();
             updateableElements = new List<IUpdateableObject>();
             drawableElements = new List<IDrawableObject>();
 
@@ -85,14 +86,17 @@ namespace Booster.Levels
                     {
                         drawableElements.Add((IDrawableObject)entity);
                     }
+                    if (entity is IMovable)
+                    {
+                        MovableElements.Add((IMovable)entity);
+                    }
+                    if (!(entity is IMovable) && entity is ICollisionableObject)
+                    {
+                        Tiles[mapCell.X, mapCell.Y] = (ICollisionableObject)entity;
+                    }
                     if (entity is Player)
                     {
                         Player = (Player)entity;
-                        continue;
-                    }
-                    if (entity is ICollisionableObject)
-                    {
-                        Tiles[mapCell.X, mapCell.Y] = (ICollisionableObject)entity;
                     }
                 }
             }
@@ -111,8 +115,6 @@ namespace Booster.Levels
                     updateableElements[i].Update(gameTime);
                 }
             }
-
-            Player.Update(gameTime);
         }
 
         public void MovePlayer(GameTime gameTime, Vector2 acceleration)
@@ -143,7 +145,19 @@ namespace Booster.Levels
 
             Player.ApplyAcceleration(gameTime, acceleration);
 
-            Player.Move(gameTime, this);
+            for (int i = MovableElements.Count - 1; i >= 0; i--)
+            {
+                if (!MovableElements[i].Active)
+                {
+                    MovableElements.RemoveAt(i);
+                }
+                else
+                {
+                    MovableElements[i].Move(gameTime, this);
+                }
+            }
+
+            //Player.Move(gameTime, this);
 
             IsPlayerOnAir();
 
@@ -164,7 +178,7 @@ namespace Booster.Levels
             }
         }
 
-        public Boolean CheckPlayerTilesCollisions(Rectangle playerRectangle)
+        public bool CheckPlayerTilesCollisions(Rectangle playerRectangle)
         {
             int firstXTileToCheck = playerRectangle.X / TileSide;
             firstXTileToCheck = (int)MathHelper.Clamp(firstXTileToCheck, 0, Tiles.GetLength(0) - 1);
@@ -203,6 +217,24 @@ namespace Booster.Levels
                 }
             }
             return false;
+        }
+
+        public List<Point> GetEntityCoordinatesOnMap(ICollisionableObject entity)
+        {
+            int firstX = entity.HitBox.X / TileSide;
+            int firstY = entity.HitBox.Y / TileSide;
+            int lastX = (entity.HitBox.X + entity.HitBox.Width - 1) / TileSide;
+            int lastY = (entity.HitBox.Y + entity.HitBox.Height - 1) / TileSide;
+
+            List<Point> points = new List<Point>();
+            for (int i = firstX; i <= lastX; i++)
+            {
+                for (int j = firstY; j <= lastY; j++)
+                {
+                    points.Add(new Point(i, j));
+                }
+            }
+            return points;
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Camera2D camera2D)

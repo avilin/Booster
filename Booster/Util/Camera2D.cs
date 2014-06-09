@@ -41,7 +41,7 @@ namespace Booster.Util
                 Matrix.CreateScale(Scale, Scale, Scale);
         }
 
-        public Boolean isInView(Rectangle entity)
+        public bool isInView(Rectangle entity)
         {
             Rectangle rect = new Rectangle((int)Position.X - Viewport.Width / 2, (int)Position.Y - Viewport.Height / 2  , Viewport.Width, Viewport.Height);
             if(entity.Intersects(rect))

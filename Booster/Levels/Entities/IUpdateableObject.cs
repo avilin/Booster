@@ -5,7 +5,7 @@ namespace Booster.Levels.Entities
 {
     public interface IUpdateableObject
     {
-        Boolean Active { get; set; }
+        bool Active { get; set; }
         void Update(GameTime gameTime);
     }
 }

@@ -20,7 +20,7 @@ namespace Booster.Util
         /// <summary>
         /// Update the time and return true if ElapsedTime > Time.
         /// </summary>
-        public Boolean Update(GameTime gameTime)
+        public bool Update(GameTime gameTime)
         {
             ElapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (ElapsedTime > Time)

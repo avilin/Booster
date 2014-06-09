@@ -8,11 +8,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Booster.Levels.Entities
 {
-    public class Spike : DamageBlock, IUpdateableObject
+    public class Spike : DamageBlock, IMovable
     {
         private Range range;
-        private Boolean onRangeLimit;
+        private bool onRangeLimit;
         private Duration onRangeLimitDuration;
+
+        public Vector2 Speed { get; set; }
 
         public Spike(Vector2 position)
             : base(position)
@@ -35,9 +37,7 @@ namespace Booster.Levels.Entities
             }
         }
 
-        public Vector2 Speed { get; set; }
-
-        public void Update(GameTime gameTime)
+        public void Move(GameTime gameTime, Map map)
         {
             if (onRangeLimit)
             {

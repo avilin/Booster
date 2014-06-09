@@ -9,7 +9,7 @@ namespace Booster.Levels.Entities
 {
     public interface ICollisionableObject
     {
-        Boolean Active { get; set; }
+        bool Active { get; set; }
         CollisionTypes CollisionType { get; }
         Box BoundingBox { get; set; }
         Rectangle HitBox { get; }

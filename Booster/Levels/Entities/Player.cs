@@ -51,7 +51,7 @@ namespace Booster.Levels.Entities
         {
             if (CurrentEntityStates.Contains(EntityStates.Dead))
             {
-                Boolean dead = StatesTime[EntityStates.Dead].Update(gameTime);
+                bool dead = StatesTime[EntityStates.Dead].Update(gameTime);
                 if (dead)
                 {
                     Active = false;
@@ -59,7 +59,7 @@ namespace Booster.Levels.Entities
             }
             if (CurrentEntityStates.Contains(EntityStates.Hit))
             {
-                Boolean hit = StatesTime[EntityStates.Hit].Update(gameTime);
+                bool hit = StatesTime[EntityStates.Hit].Update(gameTime);
                 if (hit)
                 {
                     CurrentEntityStates.Remove(EntityStates.Hit);

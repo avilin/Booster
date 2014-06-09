@@ -16,7 +16,7 @@ namespace Booster
             Max = max;
         }
 
-        public Boolean IsInRange(int number)
+        public bool IsInRange(int number)
         {
             if (number < Min)
             {

@@ -9,7 +9,7 @@ namespace Booster.Levels.Entities
 {
     public interface IDrawableObject
     {
-        Boolean Active { get; set; }
+        bool Active { get; set; }
         Rectangle DestinationRect { get; }
         void Draw(SpriteBatch spriteBatch);
     }

@@ -15,11 +15,11 @@ namespace Booster.Util
         public Texture2D SpriteSheet { get; set; }
         public Dictionary<string, Rectangle> ObjectLocation { get; set; }
 
-        public SpriteSheetInfo(Game game, string id)
+        public SpriteSheetInfo(Game game, string spriteSheetName)
         {
             ObjectLocation = new Dictionary<string, Rectangle>();
 
-            XDocument xdoc = XDocument.Load(@"Content\Graphics\" + id + "_spritesheet.xml");
+            XDocument xdoc = XDocument.Load(@"Content\Graphics\" + spriteSheetName + "_spritesheet.xml");
             SpriteSheet = game.Content.Load<Texture2D>(@"Graphics\" + xdoc.Root.Attribute("imagePath").Value);
             foreach (XElement element in xdoc.Descendants("SubTexture"))
             {

@@ -1,14 +1,16 @@
 ﻿using Booster.Levels.Entities;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Booster.Levels.StateMove
 {
-    public class StateMovePlayerUp : IStateMove
+    public class StateMovePlayerUp : StateMovePlayer
     {
-        public void Move(ICollisionableObject entity, Vector2 nextPosition, Map map)
+        public override void Move(ICollisionableObject entity, Vector2 nextPosition, Map map)
         {
             Player player = entity as Player;
 
+            bool yBlocked = false;
             Rectangle playerHitBoxInNextPosition = player.BoundingBox.BoxInPosition(nextPosition);
 
             int firstXTileToCheck = player.HitBox.X / map.TileSide;
@@ -22,6 +24,8 @@ namespace Booster.Levels.StateMove
 
             float nextPlayerPositionY = nextPosition.Y;
             int playerNextTopY = playerHitBoxInNextPosition.Y;
+
+            List<ICollisionableObject>[,] collisions = new List<ICollisionableObject>[lastXTileToCheck + 1, firstYTileToCheck + 1];
 
             for (int j = firstYTileToCheck; j >= lastYTileToCheck; j--)
             {
@@ -37,32 +41,31 @@ namespace Booster.Levels.StateMove
                         continue;
                     }
 
+                    if (tile.CollisionType != CollisionTypes.Top)
+                    {
+                        if (collisions[i, j] == null)
+                        {
+                            collisions[i, j] = new List<ICollisionableObject>();
+                        }
+                        collisions[i, j].Add(tile);
+                    }
+
                     if (tile.CollisionType == CollisionTypes.Block)
                     {
                         nextPlayerPositionY = tile.HitBox.Y + tile.HitBox.Height + player.BoundingBox.OffSetTop;
                         player.Speed *= Vector2.UnitX;
-                        tile.OnCollision(player);
-                    }
-                }
-                if (nextPlayerPositionY != nextPosition.Y)
-                {
-                    break;
-                }
-                for (int k = firstXTileToCheck; k <= lastXTileToCheck; k++)
-                {
-                    ICollisionableObject tile = map.Tiles[k, j];
-                    if (tile == null)
-                    {
-                        continue;
-                    }
-                    tile.OnCollision(player);
-                    if (!tile.Active)
-                    {
-                        map.Tiles[k, j] = null;
+                        lastYTileToCheck = j;
+                        yBlocked = true;
                     }
                 }
             }
+
+            Vector2 oldPosition = player.Position;
             player.Position = Vector2.UnitX * player.Position + Vector2.UnitY * nextPlayerPositionY;
+
+            AddMovableElementsForCollision(map, player, oldPosition, ref collisions);
+
+            CheckCollisionsUp(firstXTileToCheck, firstYTileToCheck, lastXTileToCheck, lastYTileToCheck, yBlocked, map, collisions, player);
         }
     }
 }

@@ -8,10 +8,10 @@ namespace Booster.Levels.Entities
 {
     public interface IMovable
     {
+        bool Active { get; set; }
         Vector2 Position { get; set; }
         Vector2 Speed { get; set; }
 
-        void ApplyAcceleration(GameTime gameTime, Vector2 acceleration);
-        Vector2 GetNextPosition(GameTime gameTime);
+        void Move(GameTime gameTime, Map map);
     }
 }
