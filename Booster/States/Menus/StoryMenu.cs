@@ -15,14 +15,17 @@ namespace Booster.States.Menus
 
             item = new MenuItem("Level 1");
             item.MenuItemAction = MissionActivated;
+            item.File = @"Content\Levels\Level 1.txt";
             Items.Add(item);
 
             item = new MenuItem("Level 2");
             item.MenuItemAction = MissionActivated;
+            item.File = @"Content\Levels\Level 2.txt";
             Items.Add(item);
 
             item = new MenuItem("Level 3");
             item.MenuItemAction = MissionActivated;
+            item.File = @"Content\Levels\Level 3.txt";
             Items.Add(item);
 
             item = new MenuItem("Back");
@@ -33,7 +36,7 @@ namespace Booster.States.Menus
         public void MissionActivated()
         {
             stateManager.CurrentState = GameStates.Level;
-            ((GameStateContext)stateManager).LoadLevel(@"Content\Levels\" + SelectedItem.Name + ".txt");
+            ((GameStateContext)stateManager).LoadLevel(SelectedItem.File);
         }
 
         public void BackActivated()

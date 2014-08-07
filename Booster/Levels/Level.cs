@@ -43,9 +43,9 @@ namespace Booster.Levels
             }
         }
 
-        public Level(IGameStateContext stateManager, Game game, Resources resources)
+        public Level(IGameStateContext stateManager, Resources resources)
         {
-            this.Game = game;
+            this.Game = stateManager.Game;
             this.stateManager = stateManager;
             this.resources = resources;
         }

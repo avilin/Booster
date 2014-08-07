@@ -9,7 +9,7 @@ namespace Booster.States
     {
         MainMenu,
         StoryMenu,
-        LevelsMenu,
+        ChallengesMenu,
         Level,
         Playing,
         Pause,

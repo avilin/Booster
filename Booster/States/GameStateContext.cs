@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace Booster.States
 {
@@ -41,7 +42,8 @@ namespace Booster.States
             States[GameStates.GameIntro] = new GameIntro(this);
             States[GameStates.MainMenu] = new MainMenu(this);
             States[GameStates.StoryMenu] = new StoryMenu(this);
-            States[GameStates.Level] = new Level(this, Game, resources);
+            States[GameStates.ChallengesMenu] = new ChallengesMenu(this);
+            States[GameStates.Level] = new Level(this, resources);
 
             CurrentState = GameStates.GameIntro;
         }
@@ -58,6 +60,11 @@ namespace Booster.States
 
         public void LoadLevel(string file)
         {
+            if (!File.Exists(file))
+            {
+                CurrentState = GameStates.MainMenu;
+                return;
+            }
             (States[GameStates.Level] as Level).LoadMap(file);
         }
 

@@ -35,12 +35,26 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockCenterBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockLeftBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockMidBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockRightBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\PlatformLeftBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\PlatformMidBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\PlatformRightBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\BlockCenterCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\BlockCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\BlockLeftCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\BlockMidCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\BlockRightCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\DamageBlockHighCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\DamageBlockLowCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\DamageBlockMidCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\ExitCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformLeftCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformMidCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformRightCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\PlayerCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\ScoreObjectHighCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\ScoreObjectLowCreator.cs" />
@@ -67,6 +81,7 @@
     <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectBuilder\ScoreObjectMidBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\PlayerAnimationDeadBuilder.cs" />
     <Compile Include="Levels\EntityType.cs" />
+    <Compile Include="States\Menus\ChallengesMenu.cs" />
     <Compile Include="Util\Animations\AnimationCreator.cs" />
     <Compile Include="Util\Animations\IAnimationBuilder.cs" />
     <Compile Include="States\Menus\StateLevelPause.cs" />
@@ -94,14 +109,14 @@
     <Compile Include="Levels\Entities\EntityFactoryMethod\EntityCreator.cs" />
     <Compile Include="Levels\Entities\EntityStates.cs" />
     <Compile Include="Levels\Entities\ExitEntity.cs" />
-    <Compile Include="Levels\Entities\ICollisionable.cs" />
+    <Compile Include="Levels\Entities\ICollisionableObject.cs" />
     <Compile Include="Levels\Entities\IDamageable.cs" />
-    <Compile Include="Levels\Entities\IDrawable.cs" />
+    <Compile Include="Levels\Entities\IDrawableObject.cs" />
     <Compile Include="Levels\Entities\IMovable.cs" />
     <Compile Include="Levels\Entities\IScoreable.cs" />
     <Compile Include="Levels\Entities\IStateable.cs" />
     <Compile Include="Levels\StateMove\IStateMovePlayer.cs" />
-    <Compile Include="Levels\Entities\IUpdateable.cs" />
+    <Compile Include="Levels\Entities\IUpdateableObject.cs" />
     <Compile Include="Levels\Level.cs" />
     <Compile Include="Levels\Map.cs" />
     <Compile Include="Levels\Entities\Player.cs" />
@@ -153,25 +168,13 @@
       <Link>SDL.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Graphics\hud_spritesheet.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Graphics\hud_spritesheet.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Graphics\items_spritesheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Graphics\items_spritesheet.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Graphics\p1_spritesheet.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Graphics\p1_spritesheet.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Graphics\tiles_spritesheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Graphics\tiles_spritesheet.xml">
@@ -189,9 +192,33 @@
     </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Content\Graphics\p1_spritesheet.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\menu.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Graphics\level_background.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Graphics\hud_spritesheet.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Graphics\items_spritesheet.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Graphics\tiles_spritesheet.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

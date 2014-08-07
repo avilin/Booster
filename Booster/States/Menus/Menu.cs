@@ -13,7 +13,7 @@ namespace Booster.States.Menus
         protected IGameStateContext stateManager;
 
         public List<MenuItem> Items { get; set; }
-        private int currentItem;
+        protected int currentItem;
 
         public MenuItem SelectedItem
         {
@@ -51,7 +51,7 @@ namespace Booster.States.Menus
             }
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             currentItem = 0;
             SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
@@ -76,7 +76,7 @@ namespace Booster.States.Menus
             }
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             for (int i = 0; i < Items.Count; i++)
             {
@@ -121,7 +121,7 @@ namespace Booster.States.Menus
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public virtual void Draw(GameTime gameTime)
         {
             stateManager.Game.GraphicsDevice.Clear(Color.Black);
             SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));

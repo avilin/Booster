@@ -58,22 +58,14 @@ namespace Booster.Levels
                 row = new List<string>(levelFile[j].Split(' '));
                 for (int i = 0; i < width; i++)
                 {
-                    Point mapCell = new Point(i, j);
-                    Vector2 position = new Vector2(mapCell.X * TileSide + TileSide / 2, mapCell.Y * TileSide + TileSide / 2);
+                    Vector2 position = CalculatePositionWithCell(i, j);
                     Entity entity;
-                    EntityType entityType = EntityType.Block;
+                    EntityType entityType = EntityType.BlockCenter;
                     if (i != 0 && j != 0 && i != width - 1 && j != height - 1)
                     {
                         if (i < row.Count)
                         {
-                            if (resources.StringType.ContainsKey(row[i]))
-                            {
-                                entityType = resources.StringType[row[i]];
-                            }
-                            else
-                            {
-                                entityType = EntityType.Null;
-                            }
+                            entityType = resources.StringType.ContainsKey(row[i]) ? resources.StringType[row[i]] : EntityType.Null;
                         }
                     }
 
@@ -92,7 +84,7 @@ namespace Booster.Levels
                     }
                     if (!(entity is IMovable) && entity is ICollisionableObject)
                     {
-                        Tiles[mapCell.X, mapCell.Y] = (ICollisionableObject)entity;
+                        Tiles[i, j] = (ICollisionableObject)entity;
                     }
                     if (entity is Player)
                     {
@@ -100,6 +92,11 @@ namespace Booster.Levels
                     }
                 }
             }
+        }
+
+        public Vector2 CalculatePositionWithCell(int i, int j)
+        {
+            return new Vector2(i * TileSide + TileSide / 2, j * TileSide + TileSide / 2);
         }
 
         public void Update(GameTime gameTime)

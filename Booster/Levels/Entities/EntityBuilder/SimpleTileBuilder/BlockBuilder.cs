@@ -25,7 +25,7 @@ namespace Booster.Levels.Entities.EntityBuilder
 
         public void BuildSourceRect()
         {
-            block.SourceRect = resources.SpriteSheets["tiles"].ObjectLocation["dirtCenter.png"];
+            block.SourceRect = resources.SpriteSheets["tiles"].ObjectLocation["snow.png"];
         }
 
         public void BuildDestinationRect()

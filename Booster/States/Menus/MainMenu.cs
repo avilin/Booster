@@ -17,8 +17,8 @@ namespace Booster.States.Menus
             item.MenuItemAction = StoryModeActivated;
             Items.Add(item);
 
-            item = new MenuItem("Play Level");
-            item.MenuItemAction = CustomLevelActivated;
+            item = new MenuItem("Challenges");
+            item.MenuItemAction = ChallengesActivated;
             Items.Add(item);
 
             item = new MenuItem("Options");
@@ -35,8 +35,9 @@ namespace Booster.States.Menus
             stateManager.CurrentState = GameStates.StoryMenu;
         }
 
-        public void CustomLevelActivated()
+        public void ChallengesActivated()
         {
+            stateManager.CurrentState = GameStates.ChallengesMenu;
         }
 
         public void OptionsActivated()

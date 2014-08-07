@@ -105,9 +105,13 @@ namespace Booster.States
         public void Draw(GameTime gameTime)
         {
             //Game.GraphicsDevice.Clear(Color.White);
-            stateManager.Game.GraphicsDevice.Clear(new Color(92, 129, 162));
+            stateManager.Game.GraphicsDevice.Clear(Color.White);
             SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
             SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(resources.Backgrounds["level_background"], stateManager.Game.GraphicsDevice.Viewport.Bounds, Color.White);
+            spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, camera2D.Transform);
             map.Draw(gameTime, spriteBatch, camera2D);
