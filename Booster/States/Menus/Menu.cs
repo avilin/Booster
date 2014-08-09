@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Booster.States;
 using Booster.Input;
 using System;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Booster.States.Menus
 {
@@ -22,10 +23,14 @@ namespace Booster.States.Menus
             }
         }
 
+        private SoundEffect selectItemSound;
+        private SoundEffectInstance backgroundSound;
         public Menu(IGameStateContext stateManager)
         {
             this.stateManager = stateManager;
-
+            selectItemSound = stateManager.Game.Content.Load<SoundEffect>(@"Sounds\menu.wav");
+            backgroundSound = stateManager.Game.Content.Load<SoundEffect>(@"Sounds\menu_background_sound.wav").CreateInstance();
+            backgroundSound.IsLooped = true;
             Items = new List<MenuItem>();
         }
 
@@ -78,6 +83,10 @@ namespace Booster.States.Menus
 
         public virtual void Update(GameTime gameTime)
         {
+            if (backgroundSound.State != SoundState.Playing)
+            {
+                backgroundSound.Play();
+            }
             for (int i = 0; i < Items.Count; i++)
             {
                 MenuItem item = Items[i];
@@ -117,6 +126,7 @@ namespace Booster.States.Menus
             }
             if (inputSystem.CurrentActions.Contains(VirtualButtons.A) && !inputSystem.PreviousActions.Contains(VirtualButtons.A))
             {
+                selectItemSound.Play();
                 SelectedItem.DoAction();
             }
         }

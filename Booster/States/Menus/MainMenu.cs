@@ -13,19 +13,23 @@ namespace Booster.States.Menus
         {
             MenuItem item;
 
-            item = new MenuItem("Story Mode");
+            item = new MenuItem();
+            item.Name = "Story Mode";
             item.MenuItemAction = StoryModeActivated;
             Items.Add(item);
 
-            item = new MenuItem("Challenges");
+            item = new MenuItem();
+            item.Name = "Challenges";
             item.MenuItemAction = ChallengesActivated;
             Items.Add(item);
 
-            item = new MenuItem("Options");
+            item = new MenuItem();
+            item.Name = "Options";
             item.MenuItemAction = OptionsActivated;
             Items.Add(item);
 
-            item = new MenuItem("Quit");
+            item = new MenuItem();
+            item.Name = "Quit";
             item.MenuItemAction = QuitActivated;
             Items.Add(item);
         }

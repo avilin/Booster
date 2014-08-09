@@ -16,6 +16,7 @@ namespace Booster.States
         Options,
         GameIntro,
         Loading,
+        LevelCompleted,
         GameOver
     }
 }

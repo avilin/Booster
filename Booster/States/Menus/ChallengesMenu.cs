@@ -5,6 +5,8 @@ using Booster.Levels;
 using Booster.States;
 using Booster.Util;
 using Microsoft.Xna.Framework.Graphics;
+using System.Xml.Linq;
+using System.Linq;
 
 namespace Booster.States.Menus
 {
@@ -18,74 +20,26 @@ namespace Booster.States.Menus
         {
             camera2D = new Camera2D();
             menuHeight = stateManager.Game.GraphicsDevice.Viewport.Height;
-
-            MenuItem item;
-
-            item = new MenuItem("Level 1");
-            item.MenuItemAction = MissionActivated;
-            item.File = @"Content\Levels\Level 1.txt";
-            Items.Add(item);
-
-            item = new MenuItem("Level 2");
-            item.MenuItemAction = MissionActivated;
-            item.File = @"Content\Levels\Level 2.txt";
-            Items.Add(item);
-
-            item = new MenuItem("Level 3");
-            item.MenuItemAction = MissionActivated;
-            item.File = @"Content\Levels\Level 3.txt";
-            Items.Add(item);
-
-            item = new MenuItem("Level 4");
-            item.MenuItemAction = MissionActivated;
-            Items.Add(item);
-
-            item = new MenuItem("Level 5");
-            item.MenuItemAction = MissionActivated;
-            Items.Add(item);
-
-            item = new MenuItem("Level 6");
-            item.MenuItemAction = MissionActivated;
-            Items.Add(item);
-
-            item = new MenuItem("Level 7");
-            item.MenuItemAction = MissionActivated;
-            Items.Add(item);
-
-            item = new MenuItem("Level 8");
-            item.MenuItemAction = MissionActivated;
-            Items.Add(item);
-
-            item = new MenuItem("Level 9");
-            item.MenuItemAction = MissionActivated;
-            Items.Add(item);
-
-            item = new MenuItem("Level 10");
-            item.MenuItemAction = MissionActivated;
-            Items.Add(item);
-
-            item = new MenuItem("Level 11");
-            item.MenuItemAction = MissionActivated;
-            Items.Add(item);
-
-            item = new MenuItem("Level 12");
-            item.MenuItemAction = MissionActivated;
-            Items.Add(item);
-
-            item = new MenuItem("Back");
-            item.MenuItemAction = BackActivated;
-            Items.Add(item);
         }
 
         public override void Initialize()
         {
+            Items = new List<MenuItem>();
+
+            LoadLevels();
+
+            MenuItem item = new MenuItem();
+            item.Name = "Back";
+            item.MenuItemAction = BackActivated;
+            Items.Add(item);
+
             currentItem = 0;
             SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
             Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
             for (int i = 0; i < Items.Count; i++)
             {
                 float scale = 0.7f;
-                MenuItem item = Items[i];
+                item = Items[i];
                 item.Scale = scale;
                 item.Color = Color.Green;
                 Vector2 size = spriteFont.MeasureString(item.Name);
@@ -103,6 +57,21 @@ namespace Booster.States.Menus
 
             menuHeight = (int)Items[Items.Count - 1].Position.Y + viewport.Height / 4;
             camera2D.Initialize(stateManager.Game.GraphicsDevice.Viewport);
+        }
+
+        public void LoadLevels()
+        {
+            XDocument xdoc = XDocument.Load(@"Content\Levels\Levels.xml");
+            IEnumerable<XElement> levels = xdoc.Descendants("Level").Where(level => level.Parent.Name == "Challenges");
+
+            MenuItem item;
+            foreach (XElement level in levels)
+            {
+                item = new MenuLevelItem(level);
+                item.MenuItemAction = MissionActivated;
+                //item.File = @"Content\Levels\" + level.Attribute("file").Value;
+                Items.Add(item);
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -135,8 +104,12 @@ namespace Booster.States.Menus
 
         public void MissionActivated()
         {
+            if (!(SelectedItem is MenuLevelItem))
+            {
+                return;
+            }
             stateManager.CurrentState = GameStates.Level;
-            ((GameStateContext)stateManager).LoadLevel(SelectedItem.File);
+            ((GameStateContext)stateManager).LoadLevel(((MenuLevelItem)SelectedItem).Level);
         }
 
         public void BackActivated()

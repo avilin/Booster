@@ -16,11 +16,13 @@ namespace Booster.States.Menus
         {
             MenuItem item;
 
-            item = new MenuItem("Continue");
+            item = new MenuItem();
+            item.Name = "Continue";
             item.MenuItemAction = ContinueActivated;
             Items.Add(item);
 
-            item = new MenuItem("Exit Level");
+            item = new MenuItem();
+            item.Name = "Exit Level";
             item.MenuItemAction = QuitLevelActivated;
             Items.Add(item);
         }

@@ -17,7 +17,7 @@ namespace Booster.States
         private IGameStateContext stateManager;
         private Resources resources;
 
-        private Map map;
+        public Map Map { get; set; }
         private Camera2D camera2D;
 
         public StateLevelPlaying(IGameStateContext stateManager, Resources resources)
@@ -25,19 +25,19 @@ namespace Booster.States
             this.stateManager = stateManager;
             this.resources = resources;
 
-            map = new Map(resources);
+            Map = new Map(resources);
             camera2D = new Camera2D();
         }
 
         public void LoadMap(string file)
         {
-            map.LoadMap(file);
+            Map.LoadMap(file);
         }
 
         public void Initialize()
         {
             camera2D.Initialize(stateManager.Game.GraphicsDevice.Viewport);
-            map.Initialize();
+            Map.Initialize();
         }
 
         public void Update(GameTime gameTime)
@@ -83,23 +83,24 @@ namespace Booster.States
                 acceleration -= Vector2.UnitY;
             }
 
-            map.Update(gameTime);
-            map.MovePlayer(gameTime, acceleration);
+            Map.Update(gameTime);
+            Map.MovePlayer(gameTime, acceleration);
 
-            if (map.Player.CurrentEntityStates.Contains(EntityStates.Win))
+            if (Map.Player.CurrentEntityStates.Contains(EntityStates.Win))
             {
-                stateManager.CurrentState = GameStates.StoryMenu;
+                stateManager.CurrentState = GameStates.LevelCompleted;
                 return;
             }
 
-            if (!map.Player.Active)
+            if (!Map.Player.Active)
             {
-                Initialize();
+                stateManager.CurrentState = GameStates.GameOver;
+                //Initialize();
                 return;
             }
 
-            Vector2 cameraPosition = new Vector2((int)map.Player.Position.X, (int)map.Player.Position.Y);
-            camera2D.Update(cameraPosition, map.Tiles.GetLength(0) * map.TileSide, map.Tiles.GetLength(1) * map.TileSide);
+            Vector2 cameraPosition = new Vector2((int)Map.Player.Position.X, (int)Map.Player.Position.Y);
+            camera2D.Update(cameraPosition, Map.Tiles.GetLength(0) * Map.TileSide, Map.Tiles.GetLength(1) * Map.TileSide);
         }
 
         public void Draw(GameTime gameTime)
@@ -114,12 +115,12 @@ namespace Booster.States
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, camera2D.Transform);
-            map.Draw(gameTime, spriteBatch, camera2D);
+            Map.Draw(gameTime, spriteBatch, camera2D);
             spriteBatch.End();
 
             spriteBatch.Begin();
-            map.Player.DrawLifes(spriteBatch, resources);
-            spriteBatch.DrawString(spriteFont, "Score: " + map.Player.Score, new Vector2(10, 50), Color.Black);
+            Map.Player.DrawLifes(spriteBatch, resources);
+            spriteBatch.DrawString(spriteFont, "Score: " + Map.Player.Score, new Vector2(10, 50), Color.Black);
             spriteBatch.End();
         }
     }

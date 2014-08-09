@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Xml.Linq;
 
 namespace Booster.States
 {
@@ -32,7 +33,7 @@ namespace Booster.States
 
         public GameStateContext(Game game, Resources resources)
         {
-            this.Game = game;
+            Game = game;
             this.resources = resources;
         }
 
@@ -44,6 +45,8 @@ namespace Booster.States
             States[GameStates.StoryMenu] = new StoryMenu(this);
             States[GameStates.ChallengesMenu] = new ChallengesMenu(this);
             States[GameStates.Level] = new Level(this, resources);
+            States[GameStates.GameOver] = new GameOver(this);
+            States[GameStates.LevelCompleted] = new LevelCompleted(this);
 
             CurrentState = GameStates.GameIntro;
         }
@@ -58,14 +61,14 @@ namespace Booster.States
             States[CurrentState].Draw(gameTime);
         }
 
-        public void LoadLevel(string file)
+        public void LoadLevel(XElement level)
         {
-            if (!File.Exists(file))
-            {
-                CurrentState = GameStates.MainMenu;
-                return;
-            }
-            (States[GameStates.Level] as Level).LoadMap(file);
+            //if (!File.Exists(file))
+            //{
+            //    CurrentState = GameStates.MainMenu;
+            //    return;
+            //}
+            (States[GameStates.Level] as Level).LoadMap(level);
         }
 
         public void InitializeCurrentGameState()

@@ -15,16 +15,13 @@ namespace Booster.States.Menus
         public Vector2 Position { get; set; }
         public MenuItemDelegate MenuItemAction;
 
-        public string File { get; set; }
-
-        public MenuItem(string name)
+        public MenuItem()
         {
-            Name = name;
+            Name = "Menu Option";
             Enabled = true;
             Scale = 0.7f;
             Color = Color.Green;
             Position = Vector2.Zero;
-            File = "";
         }
 
         public virtual void DoAction()
