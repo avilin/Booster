@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using System.Xml.Linq;
 
 namespace Booster.Input
 {
@@ -32,28 +33,14 @@ namespace Booster.Input
 
             virtualButtonConfigs = new List<VirtualButtonConfig>();
 
-            AddAction(VirtualButtons.Start, Keys.Enter, Buttons.Start);
-            AddAction(VirtualButtons.Back, Keys.Escape, Buttons.Back);
-            AddAction(VirtualButtons.Guide, Keys.F5, Buttons.BigButton);
-
-            AddAction(VirtualButtons.Left, Keys.Left, Buttons.DPadLeft);
-            AddAction(VirtualButtons.Right, Keys.Right, Buttons.DPadRight);
-            AddAction(VirtualButtons.Up, Keys.Up, Buttons.DPadUp);
-            AddAction(VirtualButtons.Down, Keys.Down, Buttons.DPadDown);
-
-            AddAction(VirtualButtons.A, Keys.Space, Buttons.A);
-            AddAction(VirtualButtons.B, Keys.Back, Buttons.B);
-            AddAction(VirtualButtons.X, Keys.J, Buttons.X);
-            AddAction(VirtualButtons.Y, Keys.I, Buttons.Y);
-
-            AddAction(VirtualButtons.LB, Keys.LeftShift, Buttons.LeftShoulder);
-            AddAction(VirtualButtons.RB, Keys.RightShift, Buttons.RightShoulder);
-
-            AddAction(VirtualButtons.LT, Keys.LeftControl, Buttons.LeftTrigger);
-            AddAction(VirtualButtons.RT, Keys.RightControl, Buttons.RightTrigger);
-
-            AddAction(VirtualButtons.LeftStick, Keys.X, Buttons.LeftStick);
-            AddAction(VirtualButtons.RightStick, Keys.M, Buttons.RightStick);
+            XDocument xdoc = XDocument.Load(@"Content\Config\Config.xml");
+            foreach (XElement element in xdoc.Descendants("Input"))
+            {
+                VirtualButtons virtualButton = (VirtualButtons)Enum.Parse(typeof(VirtualButtons), element.Attribute("virtual_button").Value);
+                Keys key = (Keys)Enum.Parse(typeof(Keys), element.Attribute("key").Value);
+                Buttons button = (Buttons)Enum.Parse(typeof(Buttons), element.Attribute("button").Value);
+                AddAction(virtualButton, key, button);
+            }
 
             LeftThumbSticks = Vector2.Zero;
             RightThumbSticks = Vector2.Zero;

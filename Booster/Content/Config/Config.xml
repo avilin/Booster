@@ -1,0 +1,19 @@
+﻿<Config>
+  <Input virtual_button ="Start" key="Enter" button="Start"/>
+  <Input virtual_button ="Back" key="Escape" button="Back"/>
+  <Input virtual_button ="Guide" key="F5" button="BigButton"/>
+  <Input virtual_button ="Left" key="Left" button="DPadLeft"/>
+  <Input virtual_button ="Right" key="Right" button="DPadRight"/>
+  <Input virtual_button ="Up" key="Up" button="DPadUp"/>
+  <Input virtual_button ="Down" key="Down" button="DPadDown"/>
+  <Input virtual_button ="A" key="Space" button="A"/>
+  <Input virtual_button ="B" key="Back" button="B"/>
+  <Input virtual_button ="X" key="L" button="X"/>
+  <Input virtual_button ="Y" key="I" button="Y"/>
+  <Input virtual_button ="LB" key="LeftShift" button="LeftShoulder"/>
+  <Input virtual_button ="RB" key="RightShift" button="RightShoulder"/>
+  <Input virtual_button ="LT" key="LeftControl" button="LeftTrigger"/>
+  <Input virtual_button ="RT" key="RightControl" button="RightTrigger"/>
+  <Input virtual_button ="LeftStick" key="X" button="LeftShoulder"/>
+  <Input virtual_button ="RightStick" key="M" button="RightShoulder"/>
+</Config>
