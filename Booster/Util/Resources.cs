@@ -3,6 +3,7 @@ using Booster.Levels.Entities;
 using Booster.Levels.Entities.EntityBuilder;
 using Booster.Levels.Entities.EntityFactoryMethod;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace Booster.Util
         private Game game;
         public Dictionary<string, SpriteSheetInfo> SpriteSheets { get; set; }
 
+        public Dictionary<string, SoundEffect> SoundEffects { get; set; }
+
         public Dictionary<string, EntityType> StringType { get; set; }
         public Dictionary<EntityType, EntityCreator> EntityTypeCreator { get; set; }
 
@@ -26,6 +29,14 @@ namespace Booster.Util
         public Resources(Game game)
         {
             this.game = game;
+
+            LoadGraphics();
+            LoadSounds();
+            LoadFactortMethod();
+        }
+
+        public void LoadGraphics()
+        {
             SpriteSheets = new Dictionary<string, SpriteSheetInfo>();
 
             LoadSpriteSheet("p1");
@@ -33,6 +44,26 @@ namespace Booster.Util
             LoadSpriteSheet("items");
             LoadSpriteSheet("hud");
 
+            Backgrounds = new Dictionary<string, Texture2D>();
+            Backgrounds.Add("level_background", game.Content.Load<Texture2D>(@"Graphics\level_background"));
+        }
+
+        public void LoadSpriteSheet(string spriteSheetName)
+        {
+            SpriteSheetInfo spriteSheetInfo = new SpriteSheetInfo(game, spriteSheetName);
+            SpriteSheets[spriteSheetName] = spriteSheetInfo;
+        }
+
+        public void LoadSounds()
+        {
+            SoundEffects = new Dictionary<string, SoundEffect>();
+            SoundEffects["coin"] = game.Content.Load<SoundEffect>(@"Sounds\coin.wav");
+            SoundEffects["hit"] = game.Content.Load<SoundEffect>(@"Sounds\hit.wav");
+            SoundEffects["jump"] = game.Content.Load<SoundEffect>(@"Sounds\jump.wav");
+        }
+
+        public void LoadFactortMethod()
+        {
             StringType = new Dictionary<string, EntityType>();
             StringType.Add("PLA", EntityType.Player);
             StringType.Add("BLO", EntityType.Block);
@@ -73,15 +104,6 @@ namespace Booster.Util
             EntityTypeCreator.Add(EntityType.ScoreObjectHigh, new ScoreObjectHighCreator());
             EntityTypeCreator.Add(EntityType.Exit, new ExitCreator());
             EntityTypeCreator.Add(EntityType.Null, new NullEntityCreator());
-
-            Backgrounds = new Dictionary<string, Texture2D>();
-            Backgrounds.Add("level_background", game.Content.Load<Texture2D>(@"Graphics\level_background"));
-        }
-
-        public void LoadSpriteSheet(string spriteSheetName)
-        {
-            SpriteSheetInfo spriteSheetInfo = new SpriteSheetInfo(game, spriteSheetName);
-            SpriteSheets[spriteSheetName] = spriteSheetInfo;
         }
     }
 }

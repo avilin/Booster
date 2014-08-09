@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Booster.Levels.StateMove;
 using Booster.Util;
 using Booster.Util.Animations;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Booster.Levels.Entities
 {
@@ -30,6 +31,9 @@ namespace Booster.Levels.Entities
         {
             get { return BoundingBox.BoxInPosition(Position); }
         }
+
+        public SoundEffect JumpSound { get; set; }
+        public SoundEffect HitSound { get; set; }
 
         public Player(Vector2 position)
             : base(position)
@@ -82,6 +86,7 @@ namespace Booster.Levels.Entities
             {
                 Speed = Speed * Vector2.UnitX - Vector2.UnitY * 0.75f;
                 CurrentEntityStates.Add(EntityStates.OnAir);
+                JumpSound.Play();
             }
 
             ApplyGravity(gameTime);
@@ -177,7 +182,6 @@ namespace Booster.Levels.Entities
             {
                 stateMovePlayer = null;
             }
-
 
             if (stateMovePlayer != null)
             {
@@ -453,6 +457,7 @@ namespace Booster.Levels.Entities
                 return;
             }
             CurrentEntityStates.Add(EntityStates.Hit);
+            HitSound.Play();
             Health -= damage;
             if (Health <= 0)
             {

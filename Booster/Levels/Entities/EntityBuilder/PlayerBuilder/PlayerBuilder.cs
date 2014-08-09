@@ -49,6 +49,12 @@ namespace Booster.Levels.Entities.EntityBuilder
             player.Animations = playerAnimations;
         }
 
+        public void BuildSounds()
+        {
+            player.JumpSound = resources.SoundEffects["jump"];
+            player.HitSound = resources.SoundEffects["hit"];
+        }
+
         public void BuildBoundingBox()
         {
             player.BoundingBox = new Box(16, 32, 16, 32);
