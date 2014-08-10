@@ -42,8 +42,7 @@ namespace Booster.States
                 }
                 else
                 {
-                    stateManager.CurrentState = value;
-                    if (stateManager.CurrentState == GameStates.LevelCompleted)
+                    if (value == GameStates.LevelCompleted)
                     {
                         XDocument xdoc = XDocument.Load(@"Content\Levels\Levels.xml");
                         XElement score = new XElement("Score");
@@ -56,6 +55,7 @@ namespace Booster.States
                             if (this.level.Attribute("name").Value == level.Attribute("name").Value)
                             {
                                 level.Add(score);
+                                ((LevelCompleted)stateManager.States[GameStates.LevelCompleted]).ChangeLevelCompleted(level);
                             }
                             if (this.level.NextNode == null)
                             {
@@ -69,6 +69,7 @@ namespace Booster.States
                         }
                         xdoc.Save(@"Content\Levels\Levels.xml");
                     }
+                    stateManager.CurrentState = value;
                 }
             }
         }
