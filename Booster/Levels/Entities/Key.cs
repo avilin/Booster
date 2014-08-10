@@ -24,6 +24,7 @@ namespace Booster.Levels.Entities
             }
             if (collisionableObject is IHaveKeys)
             {
+                CollisionSound.Play();
                 ((IHaveKeys)collisionableObject).Keys++;
             }
             Active = false;

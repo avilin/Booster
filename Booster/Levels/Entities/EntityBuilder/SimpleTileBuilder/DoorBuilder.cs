@@ -21,6 +21,8 @@ namespace Booster.Levels.Entities.EntityBuilder
         public void BuildResources()
         {
             door.Texture = resources.SpriteSheets["tiles"].SpriteSheet;
+            ((Door)door).CollisionSound = resources.SoundEffects["door"];
+
         }
 
         public void BuildSourceRect()

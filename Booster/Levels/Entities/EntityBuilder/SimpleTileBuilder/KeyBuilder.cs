@@ -21,6 +21,7 @@ namespace Booster.Levels.Entities.EntityBuilder
         public void BuildResources()
         {
             key.Texture = resources.SpriteSheets["hud"].SpriteSheet;
+            ((Key)key).CollisionSound = resources.SoundEffects["key"];
         }
 
         public void BuildSourceRect()

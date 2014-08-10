@@ -62,6 +62,8 @@ namespace Booster.Util
             SoundEffects["hit"] = game.Content.Load<SoundEffect>(@"Sounds\hit.wav");
             SoundEffects["jump"] = game.Content.Load<SoundEffect>(@"Sounds\jump.wav");
             SoundEffects["menu"] = game.Content.Load<SoundEffect>(@"Sounds\menu.wav");
+            SoundEffects["door"] = game.Content.Load<SoundEffect>(@"Sounds\door.wav");
+            SoundEffects["key"] = game.Content.Load<SoundEffect>(@"Sounds\key.wav");
 
             Songs = new Dictionary<string, SoundEffectInstance>();
             Songs["menu_music"] = game.Content.Load<SoundEffect>(@"Sounds\menu_music.wav").CreateInstance();
