@@ -120,7 +120,7 @@ namespace Booster.States
             spriteBatch.Begin();
             DrawLifes(spriteBatch);
             DrawScore(spriteBatch);
-            //spriteBatch.DrawString(spriteFont, "Score: " + Map.Player.Score, new Vector2(10, 50), Color.Black);
+            DrawKeys(spriteBatch);
             spriteBatch.End();
         }
 
@@ -170,6 +170,17 @@ namespace Booster.States
             spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, xDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_x.png"], Color.White);
             spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, tensDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_" + firstDigit + ".png"], Color.White);
             spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, unitsDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_" + secondDigit + ".png"], Color.White);
+        }
+
+        public void DrawKeys(SpriteBatch spriteBatch)
+        {
+            Rectangle keyDestinationRect = new Rectangle(5, 105, 44, 40);
+            Rectangle xDestinationRect = new Rectangle(55, 114, 30, 28);
+            Rectangle digitDestinationRect = new Rectangle(90, 105, 32, 40);
+            int firstDigit = Map.Player.Keys % 10;
+            spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, keyDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_keyYellow.png"], Color.White);
+            spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, xDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_x.png"], Color.White);
+            spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, digitDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_" + firstDigit + ".png"], Color.White);
         }
     }
 }
