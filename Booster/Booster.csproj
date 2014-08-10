@@ -35,6 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Levels\Entities\Door.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockCenterBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockLeftBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockMidBuilder.cs" />
@@ -80,6 +81,8 @@
     <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectBuilder\ScoreObjectDirector.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectBuilder\ScoreObjectMidBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\PlayerAnimationDeadBuilder.cs" />
+    <Compile Include="Levels\Entities\IHaveKeys.cs" />
+    <Compile Include="Levels\Entities\Key.cs" />
     <Compile Include="Levels\EntityType.cs" />
     <Compile Include="States\GameOver.cs" />
     <Compile Include="States\LevelCompleted.cs" />

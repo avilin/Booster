@@ -20,7 +20,7 @@ namespace Booster.Levels
             this.resources = resources;
         }
 
-        public void BuildTexture()
+        public void BuildResources()
         {
             exit.Texture = resources.SpriteSheets["tiles"].SpriteSheet;
         }

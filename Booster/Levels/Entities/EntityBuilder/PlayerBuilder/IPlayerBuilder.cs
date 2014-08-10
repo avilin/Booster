@@ -7,8 +7,7 @@ namespace Booster.Levels.Entities.EntityBuilder
 {
     public interface IPlayerBuilder
     {
-        void BuildAnimations();
-        void BuildSounds();
+        void BuildResources();
         void BuildBoundingBox();
         void BuildCollisionType();
         void BuildHealth();

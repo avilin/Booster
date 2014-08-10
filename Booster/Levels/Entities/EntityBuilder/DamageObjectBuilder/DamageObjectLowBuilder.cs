@@ -18,7 +18,7 @@ namespace Booster.Levels.Entities.EntityBuilder
             this.resources = resources;
         }
 
-        public void BuildTexture()
+        public void BuildResources()
         {
             damageObject.Texture = resources.SpriteSheets["tiles"].SpriteSheet;
         }

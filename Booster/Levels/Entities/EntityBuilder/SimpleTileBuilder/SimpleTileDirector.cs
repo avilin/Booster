@@ -10,7 +10,7 @@ namespace Booster.Levels.Entities.EntityBuilder
     {
         public void Construct(ISimpleTileBuilder simpleTileBuilder)
         {
-            simpleTileBuilder.BuildTexture();
+            simpleTileBuilder.BuildResources();
             simpleTileBuilder.BuildSourceRect();
             simpleTileBuilder.BuildDestinationRect();
             simpleTileBuilder.BuildLayerDepth();

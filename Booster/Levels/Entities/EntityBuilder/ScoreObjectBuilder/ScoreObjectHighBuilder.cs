@@ -19,13 +19,9 @@ namespace Booster.Levels
             this.resources = resources;
         }
 
-        public void BuildTexture()
+        public void BuildResources()
         {
             scoreObject.Texture = resources.SpriteSheets["items"].SpriteSheet;
-        }
-
-        public void BuildSound()
-        {
             scoreObject.CollisionSound = resources.SoundEffects["coin"];
         }
 

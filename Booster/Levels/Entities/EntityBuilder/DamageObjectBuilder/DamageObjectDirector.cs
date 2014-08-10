@@ -9,7 +9,7 @@ namespace Booster.Levels.Entities.EntityBuilder
     {
         public void Construct(IDamageObjectBuilder damageObjectBuilder)
         {
-            damageObjectBuilder.BuildTexture();
+            damageObjectBuilder.BuildResources();
             damageObjectBuilder.BuildSourceRect();
             damageObjectBuilder.BuildDestinationRect();
             damageObjectBuilder.BuildLayerDepth();

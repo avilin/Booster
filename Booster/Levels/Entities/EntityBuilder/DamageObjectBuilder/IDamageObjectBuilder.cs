@@ -7,7 +7,7 @@ namespace Booster.Levels.Entities.EntityBuilder
 {
     public interface IDamageObjectBuilder
     {
-        void BuildTexture();
+        void BuildResources();
         void BuildSourceRect();
         void BuildDestinationRect();
         void BuildLayerDepth();

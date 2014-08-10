@@ -19,7 +19,13 @@ namespace Booster.Levels.Entities.EntityBuilder
             this.resources = resources;
         }
 
-        public void BuildAnimations()
+        public void BuildResources()
+        {
+            BuildAnimations();
+            BuildSounds();
+        }
+
+        private void BuildAnimations()
         {
             Dictionary<String, Animation> playerAnimations = new Dictionary<string, Animation>();
 
@@ -49,7 +55,7 @@ namespace Booster.Levels.Entities.EntityBuilder
             player.Animations = playerAnimations;
         }
 
-        public void BuildSounds()
+        private void BuildSounds()
         {
             player.JumpSound = resources.SoundEffects["jump"];
             player.HitSound = resources.SoundEffects["hit"];

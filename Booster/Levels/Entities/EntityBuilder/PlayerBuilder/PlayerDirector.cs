@@ -9,8 +9,7 @@ namespace Booster.Levels.Entities.EntityBuilder
     {
         public void Construct(IPlayerBuilder playerBuider)
         {
-            playerBuider.BuildAnimations();
-            playerBuider.BuildSounds();
+            playerBuider.BuildResources();
             playerBuider.BuildBoundingBox();
             playerBuider.BuildCollisionType();
             playerBuider.BuildHealth();

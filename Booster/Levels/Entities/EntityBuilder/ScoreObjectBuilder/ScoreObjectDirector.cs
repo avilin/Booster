@@ -9,8 +9,7 @@ namespace Booster.Levels
     {
         public void Construct(IScoreObjectBuilder scoreObjectBuilder)
         {
-            scoreObjectBuilder.BuildTexture();
-            scoreObjectBuilder.BuildSound();
+            scoreObjectBuilder.BuildResources();
             scoreObjectBuilder.BuildSourceRect();
             scoreObjectBuilder.BuildDestinationRect();
             scoreObjectBuilder.BuildLayerDepth();

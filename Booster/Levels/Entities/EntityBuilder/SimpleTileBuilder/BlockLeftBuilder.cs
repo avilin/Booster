@@ -18,7 +18,7 @@ namespace Booster.Levels.Entities.EntityBuilder.SimpleTileBuilder
             this.resources = resources;
         }
 
-        public void BuildTexture()
+        public void BuildResources()
         {
             block.Texture = resources.SpriteSheets["tiles"].SpriteSheet;
         }
