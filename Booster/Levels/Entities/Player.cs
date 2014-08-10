@@ -494,7 +494,7 @@ namespace Booster.Levels.Entities
             Rectangle sourceRect = sourceRectEmpty;
             int lifes = Health;
             Rectangle destinationRect = new Rectangle(2, 2, 53, 45);
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (i != 0)
                 {

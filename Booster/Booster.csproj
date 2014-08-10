@@ -120,7 +120,7 @@
     <Compile Include="Levels\Entities\IStateable.cs" />
     <Compile Include="Levels\StateMove\IStateMovePlayer.cs" />
     <Compile Include="Levels\Entities\IUpdateableObject.cs" />
-    <Compile Include="Levels\Level.cs" />
+    <Compile Include="States\Level.cs" />
     <Compile Include="Levels\Map.cs" />
     <Compile Include="Levels\Entities\Player.cs" />
     <Compile Include="Levels\Entities\ScoreObject.cs" />

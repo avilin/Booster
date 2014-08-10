@@ -56,7 +56,7 @@ namespace Booster.Levels
 
         public void BuildScore()
         {
-            scoreObject.Score = 10000;
+            scoreObject.Score = 3;
         }
 
         public ScoreObject GetResult()

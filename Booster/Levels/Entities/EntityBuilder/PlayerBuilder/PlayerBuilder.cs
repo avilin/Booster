@@ -67,7 +67,7 @@ namespace Booster.Levels.Entities.EntityBuilder
 
         public void BuildHealth()
         {
-            player.Health = 10;
+            player.Health = 4;
         }
 
         public void BuildStatesTime()

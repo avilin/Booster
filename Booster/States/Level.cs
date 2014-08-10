@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Booster.States;
 using Booster.Input;
 using System.IO;
 using Booster.States.Menus;
@@ -11,7 +10,7 @@ using System.Xml.Linq;
 using System.Linq;
 using System.Xml;
 
-namespace Booster.Levels
+namespace Booster.States
 {
     public class Level : IGameState, IGameStateContext
     {
