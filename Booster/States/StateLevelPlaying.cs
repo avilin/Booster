@@ -15,17 +15,15 @@ namespace Booster.States
     public class StateLevelPlaying : IGameState
     {
         private IGameStateContext stateManager;
-        private Resources resources;
 
         public Map Map { get; set; }
         private Camera2D camera2D;
 
-        public StateLevelPlaying(IGameStateContext stateManager, Resources resources)
+        public StateLevelPlaying(IGameStateContext stateManager)
         {
             this.stateManager = stateManager;
-            this.resources = resources;
 
-            Map = new Map(resources);
+            Map = new Map(stateManager.Resources);
             camera2D = new Camera2D();
         }
 
@@ -36,6 +34,7 @@ namespace Booster.States
 
         public void Initialize()
         {
+            stateManager.Resources.Songs["level_music"].Play();
             camera2D.Initialize(stateManager.Game.GraphicsDevice.Viewport);
             Map.Initialize();
         }
@@ -111,7 +110,7 @@ namespace Booster.States
             SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
 
             spriteBatch.Begin();
-            spriteBatch.Draw(resources.Backgrounds["level_background"], stateManager.Game.GraphicsDevice.Viewport.Bounds, Color.White);
+            spriteBatch.Draw(stateManager.Resources.Backgrounds["level_background"], stateManager.Game.GraphicsDevice.Viewport.Bounds, Color.White);
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, camera2D.Transform);
@@ -119,7 +118,7 @@ namespace Booster.States
             spriteBatch.End();
 
             spriteBatch.Begin();
-            Map.Player.DrawLifes(spriteBatch, resources);
+            Map.Player.DrawLifes(spriteBatch, stateManager.Resources);
             spriteBatch.DrawString(spriteFont, "Score: " + Map.Player.Score, new Vector2(10, 50), Color.Black);
             spriteBatch.End();
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Booster.Util;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace Booster.States
 {
     public interface IGameStateContext
     {
+        Resources Resources { get; set; }
         Game Game { get; set; }
         Dictionary<GameStates, IGameState> States { get; set; }
         GameStates CurrentState { get; set; }

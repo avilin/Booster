@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Xml.Linq;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Booster.States
 {
     public class GameStateContext : IGameStateContext
     {
-        private Resources resources;
+        public Resources Resources { get; set; }
         public Game Game { get; set; }
         public Dictionary<GameStates, IGameState> States { get; set; }
 
@@ -27,6 +28,10 @@ namespace Booster.States
             set
             {
                 currentState = value;
+                foreach (KeyValuePair<string, SoundEffectInstance> song in Resources.Songs.Where(song => song.Value.State == SoundState.Playing))
+                {
+                    song.Value.Stop();
+                }
                 InitializeCurrentGameState();
             }
         }
@@ -34,7 +39,7 @@ namespace Booster.States
         public GameStateContext(Game game, Resources resources)
         {
             Game = game;
-            this.resources = resources;
+            this.Resources = resources;
         }
 
         public void Initialize()
@@ -44,7 +49,7 @@ namespace Booster.States
             States[GameStates.MainMenu] = new MainMenu(this);
             States[GameStates.StoryMenu] = new StoryMenu(this);
             States[GameStates.ChallengesMenu] = new ChallengesMenu(this);
-            States[GameStates.Level] = new Level(this, resources);
+            States[GameStates.Level] = new Level(this);
             States[GameStates.GameOver] = new GameOver(this);
             States[GameStates.LevelCompleted] = new LevelCompleted(this);
 

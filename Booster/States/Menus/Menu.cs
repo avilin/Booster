@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Booster.States;
 using Booster.Input;
 using System;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Booster.States.Menus
 {
@@ -17,7 +18,8 @@ namespace Booster.States.Menus
 
         public MenuItem SelectedItem
         {
-            get {
+            get
+            {
                 return Items.Count > 0 ? Items[currentItem] : null;
             }
         }
@@ -52,6 +54,7 @@ namespace Booster.States.Menus
 
         public virtual void Initialize()
         {
+            stateManager.Resources.Songs["menu_music"].Play();
             currentItem = 0;
             SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
             Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
@@ -116,6 +119,7 @@ namespace Booster.States.Menus
             }
             if (inputSystem.CurrentActions.Contains(VirtualButtons.A) && !inputSystem.PreviousActions.Contains(VirtualButtons.A))
             {
+                stateManager.Resources.SoundEffects["menu"].Play();
                 SelectedItem.DoAction();
             }
         }

@@ -9,6 +9,7 @@ namespace Booster.Levels
     public interface IScoreObjectBuilder
     {
         void BuildTexture();
+        void BuildSound();
         void BuildSourceRect();
         void BuildDestinationRect();
         void BuildLayerDepth();

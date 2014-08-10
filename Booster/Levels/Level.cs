@@ -15,7 +15,7 @@ namespace Booster.Levels
 {
     public class Level : IGameState, IGameStateContext
     {
-        private Resources resources;
+        public Resources Resources { get; set; }
         public Game Game { get; set; }
 
         private IGameStateContext stateManager;
@@ -74,11 +74,11 @@ namespace Booster.Levels
             }
         }
 
-        public Level(IGameStateContext stateManager, Resources resources)
+        public Level(IGameStateContext stateManager)
         {
             this.Game = stateManager.Game;
             this.stateManager = stateManager;
-            this.resources = resources;
+            Resources = stateManager.Resources;
         }
 
         public void LoadMap(XElement level)
@@ -96,7 +96,7 @@ namespace Booster.Levels
         public void Initialize()
         {
             States = new Dictionary<GameStates, IGameState>();
-            States[GameStates.Playing] = new StateLevelPlaying(this, resources);
+            States[GameStates.Playing] = new StateLevelPlaying(this);
             States[GameStates.Pause] = new StateLevelPause(this);
 
             CurrentState = GameStates.Playing;

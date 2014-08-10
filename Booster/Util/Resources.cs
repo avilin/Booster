@@ -20,6 +20,7 @@ namespace Booster.Util
         public Dictionary<string, SpriteSheetInfo> SpriteSheets { get; set; }
 
         public Dictionary<string, SoundEffect> SoundEffects { get; set; }
+        public Dictionary<string, SoundEffectInstance> Songs { get; set; }
 
         public Dictionary<string, EntityType> StringType { get; set; }
         public Dictionary<EntityType, EntityCreator> EntityTypeCreator { get; set; }
@@ -60,6 +61,13 @@ namespace Booster.Util
             SoundEffects["coin"] = game.Content.Load<SoundEffect>(@"Sounds\coin.wav");
             SoundEffects["hit"] = game.Content.Load<SoundEffect>(@"Sounds\hit.wav");
             SoundEffects["jump"] = game.Content.Load<SoundEffect>(@"Sounds\jump.wav");
+            SoundEffects["menu"] = game.Content.Load<SoundEffect>(@"Sounds\menu.wav");
+
+            Songs = new Dictionary<string, SoundEffectInstance>();
+            Songs["menu_music"] = game.Content.Load<SoundEffect>(@"Sounds\menu_music.wav").CreateInstance();
+            Songs["menu_music"].IsLooped = true;
+            Songs["level_music"] = game.Content.Load<SoundEffect>(@"Sounds\level_music.wav").CreateInstance();
+            Songs["level_music"].IsLooped = true;
         }
 
         public void LoadFactortMethod()

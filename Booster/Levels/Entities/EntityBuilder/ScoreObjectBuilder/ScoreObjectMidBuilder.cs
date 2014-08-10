@@ -23,6 +23,10 @@ namespace Booster.Levels
         {
             scoreObject.Texture = resources.SpriteSheets["items"].SpriteSheet;
         }
+        public void BuildSound()
+        {
+            scoreObject.CollisionSound = resources.SoundEffects["coin"];
+        }
 
         public void BuildSourceRect()
         {
