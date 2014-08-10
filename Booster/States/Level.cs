@@ -49,7 +49,7 @@ namespace Booster.States
                         score.Add(new XAttribute("score", ((StateLevelPlaying)States[GameStates.Playing]).Map.Player.Score));
                         score.Add(new XAttribute("date", XmlConvert.ToString(System.DateTime.Today, "dd-MM-yyyy")));
                         IEnumerable<XElement> levels = xdoc.Descendants("Level").Where(level => level.Parent.Name == this.level.Parent.Name);
-                        
+
                         foreach (XElement level in levels)
                         {
                             if (this.level.Attribute("name").Value == level.Attribute("name").Value)
@@ -57,14 +57,13 @@ namespace Booster.States
                                 level.Add(score);
                                 ((LevelCompleted)stateManager.States[GameStates.LevelCompleted]).ChangeLevelCompleted(level);
                             }
-                            if (this.level.NextNode == null)
+                            if (this.level.NextNode != null)
                             {
-                                return;
-                            }
-                            if (this.level.NodesAfterSelf().OfType<XElement>().First().Attribute("name").Value == level.Attribute("name").Value)
-                            {
-                                level.Attribute("enabled").Value = "true";
-                                break;
+                                if (this.level.NodesAfterSelf().OfType<XElement>().First().Attribute("name").Value == level.Attribute("name").Value)
+                                {
+                                    level.Attribute("enabled").Value = "true";
+                                    break;
+                                }
                             }
                         }
                         xdoc.Save(@"Content\Levels\Levels.xml");
