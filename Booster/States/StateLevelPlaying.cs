@@ -51,20 +51,6 @@ namespace Booster.States
                 return;
             }
 
-            if (inputSystem.CurrentActions.Contains(VirtualButtons.Back) &&
-                !inputSystem.PreviousActions.Contains(VirtualButtons.Back))
-            {
-                stateManager.CurrentState = GameStates.StoryMenu;
-                return;
-            }
-
-            if (inputSystem.CurrentActions.Contains(VirtualButtons.Guide) &&
-                !inputSystem.PreviousActions.Contains(VirtualButtons.Guide))
-            {
-                stateManager.CurrentState = GameStates.MainMenu;
-                return;
-            }
-
             Vector2 acceleration = Vector2.UnitX * inputSystem.LeftThumbSticks;
 
             if (inputSystem.CurrentActions.Contains(VirtualButtons.Left))
