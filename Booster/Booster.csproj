@@ -40,6 +40,8 @@
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockLeftBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockMidBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockRightBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\DoorBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\KeyBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\PlatformLeftBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\PlatformMidBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\PlatformRightBuilder.cs" />
@@ -51,7 +53,9 @@
     <Compile Include="Levels\Entities\EntityFactoryMethod\DamageBlockHighCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\DamageBlockLowCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\DamageBlockMidCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\DoorCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\ExitCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\KeyCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformLeftCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformMidCreator.cs" />

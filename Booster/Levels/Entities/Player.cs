@@ -9,12 +9,13 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace Booster.Levels.Entities
 {
-    public class Player : AnimatedEntity, IDamageable, ICollisionableObject, IMovable, IScoreable, IStateable, IUpdateableObject
+    public class Player : AnimatedEntity, IDamageable, ICollisionableObject, IMovable, IScoreable, IStateable, IUpdateableObject, IHaveKeys
     {
         private const float MaxSpeed = 0.5f;
 
         private IStateMove stateMovePlayer;
 
+        public int Keys { get; set; }
         public int Score { get; set; }
         public int Health { get; set; }
         public Vector2 Speed { get; set; }
@@ -40,6 +41,7 @@ namespace Booster.Levels.Entities
         {
             stateMovePlayer = null;
 
+            Keys = 0;
             Score = 0;
             Position = position;
 

@@ -24,6 +24,8 @@ namespace Booster.Levels
         ScoreObjectLow,
         ScoreObjectMid,
         ScoreObjectHigh,
+        Door,
+        Key,
         Exit,
         Null
     }

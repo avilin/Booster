@@ -90,6 +90,8 @@ namespace Booster.Util
             StringType.Add("SOL", EntityType.ScoreObjectLow);
             StringType.Add("SOM", EntityType.ScoreObjectMid);
             StringType.Add("SOH", EntityType.ScoreObjectHigh);
+            StringType.Add("DOR", EntityType.Door);
+            StringType.Add("KEY", EntityType.Key);
             StringType.Add("EXT", EntityType.Exit);
 
             EntityTypeCreator = new Dictionary<EntityType, EntityCreator>();
@@ -110,6 +112,8 @@ namespace Booster.Util
             EntityTypeCreator.Add(EntityType.ScoreObjectLow, new ScoreObjectLowCreator());
             EntityTypeCreator.Add(EntityType.ScoreObjectMid, new ScoreObjectMidCreator());
             EntityTypeCreator.Add(EntityType.ScoreObjectHigh, new ScoreObjectHighCreator());
+            EntityTypeCreator.Add(EntityType.Door, new DoorCreator());
+            EntityTypeCreator.Add(EntityType.Key, new KeyCreator());
             EntityTypeCreator.Add(EntityType.Exit, new ExitCreator());
             EntityTypeCreator.Add(EntityType.Null, new NullEntityCreator());
         }

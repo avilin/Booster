@@ -1,7 +1,5 @@
-﻿using Booster.Util;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +7,14 @@ using System.Text;
 
 namespace Booster.Levels.Entities
 {
-    public class ScoreObject : SimpleTile
+    public class Door: SimpleTile
     {
-        public int Score { get; set; }
         public SoundEffect CollisionSound { get; set; }
 
-        public ScoreObject(Vector2 position)
+        public Door(Vector2 position)
             : base(position)
         {
-            Score = 0;
+
         }
 
         public override void OnCollision(ICollisionableObject collisionableObject)
@@ -26,10 +23,9 @@ namespace Booster.Levels.Entities
             {
                 return;
             }
-            if (collisionableObject is IScoreable)
+            if (collisionableObject is IHaveKeys && ((IHaveKeys)collisionableObject).Keys > 0)
             {
-                CollisionSound.Play();
-                ((IScoreable)collisionableObject).IncrementScore(Score);
+                ((IHaveKeys)collisionableObject).Keys--;
                 Active = false;
             }
         }
