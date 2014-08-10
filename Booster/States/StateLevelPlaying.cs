@@ -118,9 +118,58 @@ namespace Booster.States
             spriteBatch.End();
 
             spriteBatch.Begin();
-            Map.Player.DrawLifes(spriteBatch, stateManager.Resources);
-            spriteBatch.DrawString(spriteFont, "Score: " + Map.Player.Score, new Vector2(10, 50), Color.Black);
+            DrawLifes(spriteBatch);
+            DrawScore(spriteBatch);
+            //spriteBatch.DrawString(spriteFont, "Score: " + Map.Player.Score, new Vector2(10, 50), Color.Black);
             spriteBatch.End();
+        }
+
+        public void DrawLifes(SpriteBatch spriteBatch)
+        {
+            Rectangle sourceRectFull = stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_heartFull.png"];
+            Rectangle sourceRectHalf = stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_heartHalf.png"];
+            Rectangle sourceRectEmpty = stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_heartEmpty.png"];
+
+            Rectangle sourceRect = sourceRectEmpty;
+            int lifes = Map.Player.Health;
+            Rectangle destinationRect = new Rectangle(5, 5, 53, 45);
+            for (int i = 0; i < 2; i++)
+            {
+                if (i != 0)
+                {
+                    lifes -= 2;
+                }
+                if (lifes < 2)
+                {
+                    sourceRect = lifes <= 0 ? sourceRectEmpty : sourceRectHalf;
+                }
+                else
+                {
+                    sourceRect = sourceRectFull;
+                }
+
+                DrawHeart(spriteBatch, destinationRect, sourceRect);
+                destinationRect.Offset(55, 0);
+            }
+        }
+
+        public void DrawHeart(SpriteBatch spriteBatch, Rectangle destinationRect, Rectangle sourceRect)
+        {
+            spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, destinationRect, sourceRect, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 1);
+        }
+
+        public void DrawScore(SpriteBatch spriteBatch)
+        {
+            Rectangle coinDestinationRect = new Rectangle(5, 55, 47, 47);
+            Rectangle xDestinationRect = new Rectangle(55, 64, 30, 28);
+            Rectangle tensDestinationRect = new Rectangle(90, 55, 32, 40);
+            Rectangle unitsDestinationRect = new Rectangle(125, 55, 32, 40);
+            int firstDigit = Map.Player.Score > 10 ? (Map.Player.Score / 10) % 10 : 0;
+            int secondDigit = Map.Player.Score % 10;
+            spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, coinDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_coins.png"], Color.White);
+            spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, xDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_x.png"], Color.White);
+            spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, tensDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_" + firstDigit + ".png"], Color.White);
+            spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, unitsDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_" + secondDigit + ".png"], Color.White);
         }
     }
 }

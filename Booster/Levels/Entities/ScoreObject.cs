@@ -22,6 +22,10 @@ namespace Booster.Levels.Entities
 
         public override void OnCollision(ICollisionableObject collisionableObject)
         {
+            if (!Active)
+            {
+                return;
+            }
             if (collisionableObject is IScoreable)
             {
                 CollisionSound.Play();

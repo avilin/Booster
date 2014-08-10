@@ -484,39 +484,5 @@ namespace Booster.Levels.Entities
                 Animations[currentAnimation].Draw(spriteBatch, flip);
             }
         }
-
-        public void DrawLifes(SpriteBatch spriteBatch, Resources resources)
-        {
-            Rectangle sourceRectFull = resources.SpriteSheets["hud"].ObjectLocation["hud_heartFull.png"];
-            Rectangle sourceRectHalf = resources.SpriteSheets["hud"].ObjectLocation["hud_heartHalf.png"];
-            Rectangle sourceRectEmpty = resources.SpriteSheets["hud"].ObjectLocation["hud_heartEmpty.png"];
-
-            Rectangle sourceRect = sourceRectEmpty;
-            int lifes = Health;
-            Rectangle destinationRect = new Rectangle(2, 2, 53, 45);
-            for (int i = 0; i < 2; i++)
-            {
-                if (i != 0)
-                {
-                    lifes -= 2;
-                }
-                if (lifes < 2)
-                {
-                    sourceRect = lifes <= 0 ? sourceRectEmpty : sourceRectHalf;
-                }
-                else
-                {
-                    sourceRect = sourceRectFull;
-                }
-
-                DrawHeart(spriteBatch, resources.SpriteSheets["hud"].SpriteSheet, destinationRect, sourceRect);
-                destinationRect.Offset(55, 0);
-            }
-        }
-
-        public void DrawHeart(SpriteBatch spriteBatch, Texture2D spriteSheet, Rectangle destinationRect, Rectangle sourceRect)
-        {
-            spriteBatch.Draw(spriteSheet, destinationRect, sourceRect, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 1);
-        }
     }
 }
