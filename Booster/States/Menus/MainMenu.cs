@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Booster.States;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
+using System.Xml.Linq;
+using System.Linq;
 
 namespace Booster.States.Menus
 {
@@ -26,6 +28,11 @@ namespace Booster.States.Menus
             item = new MenuItem();
             item.Name = "Change resolution";
             item.MenuItemAction = ChangeResolutionActivated;
+            Items.Add(item);
+
+            item = new MenuItem();
+            item.Name = "Reset progress";
+            item.MenuItemAction = ResetProgressActivated;
             Items.Add(item);
 
             item = new MenuItem();
@@ -65,6 +72,25 @@ namespace Booster.States.Menus
             graphics.ApplyChanges();
 
             Initialize();
+        }
+
+        public void ResetProgressActivated()
+        {
+            XDocument xdoc = XDocument.Load(@"Content\Levels\Levels.xml");
+            foreach (XElement level in xdoc.Descendants("Level"))
+            {
+                level.Elements("Score").Remove();
+            }
+
+            foreach (XElement level in xdoc.Descendants("Level").Where(l => l.Parent.Name == "StoryLevels"))
+            {
+                if (xdoc.Descendants("StoryLevels").First().Descendants("Level").First() == level)
+                {
+                    continue;
+                }
+                level.Attribute("enabled").Value = "false";
+            }
+            xdoc.Save(@"Content\Levels\Levels.xml");
         }
 
         public void QuitActivated()
