@@ -34,7 +34,7 @@ namespace Booster.States.Menus
 
         public void QuitLevelActivated()
         {
-            stateManager.CurrentState = GameStates.StoryMenu;
+            stateManager.CurrentState = GameStates.MainMenu;
         }
     }
 }
