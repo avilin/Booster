@@ -24,8 +24,8 @@ namespace Booster.States.Menus
             Items.Add(item);
 
             item = new MenuItem();
-            item.Name = "Options";
-            item.MenuItemAction = OptionsActivated;
+            item.Name = "Change resolution";
+            item.MenuItemAction = ChangeResolutionActivated;
             Items.Add(item);
 
             item = new MenuItem();
@@ -44,19 +44,27 @@ namespace Booster.States.Menus
             stateManager.CurrentState = GameStates.ChallengesMenu;
         }
 
-        public void OptionsActivated()
+        public void ChangeResolutionActivated()
         {
-            //GraphicsDeviceManager graphics = (GraphicsDeviceManager)Game.Services.GetService(typeof(GraphicsDeviceManager));
-            //graphics.PreferredBackBufferWidth = 800;
-            //graphics.PreferredBackBufferHeight = 600;
+            GraphicsDeviceManager graphics = (GraphicsDeviceManager)stateManager.Game.Services.GetService(typeof(GraphicsDeviceManager));
+            if (graphics.IsFullScreen)
+            {
 
-            //graphics.GraphicsDevice.PresentationParameters.BackBufferWidth = graphics.PreferredBackBufferWidth;
-            //graphics.GraphicsDevice.PresentationParameters.BackBufferHeight = graphics.PreferredBackBufferHeight;
-            //graphics.GraphicsDevice.Viewport = new Viewport(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            }
+            else
+            {
+                graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
+                graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
+                graphics.IsFullScreen = true;
+            }
 
-            //graphics.ApplyChanges();
+            graphics.GraphicsDevice.PresentationParameters.BackBufferWidth = graphics.PreferredBackBufferWidth;
+            graphics.GraphicsDevice.PresentationParameters.BackBufferHeight = graphics.PreferredBackBufferHeight;
+            graphics.GraphicsDevice.Viewport = new Viewport(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
-            //Initialize();
+            graphics.ApplyChanges();
+
+            Initialize();
         }
 
         public void QuitActivated()
