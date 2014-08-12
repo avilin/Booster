@@ -37,6 +37,7 @@ namespace Booster.States.Menus
         public void ContinueActivated()
         {
             stateManager.CurrentState = GameStates.Playing;
+            stateManager.Resources.Songs["level_music"].Play();
         }
 
         public void QuitLevelActivated()

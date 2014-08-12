@@ -9,6 +9,7 @@ using Booster.Util;
 using System.Xml.Linq;
 using System.Linq;
 using System.Xml;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Booster.States
 {
@@ -35,6 +36,10 @@ namespace Booster.States
                 if (States.ContainsKey(value))
                 {
                     currentState = value;
+                    foreach (KeyValuePair<string, SoundEffectInstance> song in Resources.Songs.Where(song => song.Value.State == SoundState.Playing))
+                    {
+                        song.Value.Stop();
+                    }
                     if (currentState != GameStates.Playing)
                     {
                         InitializeCurrentGameState();
