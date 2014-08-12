@@ -118,6 +118,7 @@
     <Compile Include="Levels\EntityType.cs" />
     <Compile Include="States\GameOver.cs" />
     <Compile Include="States\LevelCompleted.cs" />
+    <Compile Include="States\LoadingState.cs" />
     <Compile Include="States\Menus\ChallengesMenu.cs" />
     <Compile Include="States\Menus\MenuLevelItem.cs" />
     <Compile Include="Util\Animations\AnimationCreator.cs" />

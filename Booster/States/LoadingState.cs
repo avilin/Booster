@@ -1,4 +1,5 @@
 ﻿using Booster.Input;
+using Booster.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,40 +10,32 @@ using System.Xml.Linq;
 
 namespace Booster.States
 {
-    public class LevelCompleted : IGameState
+    public class LoadingState : IGameState
     {
         private IGameStateContext stateManager;
         private string mensaje;
-        private XElement levelCompleted;
+        private XElement level;
+        private Duration waitTime;
 
-        public LevelCompleted(IGameStateContext stateManager)
+        public LoadingState(IGameStateContext stateManager)
         {
             this.stateManager = stateManager;
         }
 
         public void Initialize()
         {
-            string score;
-            score = levelCompleted.Elements("Score").OrderByDescending(element => element.Attribute("score").Value).First().Attribute("score").Value;
-            mensaje = "Best score: " + score;
+            waitTime = new Duration(2000);
+            string levelName = level.Attribute("name").Value;
+            mensaje = "Loading " + levelName;
         }
 
         public void Update(GameTime gameTime)
         {
-            InputSystem inputSystem = InputSystem.GetInstance();
-            inputSystem.GetActions();
-            if (inputSystem.CurrentActions.Contains(VirtualButtons.Start))
+            bool change = waitTime.Update(gameTime);
+            if (change)
             {
-                if (levelCompleted.Parent.Name == "StoryLevels" && levelCompleted.NextNode != null)
-                {
-                    ((GameStateContext)stateManager).LoadLevel(levelCompleted.NodesAfterSelf().OfType<XElement>().First());
-                    stateManager.CurrentState = GameStates.Loading;
-                }
-                else
-                {
-                    stateManager.CurrentState = GameStates.MainMenu;
-                }
-
+                stateManager.CurrentState = GameStates.Level;
+                ((Level)stateManager.States[GameStates.Level]).LoadMap(level);
             }
         }
 
@@ -60,9 +53,9 @@ namespace Booster.States
             spriteBatch.End();
         }
 
-        public void ChangeLevelCompleted(XElement level)
+        public void LoadLevel(XElement level)
         {
-            this.levelCompleted = level;
+            this.level = level;
         }
     }
 }

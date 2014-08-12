@@ -50,6 +50,7 @@ namespace Booster.States
             States[GameStates.StoryMenu] = new StoryMenu(this);
             States[GameStates.ChallengesMenu] = new ChallengesMenu(this);
             States[GameStates.Level] = new Level(this);
+            States[GameStates.Loading] = new LoadingState(this);
             States[GameStates.GameOver] = new GameOver(this);
             States[GameStates.LevelCompleted] = new LevelCompleted(this);
 
@@ -73,7 +74,7 @@ namespace Booster.States
             //    CurrentState = GameStates.MainMenu;
             //    return;
             //}
-            (States[GameStates.Level] as Level).LoadMap(level);
+            (States[GameStates.Loading] as LoadingState).LoadLevel(level);
         }
 
         public void InitializeCurrentGameState()

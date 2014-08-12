@@ -108,8 +108,8 @@ namespace Booster.States.Menus
             {
                 return;
             }
-            stateManager.CurrentState = GameStates.Level;
             ((GameStateContext)stateManager).LoadLevel(((MenuLevelItem)SelectedItem).Level);
+            stateManager.CurrentState = GameStates.Loading;
         }
 
         public void BackActivated()
