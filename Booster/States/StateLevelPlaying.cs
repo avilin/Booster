@@ -74,6 +74,7 @@ namespace Booster.States
                 if (!Map.Player.CurrentEntityStates.Contains(EntityStates.Recharge))
                 {
                     Map.Player.CurrentEntityStates.Add(EntityStates.Boost);
+                    stateManager.Resources.SoundEffects["boost"].Play();
                 }
             }
 
