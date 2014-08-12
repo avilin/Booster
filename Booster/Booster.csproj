@@ -121,6 +121,8 @@
     <Compile Include="States\LoadingState.cs" />
     <Compile Include="States\Menus\ChallengesMenu.cs" />
     <Compile Include="States\Menus\MenuLevelItem.cs" />
+    <Compile Include="States\Menus\ScrolleableMenu.cs" />
+    <Compile Include="States\Menus\StaticMenu.cs" />
     <Compile Include="Util\Animations\AnimationCreator.cs" />
     <Compile Include="Util\Animations\IAnimationBuilder.cs" />
     <Compile Include="States\Menus\StateLevelPause.cs" />

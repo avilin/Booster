@@ -8,12 +8,19 @@ using System.Text;
 
 namespace Booster.States.Menus
 {
-    public class StateLevelPause : Menu
+    public class StateLevelPause : StaticMenu
     {
 
         public StateLevelPause(IGameStateContext stateManager)
             : base(stateManager)
         {
+
+        }
+
+        public override void LoadMenuItems()
+        {
+            Items = new List<MenuItem>();
+
             MenuItem item;
 
             item = new MenuItem();

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Booster.States.Menus
 {
-    public class StoryMenu : Menu
+    public class StoryMenu : StaticMenu
     {
         public StoryMenu(GameStateContext stateManager)
             : base(stateManager)
@@ -16,22 +16,10 @@ namespace Booster.States.Menus
 
         }
 
-        public override void Initialize()
+        public override void LoadMenuItems()
         {
             Items = new List<MenuItem>();
 
-            LoadLevels();
-
-            MenuItem item = new MenuItem();
-            item.Name = "Back";
-            item.MenuItemAction = BackActivated;
-            Items.Add(item);
-
-            base.Initialize();
-        }
-
-        public void LoadLevels()
-        {
             XDocument xdoc = XDocument.Load(@"Content\Levels\Levels.xml");
             IEnumerable<XElement> levels = xdoc.Descendants("Level").Where(level => level.Parent.Name == "StoryLevels");
 
@@ -40,9 +28,13 @@ namespace Booster.States.Menus
             {
                 item = new MenuLevelItem(level);
                 item.MenuItemAction = MissionActivated;
-                //item.File = @"Content\Levels\" + level.Attribute("file").Value;
                 Items.Add(item);
             }
+
+            item = new MenuItem();
+            item.Name = "Back";
+            item.MenuItemAction = BackActivated;
+            Items.Add(item);
         }
 
         public void MissionActivated()

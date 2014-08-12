@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace Booster.States.Menus
 {
-    public class Menu : IGameState
+    public abstract class Menu : IGameState
     {
         protected IGameStateContext stateManager;
 
@@ -52,30 +52,13 @@ namespace Booster.States.Menus
             }
         }
 
-        public virtual void Initialize()
+        public void Initialize()
         {
+            LoadMenuItems();
+
             stateManager.Resources.Songs["menu_music"].Play();
-            currentItem = 0;
-            SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
-            Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
-            for (int i = 0; i < Items.Count; i++)
-            {
-                float scale = 0.7f;
-                MenuItem item = Items[i];
-                item.Scale = scale;
-                item.Color = Color.Green;
-                Vector2 size = spriteFont.MeasureString(item.Name);
-                Vector2 position = new Vector2(viewport.Width / 2, viewport.Height / 2);
-                position.Y -= (Items.Count - 1) * (size.Y * 1.2f) / 2 * scale;
-                position.Y += i * (size.Y * 1.2f) * scale;
 
-                item.Position = position;
-
-                if (!item.Enabled)
-                {
-                    item.Color = Color.DarkGray;
-                }
-            }
+            PositionMenuItems();
         }
 
         public virtual void Update(GameTime gameTime)
@@ -124,25 +107,9 @@ namespace Booster.States.Menus
             }
         }
 
-        public virtual void Draw(GameTime gameTime)
-        {
-            stateManager.Game.GraphicsDevice.Clear(Color.Black);
-            SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
-            SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
-            spriteBatch.Begin();
-            for (int i = 0; i < Items.Count; i++)
-            {
-                MenuItem item = Items[i];
-                Vector2 size = spriteFont.MeasureString(item.Name);
-                Vector2 position = item.Position - size * 0.5f * item.Scale;
-                spriteBatch.DrawString(spriteFont, item.Name, position, item.Color, 0, Vector2.Zero, item.Scale, SpriteEffects.None, 0);
-                //if (item == SelectedItem)
-                //{
-                //    Vector2 vector = new Vector2(25, 0);
-                //    spriteBatch.DrawString(spriteFont, ">", position - vector, item.Color, 0, Vector2.Zero, item.Scale, SpriteEffects.None, 0.0f);
-                //}
-            }
-            spriteBatch.End();
-        }
+        public abstract void Draw(GameTime gameTime);
+
+        public abstract void LoadMenuItems();
+        public abstract void PositionMenuItems();
     }
 }

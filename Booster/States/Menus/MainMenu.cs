@@ -8,11 +8,18 @@ using System.Linq;
 
 namespace Booster.States.Menus
 {
-    public class MainMenu : Menu
+    public class MainMenu : StaticMenu
     {
         public MainMenu(GameStateContext stateManager)
             : base(stateManager)
         {
+            
+        }
+
+        public override void LoadMenuItems()
+        {
+            Items = new List<MenuItem>();
+
             MenuItem item;
 
             item = new MenuItem();
@@ -56,7 +63,9 @@ namespace Booster.States.Menus
             GraphicsDeviceManager graphics = (GraphicsDeviceManager)stateManager.Game.Services.GetService(typeof(GraphicsDeviceManager));
             if (graphics.IsFullScreen)
             {
-
+                //graphics.PreferredBackBufferWidth = 800;
+                //graphics.PreferredBackBufferHeight = 600;
+                //graphics.IsFullScreen = false;
             }
             else
             {
