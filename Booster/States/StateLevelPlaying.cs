@@ -68,6 +68,15 @@ namespace Booster.States
                 acceleration -= Vector2.UnitY;
             }
 
+            if (inputSystem.CurrentActions.Contains(VirtualButtons.B)
+                && !inputSystem.PreviousActions.Contains(VirtualButtons.B))
+            {
+                if (!Map.Player.CurrentEntityStates.Contains(EntityStates.Recharge))
+                {
+                    Map.Player.CurrentEntityStates.Add(EntityStates.Boost);
+                }
+            }
+
             Map.Update(gameTime);
             Map.MovePlayer(gameTime, acceleration);
 
@@ -107,6 +116,8 @@ namespace Booster.States
             DrawLifes(spriteBatch);
             DrawScore(spriteBatch);
             DrawKeys(spriteBatch);
+            DrawBoostBar(spriteBatch);
+
             spriteBatch.End();
         }
 
@@ -167,6 +178,29 @@ namespace Booster.States
             spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, keyDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_keyYellow.png"], Color.White);
             spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, xDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_x.png"], Color.White);
             spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, digitDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_" + firstDigit + ".png"], Color.White);
+        }
+
+        public void DrawBoostBar(SpriteBatch spriteBatch)
+        {
+            Texture2D bar = new Texture2D(stateManager.Game.GraphicsDevice, 1, 1);
+            bar.SetData<Color>(new Color[] { Color.White });
+
+            double length = 100;
+            Color color = Color.GreenYellow;
+            if (Map.Player.CurrentEntityStates.Contains(EntityStates.Boost))
+            {
+                Duration duration = Map.Player.StatesTime[EntityStates.Boost];
+                length = (double)(duration.Time - duration.ElapsedTime) / duration.Time * 100;
+            }
+            else if (Map.Player.CurrentEntityStates.Contains(EntityStates.Recharge))
+            {
+                Duration duration = Map.Player.StatesTime[EntityStates.Recharge];
+                length = (double)duration.ElapsedTime / duration.Time * 100;
+                color = Color.Red;
+            }
+
+            spriteBatch.Draw(bar, new Rectangle(118, 13, 104, 29), Color.Black);
+            spriteBatch.Draw(bar, new Rectangle(120, 15, (int)length, 25), color);
         }
     }
 }

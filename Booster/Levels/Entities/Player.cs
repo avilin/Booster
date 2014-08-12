@@ -71,13 +71,30 @@ namespace Booster.Levels.Entities
                     CurrentEntityStates.Remove(EntityStates.Hit);
                 }
             }
+            if (CurrentEntityStates.Contains(EntityStates.Recharge))
+            {
+                bool recharge = StatesTime[EntityStates.Recharge].Update(gameTime);
+                if (recharge)
+                {
+                    CurrentEntityStates.Remove(EntityStates.Recharge);
+                }
+            }
+            if (CurrentEntityStates.Contains(EntityStates.Boost))
+            {
+                bool boost = StatesTime[EntityStates.Boost].Update(gameTime);
+                if (boost)
+                {
+                    CurrentEntityStates.Remove(EntityStates.Boost);
+                    CurrentEntityStates.Add(EntityStates.Recharge);
+                }
+            }
         }
 
         public void ApplyAcceleration(GameTime gameTime, Vector2 acceleration)
         {
             if (CurrentEntityStates.Contains(EntityStates.Boost))
             {
-                Speed += Vector2.UnitX * acceleration / 200 * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                Speed += Vector2.UnitX * acceleration / 300 * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             }
             else
             {
@@ -90,8 +107,10 @@ namespace Booster.Levels.Entities
                 CurrentEntityStates.Add(EntityStates.OnAir);
                 JumpSound.Play();
             }
-
-            ApplyGravity(gameTime);
+            if (!CurrentEntityStates.Contains(EntityStates.Boost))
+            {
+                ApplyGravity(gameTime);
+            }
             ApplyFriction(gameTime);
         }
 

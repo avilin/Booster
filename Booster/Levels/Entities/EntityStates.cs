@@ -12,6 +12,7 @@ namespace Booster.Levels.Entities
         Move,
         OnAir,
         Boost,
+        Recharge,
         Hit,
         Dead,
         Win

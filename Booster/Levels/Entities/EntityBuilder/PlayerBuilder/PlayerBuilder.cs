@@ -81,6 +81,8 @@ namespace Booster.Levels.Entities.EntityBuilder
             Dictionary<EntityStates, Duration> statesTime = new Dictionary<EntityStates, Duration>();
             statesTime[EntityStates.Hit] = new Duration(1000);
             statesTime[EntityStates.Dead] = new Duration(1000);
+            statesTime[EntityStates.Boost] = new Duration(500);
+            statesTime[EntityStates.Recharge] = new Duration(1000);
             player.StatesTime = statesTime;
         }
 

@@ -7,7 +7,7 @@
   <Input virtual_button ="Up" key="Up" button="DPadUp"/>
   <Input virtual_button ="Down" key="Down" button="DPadDown"/>
   <Input virtual_button ="A" key="Space" button="A"/>
-  <Input virtual_button ="B" key="Back" button="B"/>
+  <Input virtual_button ="B" key="B" button="B"/>
   <Input virtual_button ="X" key="L" button="X"/>
   <Input virtual_button ="Y" key="I" button="Y"/>
   <Input virtual_button ="LB" key="LeftShift" button="LeftShoulder"/>
