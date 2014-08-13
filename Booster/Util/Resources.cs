@@ -5,12 +5,7 @@ using Booster.Levels.Entities.EntityFactoryMethod;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace Booster.Util
 {
@@ -97,27 +92,32 @@ namespace Booster.Util
             StringType.Add("KEY", EntityType.Key);
             StringType.Add("EXT", EntityType.Exit);
 
+            PlayerDirector playerDirector = new PlayerDirector();
+            SimpleTileDirector simpleTileDirector = new SimpleTileDirector();
+            ScoreObjectDirector scoreObjectDirector = new ScoreObjectDirector();
+            DamageObjectDirector damageObjectDirector = new DamageObjectDirector();
+
             EntityTypeCreator = new Dictionary<EntityType, EntityCreator>();
-            EntityTypeCreator.Add(EntityType.Player, new PlayerCreator());
-            EntityTypeCreator.Add(EntityType.Block, new BlockCreator());
-            EntityTypeCreator.Add(EntityType.BlockCenter, new BlockCenterCreator());
-            EntityTypeCreator.Add(EntityType.BlockMid, new BlockMidCreator());
-            EntityTypeCreator.Add(EntityType.BlockLeft, new BlockLeftCreator());
-            EntityTypeCreator.Add(EntityType.BlockRight, new BlockRightCreator());
-            EntityTypeCreator.Add(EntityType.Platform, new PlatformCreator());
-            EntityTypeCreator.Add(EntityType.PlatformMid, new PlatformMidCreator());
-            EntityTypeCreator.Add(EntityType.PlatformLeft, new PlatformLeftCreator());
-            EntityTypeCreator.Add(EntityType.PlatformRight, new PlatformRightCreator());
-            EntityTypeCreator.Add(EntityType.Spike, new SpikeCreator());
-            EntityTypeCreator.Add(EntityType.DamageObjectLow, new DamageBlockLowCreator());
-            EntityTypeCreator.Add(EntityType.DamageObjectMid, new DamageBlockMidCreator());
-            EntityTypeCreator.Add(EntityType.DamageObjectHigh, new DamageBlockHighCreator());
-            EntityTypeCreator.Add(EntityType.ScoreObjectLow, new ScoreObjectLowCreator());
-            EntityTypeCreator.Add(EntityType.ScoreObjectMid, new ScoreObjectMidCreator());
-            EntityTypeCreator.Add(EntityType.ScoreObjectHigh, new ScoreObjectHighCreator());
-            EntityTypeCreator.Add(EntityType.Door, new DoorCreator());
-            EntityTypeCreator.Add(EntityType.Key, new KeyCreator());
-            EntityTypeCreator.Add(EntityType.Exit, new ExitCreator());
+            EntityTypeCreator.Add(EntityType.Player, new PlayerCreator(playerDirector));
+            EntityTypeCreator.Add(EntityType.Block, new BlockCreator(simpleTileDirector));
+            EntityTypeCreator.Add(EntityType.BlockCenter, new BlockCenterCreator(simpleTileDirector));
+            EntityTypeCreator.Add(EntityType.BlockMid, new BlockMidCreator(simpleTileDirector));
+            EntityTypeCreator.Add(EntityType.BlockLeft, new BlockLeftCreator(simpleTileDirector));
+            EntityTypeCreator.Add(EntityType.BlockRight, new BlockRightCreator(simpleTileDirector));
+            EntityTypeCreator.Add(EntityType.Platform, new PlatformCreator(simpleTileDirector));
+            EntityTypeCreator.Add(EntityType.PlatformMid, new PlatformMidCreator(simpleTileDirector));
+            EntityTypeCreator.Add(EntityType.PlatformLeft, new PlatformLeftCreator(simpleTileDirector));
+            EntityTypeCreator.Add(EntityType.PlatformRight, new PlatformRightCreator(simpleTileDirector));
+            EntityTypeCreator.Add(EntityType.Spike, new SpikeCreator(damageObjectDirector));
+            EntityTypeCreator.Add(EntityType.DamageObjectLow, new DamageBlockLowCreator(damageObjectDirector));
+            EntityTypeCreator.Add(EntityType.DamageObjectMid, new DamageBlockMidCreator(damageObjectDirector));
+            EntityTypeCreator.Add(EntityType.DamageObjectHigh, new DamageBlockHighCreator(damageObjectDirector));
+            EntityTypeCreator.Add(EntityType.ScoreObjectLow, new ScoreObjectLowCreator(scoreObjectDirector));
+            EntityTypeCreator.Add(EntityType.ScoreObjectMid, new ScoreObjectMidCreator(scoreObjectDirector));
+            EntityTypeCreator.Add(EntityType.ScoreObjectHigh, new ScoreObjectHighCreator(scoreObjectDirector));
+            EntityTypeCreator.Add(EntityType.Door, new DoorCreator(simpleTileDirector));
+            EntityTypeCreator.Add(EntityType.Key, new KeyCreator(simpleTileDirector));
+            EntityTypeCreator.Add(EntityType.Exit, new ExitCreator(simpleTileDirector));
             EntityTypeCreator.Add(EntityType.Null, new NullEntityCreator());
         }
     }

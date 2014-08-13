@@ -1,16 +1,9 @@
-﻿using Booster.Input;
-using Booster.States;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Booster.States.Menus
 {
     public class StateLevelPause : StaticMenu
     {
-
         public StateLevelPause(IGameStateContext stateManager)
             : base(stateManager)
         {

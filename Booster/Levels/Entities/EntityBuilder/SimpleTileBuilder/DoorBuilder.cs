@@ -1,9 +1,5 @@
 ﻿using Booster.Util;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Booster.Levels.Entities.EntityBuilder
 {
@@ -22,7 +18,6 @@ namespace Booster.Levels.Entities.EntityBuilder
         {
             door.Texture = resources.SpriteSheets["tiles"].SpriteSheet;
             ((Door)door).CollisionSound = resources.SoundEffects["door"];
-
         }
 
         public void BuildSourceRect()

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Booster.Util.Animations
+﻿namespace Booster.Util.Animations
 {
     public class AnimationCreator
     {

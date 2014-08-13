@@ -1,14 +1,10 @@
-﻿using Booster.Levels;
-using Booster.States.Menus;
+﻿using Booster.States.Menus;
 using Booster.Util;
 using Microsoft.Xna.Framework;
-using System;
+using Microsoft.Xna.Framework.Audio;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.IO;
 using System.Xml.Linq;
-using Microsoft.Xna.Framework.Audio;
 
 namespace Booster.States
 {
@@ -69,11 +65,6 @@ namespace Booster.States
 
         public void LoadLevel(XElement level)
         {
-            //if (!File.Exists(file))
-            //{
-            //    CurrentState = GameStates.MainMenu;
-            //    return;
-            //}
             (States[GameStates.Loading] as LoadingState).LoadLevel(level);
         }
 

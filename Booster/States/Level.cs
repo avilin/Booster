@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Booster.Input;
-using System.IO;
-using Booster.States.Menus;
+﻿using Booster.States.Menus;
 using Booster.Util;
-using System.Xml.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using Microsoft.Xna.Framework.Audio;
+using System.Xml.Linq;
 
 namespace Booster.States
 {

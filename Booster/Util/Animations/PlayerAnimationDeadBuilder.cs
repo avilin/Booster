@@ -1,13 +1,7 @@
-﻿using Booster.Util;
-using Booster.Util.Animations;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Booster.Levels.Entities.EntityBuilder
+namespace Booster.Util.Animations
 {
     public class PlayerAnimationDeadBuilder : IAnimationBuilder
     {

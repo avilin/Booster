@@ -1,11 +1,5 @@
-﻿using Booster.Levels.Entities;
-using Booster.Levels.Entities.EntityBuilder;
-using Booster.Util;
-using Booster.Util.Animations;
+﻿using Booster.Util;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
 
 namespace Booster.Levels.Entities.EntityFactoryMethod
 {

@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Booster.Levels.Entities;
 using Microsoft.Xna.Framework;
-using Booster.Levels.Entities;
 using System.Collections.Generic;
 
 namespace Booster.Levels.StateMove
@@ -321,7 +320,6 @@ namespace Booster.Levels.StateMove
                             if (nextPosition.Y <= j * map.TileSide + map.TileSide)
                             {
                                 nextPlayerPositionY = j * map.TileSide + map.TileSide;
-                                //player.Speed *= Vector2.UnitX;
                                 canMoveLeft = true;
                             }
                         }

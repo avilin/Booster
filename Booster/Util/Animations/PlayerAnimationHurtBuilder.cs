@@ -1,20 +1,14 @@
-﻿using Booster.Util;
-using Booster.Util.Animations;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Booster.Levels.Entities.EntityBuilder
+namespace Booster.Util.Animations
 {
-    public class PlayerAnimationStandBuilder : IAnimationBuilder
+    public class PlayerAnimationHurtBuilder : IAnimationBuilder
     {
         private Animation animation = new Animation();
         private Resources resources;
 
-        public PlayerAnimationStandBuilder(Resources resources, Vector2 position)
+        public PlayerAnimationHurtBuilder(Resources resources, Vector2 position)
         {
             animation.Initialize(position);
             this.resources = resources;
@@ -28,7 +22,7 @@ namespace Booster.Levels.Entities.EntityBuilder
         public void BuildFrames()
         {
             List<Frame> frames = new List<Frame>();
-            frames.Add(new Frame(resources.SpriteSheets["p1"].ObjectLocation["p1_stand.png"], 1000));
+            frames.Add(new Frame(resources.SpriteSheets["p1"].ObjectLocation["p1_hurt.png"], 1000));
             animation.Frames = frames;
         }
 

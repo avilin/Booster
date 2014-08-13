@@ -1,7 +1,6 @@
 ﻿using Booster.Levels.Entities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Booster.Levels.StateMove
 {

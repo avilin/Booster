@@ -1,14 +1,9 @@
 ﻿using Booster.Input;
 using Booster.Levels;
 using Booster.Levels.Entities;
-using Booster.States;
 using Booster.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Booster.States
 {
@@ -100,7 +95,6 @@ namespace Booster.States
 
         public void Draw(GameTime gameTime)
         {
-            //Game.GraphicsDevice.Clear(Color.White);
             stateManager.Game.GraphicsDevice.Clear(Color.White);
             SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
             SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
@@ -118,7 +112,6 @@ namespace Booster.States
             DrawScore(spriteBatch);
             DrawKeys(spriteBatch);
             DrawBoostBar(spriteBatch);
-
             spriteBatch.End();
         }
 

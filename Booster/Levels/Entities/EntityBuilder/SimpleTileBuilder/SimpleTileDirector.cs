@@ -1,10 +1,4 @@
-﻿using Booster.Util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Booster.Levels.Entities.EntityBuilder
+﻿namespace Booster.Levels.Entities.EntityBuilder
 {
     public class SimpleTileDirector
     {

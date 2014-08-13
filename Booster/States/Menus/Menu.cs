@@ -1,11 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Booster.Input;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Booster.States;
-using Booster.Input;
-using System;
-using Microsoft.Xna.Framework.Audio;
+using System.Collections.Generic;
 
 namespace Booster.States.Menus
 {

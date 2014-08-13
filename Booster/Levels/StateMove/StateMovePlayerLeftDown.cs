@@ -1,6 +1,5 @@
 ﻿using Booster.Levels.Entities;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 
 namespace Booster.Levels.StateMove
@@ -159,7 +158,6 @@ namespace Booster.Levels.StateMove
                     Rectangle playerBottomSide = new Rectangle(player.HitBox.X, player.HitBox.Y + player.HitBox.Height, player.HitBox.Width, 1);
                     Dictionary<CollisionTypes, List<ICollisionableObject>> borderCollisions = GetPlayerBorderCollisions(player, playerBottomSide, map);
                     CheckCollisions(lastXTileToCheck, firstYTileToCheck, map, collisions, player, borderCollisions);
-                    //player.Speed *= Vector2.UnitX;
                     MovePlayerLeft(player, nextPosition, map);
                 }
             }
@@ -361,7 +359,6 @@ namespace Booster.Levels.StateMove
                         if (tile.CollisionType == CollisionTypes.Block || tile.CollisionType == CollisionTypes.Top)
                         {
                             nextPlayerPositionY = tile.HitBox.Y - player.BoundingBox.OffSetBottom;
-                            //player.Speed *= Vector2.UnitX;
                             lastYTileToCheck = j;
                             yBlocked = true;
                         }
@@ -377,7 +374,6 @@ namespace Booster.Levels.StateMove
                             if (nextPosition.Y >= j * map.TileSide)
                             {
                                 nextPlayerPositionY = j * map.TileSide;
-                                //player.Speed *= Vector2.UnitX;
                                 canMoveLeft = true;
                             }
                         }

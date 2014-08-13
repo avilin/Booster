@@ -1,11 +1,9 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
-using Booster.Levels.StateMove;
+﻿using Booster.Levels.StateMove;
 using Booster.Util;
-using Booster.Util.Animations;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Booster.Levels.Entities
 {
@@ -122,9 +120,6 @@ namespace Booster.Levels.Entities
 
         public void ApplyFriction(GameTime gameTime)
         {
-            //Speed *= 0.05f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            //int x = Speed.X < 0 ? -1 : Speed.X > 0 ? 1 : 0;
-            //Speed -= Speed * 0.01f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             Speed -= Vector2.UnitX * Speed * 0.01f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
         }
 
@@ -163,8 +158,6 @@ namespace Booster.Levels.Entities
         public void Move(GameTime gameTime, Map map)
         {
             Vector2 nextPosition = GetNextPosition(gameTime);
-            //Position = new Vector2(208.02f, 544);
-            //nextPosition = new Vector2(82f, 441);
             Vector2 playerMovement = nextPosition - Position;
 
             if (playerMovement.X > 0 && playerMovement.Y > 0)

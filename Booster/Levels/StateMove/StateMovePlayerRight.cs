@@ -54,7 +54,6 @@ namespace Booster.Levels.StateMove
                     if (tile.CollisionType == CollisionTypes.Block)
                     {
                         nextPlayerPositionX = tile.HitBox.X - player.BoundingBox.OffSetRight;
-                        //player.Speed *= Vector2.UnitY;
                         lastXTileToCheck = i;
                         xBlocked = true;
                     }

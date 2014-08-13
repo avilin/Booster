@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Booster.States;
+using Booster.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Booster.States;
-using Booster.Levels;
 using System;
-using Booster.Util;
 
 namespace Booster
 {
@@ -25,8 +23,6 @@ namespace Booster
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            //IsFixedTimeStep = false;
         }
 
         /// <summary>
@@ -38,10 +34,6 @@ namespace Booster
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            //graphics.IsFullScreen = true;
-            //graphics.PreferredBackBufferHeight = 768;
-            //graphics.PreferredBackBufferWidth = 1366;
-            //graphics.ApplyChanges();
 
             base.Initialize();
 

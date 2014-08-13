@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Booster.Levels;
-using Booster.States;
-using System.Xml.Linq;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace Booster.States.Menus
 {

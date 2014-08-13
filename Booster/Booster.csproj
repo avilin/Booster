@@ -112,10 +112,10 @@
     <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectBuilder\ScoreObjectLowBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectBuilder\ScoreObjectDirector.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectBuilder\ScoreObjectMidBuilder.cs" />
-    <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\PlayerAnimationDeadBuilder.cs" />
+    <Compile Include="Util\Animations\PlayerAnimationDeadBuilder.cs" />
     <Compile Include="Levels\Entities\IHaveKeys.cs" />
     <Compile Include="Levels\Entities\Key.cs" />
-    <Compile Include="Levels\EntityType.cs" />
+    <Compile Include="Levels\Entities\EntityType.cs" />
     <Compile Include="States\GameOver.cs" />
     <Compile Include="States\LevelCompleted.cs" />
     <Compile Include="States\LoadingState.cs" />
@@ -129,10 +129,10 @@
     <Compile Include="States\StateLevelPlaying.cs" />
     <Compile Include="States\IGameStateContext.cs" />
     <Compile Include="Util\Animations\Animation.cs" />
-    <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\PlayerAnimationHurtBuilder.cs" />
-    <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\PlayerAnimationJumpBuilder.cs" />
-    <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\PlayerAnimationStandBuilder.cs" />
-    <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\PlayerAnimationWalkBuilder.cs" />
+    <Compile Include="Util\Animations\PlayerAnimationHurtBuilder.cs" />
+    <Compile Include="Util\Animations\PlayerAnimationJumpBuilder.cs" />
+    <Compile Include="Util\Animations\PlayerAnimationStandBuilder.cs" />
+    <Compile Include="Util\Animations\PlayerAnimationWalkBuilder.cs" />
     <Compile Include="Util\Camera2D.cs" />
     <Compile Include="Util\Animations\Frame.cs" />
     <Compile Include="Game1.cs" />

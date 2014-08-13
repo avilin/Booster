@@ -2,7 +2,6 @@
 using Booster.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -153,8 +152,6 @@ namespace Booster.Levels
                     MovableElements[i].Move(gameTime, this);
                 }
             }
-
-            //Player.Move(gameTime, this);
 
             IsPlayerOnAir();
 

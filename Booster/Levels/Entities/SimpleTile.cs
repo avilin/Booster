@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Booster.Util;
 using Microsoft.Xna.Framework;
-using Booster.Util;
 
 namespace Booster.Levels.Entities
 {

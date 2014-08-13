@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Booster.Util.Animations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
-using Booster.Util.Animations;
 
 namespace Booster.Levels.Entities
 {
