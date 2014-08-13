@@ -8,7 +8,7 @@ namespace Booster.Levels.StateMove
     {
         public abstract void Move(ICollisionableObject player, Vector2 nextPosition, Map map);
 
-        public Dictionary<CollisionTypes, List<ICollisionableObject>> GetPlayerBorderCollisions(Player player, Rectangle playerBorderRectangle, Map map)
+        protected Dictionary<CollisionTypes, List<ICollisionableObject>> GetPlayerBorderCollisions(Player player, Rectangle playerBorderRectangle, Map map)
         {
             Dictionary<CollisionTypes, List<ICollisionableObject>> collisions = new Dictionary<CollisionTypes, List<ICollisionableObject>>();
 
@@ -54,7 +54,7 @@ namespace Booster.Levels.StateMove
             return collisions;
         }
 
-        public void CheckCollisionsRight(int firstXTileToCheck, int firstYTileToCheck, int lastXTileToCheck, int lastYTileToCheck, bool xBlocked,
+        protected void CheckCollisionsRight(int firstXTileToCheck, int firstYTileToCheck, int lastXTileToCheck, int lastYTileToCheck, bool xBlocked,
             Map map, List<ICollisionableObject>[,] collisions, Player player)
         {
             for (int i = firstXTileToCheck; i <= lastXTileToCheck; i++)
@@ -99,7 +99,7 @@ namespace Booster.Levels.StateMove
             }
         }
 
-        public void CheckCollisionsLeft(int firstXTileToCheck, int firstYTileToCheck, int lastXTileToCheck, int lastYTileToCheck, bool xBlocked,
+        protected void CheckCollisionsLeft(int firstXTileToCheck, int firstYTileToCheck, int lastXTileToCheck, int lastYTileToCheck, bool xBlocked,
             Map map, List<ICollisionableObject>[,] collisions, Player player)
         {
             for (int i = firstXTileToCheck; i >= lastXTileToCheck; i--)
@@ -144,7 +144,7 @@ namespace Booster.Levels.StateMove
             }
         }
 
-        public void CheckCollisionsDown(int firstXTileToCheck, int firstYTileToCheck, int lastXTileToCheck, int lastYTileToCheck, bool yBlocked,
+        protected void CheckCollisionsDown(int firstXTileToCheck, int firstYTileToCheck, int lastXTileToCheck, int lastYTileToCheck, bool yBlocked,
             Map map, List<ICollisionableObject>[,] collisions, Player player)
         {
             for (int j = firstYTileToCheck; j <= lastYTileToCheck; j++)
@@ -189,7 +189,7 @@ namespace Booster.Levels.StateMove
             }
         }
 
-        public void CheckCollisionsUp(int firstXTileToCheck, int firstYTileToCheck, int lastXTileToCheck, int lastYTileToCheck, bool yBlocked,
+        protected void CheckCollisionsUp(int firstXTileToCheck, int firstYTileToCheck, int lastXTileToCheck, int lastYTileToCheck, bool yBlocked,
             Map map, List<ICollisionableObject>[,] collisions, Player player)
         {
             for (int j = firstYTileToCheck; j >= lastYTileToCheck; j--)
@@ -234,7 +234,7 @@ namespace Booster.Levels.StateMove
             }
         }
 
-        public void AddMovableElementsForCollision(Map map, Player player, Vector2 oldPosition, ref List<ICollisionableObject>[,] collisions)
+        protected void AddMovableElementsForCollision(Map map, Player player, Vector2 oldPosition, ref List<ICollisionableObject>[,] collisions)
         {
             Rectangle rectangle = Rectangle.Union(player.BoundingBox.BoxInPosition(oldPosition), player.BoundingBox.BoxInPosition(player.Position));
             for (int k = 0; k < map.MovableElements.Count; k++)

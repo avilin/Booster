@@ -19,7 +19,6 @@ namespace Booster.States
         public Dictionary<GameStates, IGameState> States { get; set; }
 
         private XElement level;
-
         private GameStates currentState;
         public GameStates CurrentState
         {

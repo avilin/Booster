@@ -23,7 +23,7 @@ namespace Booster.Util.Animations
         }
         public bool Active { get; set; }
         public Vector2 Position { get; set; }
-        public Rectangle SourceRect
+        private Rectangle SourceRect
         {
             get
             {

@@ -163,7 +163,7 @@ namespace Booster.Levels.StateMove
             }
         }
 
-        public void CheckCollisions(int lastXTileToCheck, int firstYTileToCheck, Map map, List<ICollisionableObject>[,] collisions, Player player)
+        private void CheckCollisions(int lastXTileToCheck, int firstYTileToCheck, Map map, List<ICollisionableObject>[,] collisions, Player player)
         {
             for (int i = collisions.GetLength(0) - 1; i >= lastXTileToCheck; i--)
             {
@@ -186,7 +186,7 @@ namespace Booster.Levels.StateMove
             }
         }
 
-        public void CheckCollisions(int lastXTileToCheck, int firstYTileToCheck, Map map, List<ICollisionableObject>[,] collisions, Player player, Dictionary<CollisionTypes, List<ICollisionableObject>> borderCollisions)
+        private void CheckCollisions(int lastXTileToCheck, int firstYTileToCheck, Map map, List<ICollisionableObject>[,] collisions, Player player, Dictionary<CollisionTypes, List<ICollisionableObject>> borderCollisions)
         {
             for (int i = collisions.GetLength(0) - 1; i >= lastXTileToCheck; i--)
             {
@@ -229,7 +229,7 @@ namespace Booster.Levels.StateMove
             }
         }
 
-        public void MovePlayerLeft(Player player, Vector2 nextPosition, Map map)
+        private void MovePlayerLeft(Player player, Vector2 nextPosition, Map map)
         {
             bool canMoveDown = false;
             bool xBlocked = false;
@@ -312,7 +312,7 @@ namespace Booster.Levels.StateMove
             }
         }
 
-        public void MovePlayerDown(Player player, Vector2 nextPosition, Map map)
+        private void MovePlayerDown(Player player, Vector2 nextPosition, Map map)
         {
             bool canMoveLeft = false;
             bool yBlocked = false;

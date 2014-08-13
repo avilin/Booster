@@ -23,7 +23,7 @@ namespace Booster.Levels.Entities
             if (collisionableObject is IScoreable)
             {
                 CollisionSound.Play();
-                ((IScoreable)collisionableObject).IncrementScore(Score);
+                ((IScoreable)collisionableObject).Score += Score;
                 Active = false;
             }
         }

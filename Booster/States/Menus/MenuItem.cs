@@ -22,7 +22,7 @@ namespace Booster.States.Menus
             Position = Vector2.Zero;
         }
 
-        public virtual void DoAction()
+        public void DoAction()
         {
             if (Enabled == false)
             {

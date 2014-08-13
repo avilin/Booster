@@ -12,9 +12,9 @@ namespace Booster.States.Menus
 
         }
 
-        public override void LoadMenuItems()
+        protected override void LoadMenuItems()
         {
-            Items = new List<MenuItem>();
+            items = new List<MenuItem>();
 
             XDocument xdoc = XDocument.Load(@"Content\Levels\Levels.xml");
             IEnumerable<XElement> levels = xdoc.Descendants("Level").Where(level => level.Parent.Name == "StoryLevels");
@@ -24,13 +24,13 @@ namespace Booster.States.Menus
             {
                 item = new MenuLevelItem(level);
                 item.MenuItemAction = MissionActivated;
-                Items.Add(item);
+                items.Add(item);
             }
 
             item = new MenuItem();
             item.Name = "Back";
             item.MenuItemAction = BackActivated;
-            Items.Add(item);
+            items.Add(item);
         }
 
         public void MissionActivated()

@@ -112,18 +112,18 @@ namespace Booster.Levels.Entities
             ApplyFriction(gameTime);
         }
 
-        public void ApplyGravity(GameTime gameTime)
+        private void ApplyGravity(GameTime gameTime)
         {
             Speed += Vector2.UnitY * 0.002f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             Speed = Speed.Y > MaxSpeed ? Speed * Vector2.UnitX + MaxSpeed * Vector2.UnitY : Speed;
         }
 
-        public void ApplyFriction(GameTime gameTime)
+        private void ApplyFriction(GameTime gameTime)
         {
             Speed -= Vector2.UnitX * Speed * 0.01f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
         }
 
-        public Vector2 GetNextPosition(GameTime gameTime)
+        private Vector2 GetNextPosition(GameTime gameTime)
         {
             if (CurrentEntityStates.Contains(EntityStates.Boost))
             {
@@ -440,7 +440,7 @@ namespace Booster.Levels.Entities
             Animations[currentAnimation].Update(gameTime);
         }
 
-        public void ChangeAnimation()
+        private void ChangeAnimation()
         {
             if (!CurrentEntityStates.Contains(EntityStates.Move))
             {
@@ -483,11 +483,6 @@ namespace Booster.Levels.Entities
 
         public void OnCollision(ICollisionableObject collisionableObject)
         {
-        }
-
-        public void IncrementScore(int score)
-        {
-            Score += score;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

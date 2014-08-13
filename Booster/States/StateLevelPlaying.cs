@@ -115,7 +115,7 @@ namespace Booster.States
             spriteBatch.End();
         }
 
-        public void DrawLifes(SpriteBatch spriteBatch)
+        private void DrawLifes(SpriteBatch spriteBatch)
         {
             Rectangle sourceRectFull = stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_heartFull.png"];
             Rectangle sourceRectHalf = stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_heartHalf.png"];
@@ -144,12 +144,12 @@ namespace Booster.States
             }
         }
 
-        public void DrawHeart(SpriteBatch spriteBatch, Rectangle destinationRect, Rectangle sourceRect)
+        private void DrawHeart(SpriteBatch spriteBatch, Rectangle destinationRect, Rectangle sourceRect)
         {
             spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, destinationRect, sourceRect, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 1);
         }
 
-        public void DrawScore(SpriteBatch spriteBatch)
+        private void DrawScore(SpriteBatch spriteBatch)
         {
             Rectangle coinDestinationRect = new Rectangle(5, 55, 47, 47);
             Rectangle xDestinationRect = new Rectangle(55, 64, 30, 28);
@@ -163,7 +163,7 @@ namespace Booster.States
             spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, unitsDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_" + secondDigit + ".png"], Color.White);
         }
 
-        public void DrawKeys(SpriteBatch spriteBatch)
+        private void DrawKeys(SpriteBatch spriteBatch)
         {
             Rectangle keyDestinationRect = new Rectangle(5, 105, 44, 40);
             Rectangle xDestinationRect = new Rectangle(55, 114, 30, 28);
@@ -174,7 +174,7 @@ namespace Booster.States
             spriteBatch.Draw(stateManager.Resources.SpriteSheets["hud"].SpriteSheet, digitDestinationRect, stateManager.Resources.SpriteSheets["hud"].ObjectLocation["hud_" + firstDigit + ".png"], Color.White);
         }
 
-        public void DrawBoostBar(SpriteBatch spriteBatch)
+        private void DrawBoostBar(SpriteBatch spriteBatch)
         {
             Texture2D bar = new Texture2D(stateManager.Game.GraphicsDevice, 1, 1);
             bar.SetData<Color>(new Color[] { Color.White });

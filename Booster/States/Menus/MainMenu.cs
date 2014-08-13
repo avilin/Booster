@@ -14,36 +14,36 @@ namespace Booster.States.Menus
             
         }
 
-        public override void LoadMenuItems()
+        protected override void LoadMenuItems()
         {
-            Items = new List<MenuItem>();
+            items = new List<MenuItem>();
 
             MenuItem item;
 
             item = new MenuItem();
             item.Name = "Story Mode";
             item.MenuItemAction = StoryModeActivated;
-            Items.Add(item);
+            items.Add(item);
 
             item = new MenuItem();
             item.Name = "Challenges";
             item.MenuItemAction = ChallengesActivated;
-            Items.Add(item);
+            items.Add(item);
 
             item = new MenuItem();
             item.Name = "Change resolution";
             item.MenuItemAction = ChangeResolutionActivated;
-            Items.Add(item);
+            items.Add(item);
 
             item = new MenuItem();
             item.Name = "Reset progress";
             item.MenuItemAction = ResetProgressActivated;
-            Items.Add(item);
+            items.Add(item);
 
             item = new MenuItem();
             item.Name = "Quit";
             item.MenuItemAction = QuitActivated;
-            Items.Add(item);
+            items.Add(item);
         }
 
         public void StoryModeActivated()

@@ -2,6 +2,6 @@
 {
     public interface IScoreable
     {
-        void IncrementScore(int score);
+        int Score { get; set; }
     }
 }

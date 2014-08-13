@@ -8,41 +8,41 @@ namespace Booster.States.Menus
     {
         protected IGameStateContext stateManager;
 
-        public List<MenuItem> Items { get; set; }
+        protected List<MenuItem> items;
         protected int currentItem;
 
-        public MenuItem SelectedItem
+        protected MenuItem SelectedItem
         {
             get
             {
-                return Items.Count > 0 ? Items[currentItem] : null;
+                return items.Count > 0 ? items[currentItem] : null;
             }
         }
 
         public Menu(IGameStateContext stateManager)
         {
             this.stateManager = stateManager;
-            Items = new List<MenuItem>();
+            items = new List<MenuItem>();
         }
 
-        public void SelectNext()
+        private void SelectNext()
         {
-            if (Items.Count > 0)
+            if (items.Count > 0)
             {
                 do
                 {
-                    currentItem = (currentItem + 1) % Items.Count;
+                    currentItem = (currentItem + 1) % items.Count;
                 } while (!SelectedItem.Enabled);
             }
         }
 
-        public void SelectPrevious()
+        private void SelectPrevious()
         {
-            if (Items.Count > 0)
+            if (items.Count > 0)
             {
                 do
                 {
-                    currentItem = (currentItem - 1 + Items.Count) % Items.Count;
+                    currentItem = (currentItem - 1 + items.Count) % items.Count;
                 } while (!SelectedItem.Enabled);
             }
         }
@@ -58,9 +58,9 @@ namespace Booster.States.Menus
 
         public virtual void Update(GameTime gameTime)
         {
-            for (int i = 0; i < Items.Count; i++)
+            for (int i = 0; i < items.Count; i++)
             {
-                MenuItem item = Items[i];
+                MenuItem item = items[i];
                 if (item == SelectedItem)
                 {
                     if (item.Scale < 1.0f)
@@ -104,7 +104,7 @@ namespace Booster.States.Menus
 
         public abstract void Draw(GameTime gameTime);
 
-        public abstract void LoadMenuItems();
-        public abstract void PositionMenuItems();
+        protected abstract void LoadMenuItems();
+        protected abstract void PositionMenuItems();
     }
 }

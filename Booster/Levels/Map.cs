@@ -93,7 +93,7 @@ namespace Booster.Levels
             }
         }
 
-        public Vector2 CalculatePositionWithCell(int i, int j)
+        private Vector2 CalculatePositionWithCell(int i, int j)
         {
             return new Vector2(i * TileSide + TileSide / 2, j * TileSide + TileSide / 2);
         }
@@ -158,7 +158,7 @@ namespace Booster.Levels
             Player.UpdateAnimation(gameTime);
         }
 
-        public void IsPlayerOnAir()
+        private void IsPlayerOnAir()
         {
             Rectangle playerRectangle = Player.HitBox;
             playerRectangle.Offset(0, 1);
@@ -172,7 +172,7 @@ namespace Booster.Levels
             }
         }
 
-        public bool CheckPlayerTilesCollisions(Rectangle playerRectangle)
+        private bool CheckPlayerTilesCollisions(Rectangle playerRectangle)
         {
             int firstXTileToCheck = playerRectangle.X / TileSide;
             firstXTileToCheck = (int)MathHelper.Clamp(firstXTileToCheck, 0, Tiles.GetLength(0) - 1);

@@ -16,18 +16,18 @@ namespace Booster.States.Menus
             menuHeight = stateManager.Game.GraphicsDevice.Viewport.Height;
         }
 
-        public abstract override void LoadMenuItems();
+        protected abstract override void LoadMenuItems();
 
-        public override void PositionMenuItems()
+        protected override void PositionMenuItems()
         {
             currentItem = 0;
             SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
             Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
             MenuItem item;
-            for (int i = 0; i < Items.Count; i++)
+            for (int i = 0; i < items.Count; i++)
             {
                 float scale = 0.7f;
-                item = Items[i];
+                item = items[i];
                 item.Scale = scale;
                 item.Color = Color.Green;
                 Vector2 size = spriteFont.MeasureString(item.Name);
@@ -43,7 +43,7 @@ namespace Booster.States.Menus
                 }
             }
 
-            menuHeight = (int)Items[Items.Count - 1].Position.Y + viewport.Height / 4;
+            menuHeight = (int)items[items.Count - 1].Position.Y + viewport.Height / 4;
             camera2D.Initialize(stateManager.Game.GraphicsDevice.Viewport);
         }
 
@@ -60,9 +60,9 @@ namespace Booster.States.Menus
             SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
             SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, camera2D.Transform);
-            for (int i = 0; i < Items.Count; i++)
+            for (int i = 0; i < items.Count; i++)
             {
-                MenuItem item = Items[i];
+                MenuItem item = items[i];
                 Vector2 size = spriteFont.MeasureString(item.Name);
                 Vector2 position = item.Position - size * 0.5f * item.Scale;
                 spriteBatch.DrawString(spriteFont, item.Name, position, item.Color, 0, Vector2.Zero, item.Scale, SpriteEffects.None, 0);

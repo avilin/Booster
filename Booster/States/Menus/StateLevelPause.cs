@@ -10,21 +10,21 @@ namespace Booster.States.Menus
 
         }
 
-        public override void LoadMenuItems()
+        protected override void LoadMenuItems()
         {
-            Items = new List<MenuItem>();
+            items = new List<MenuItem>();
 
             MenuItem item;
 
             item = new MenuItem();
             item.Name = "Continue";
             item.MenuItemAction = ContinueActivated;
-            Items.Add(item);
+            items.Add(item);
 
             item = new MenuItem();
             item.Name = "Exit Level";
             item.MenuItemAction = QuitLevelActivated;
-            Items.Add(item);
+            items.Add(item);
         }
 
         public void ContinueActivated()
