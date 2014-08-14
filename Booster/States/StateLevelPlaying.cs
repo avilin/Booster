@@ -4,17 +4,18 @@ using Booster.Levels.Entities;
 using Booster.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace Booster.States
 {
     public class StateLevelPlaying : IGameState
     {
-        private IGameStateContext stateManager;
+        private IStateManager stateManager;
 
         public Map Map { get; set; }
         private Camera2D camera2D;
 
-        public StateLevelPlaying(IGameStateContext stateManager)
+        public StateLevelPlaying(IStateManager stateManager)
         {
             this.stateManager = stateManager;
 
@@ -29,7 +30,7 @@ namespace Booster.States
 
         public void Initialize()
         {
-            stateManager.Resources.Songs["level_music"].Play();
+            MediaPlayer.Play(stateManager.Resources.Songs["level_music"]);
             camera2D.Initialize(stateManager.Game.GraphicsDevice.Viewport);
             Map.Initialize();
         }

@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework.Media;
+using System.Collections.Generic;
 
 namespace Booster.States.Menus
 {
     public class StateLevelPause : StaticMenu
     {
-        public StateLevelPause(IGameStateContext stateManager)
+        public StateLevelPause(IStateManager stateManager)
             : base(stateManager)
         {
 
@@ -30,7 +31,7 @@ namespace Booster.States.Menus
         public void ContinueActivated()
         {
             stateManager.CurrentState = GameStates.Playing;
-            stateManager.Resources.Songs["level_music"].Play();
+            MediaPlayer.Play(stateManager.Resources.Songs["level_music"]);
         }
 
         public void QuitLevelActivated()

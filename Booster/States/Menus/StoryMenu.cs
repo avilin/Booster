@@ -6,7 +6,7 @@ namespace Booster.States.Menus
 {
     public class StoryMenu : StaticMenu
     {
-        public StoryMenu(GameStateContext stateManager)
+        public StoryMenu(StateManager stateManager)
             : base(stateManager)
         {
 
@@ -39,7 +39,7 @@ namespace Booster.States.Menus
             {
                 return;
             }
-            ((GameStateContext)stateManager).LoadLevel(((MenuLevelItem)SelectedItem).Level);
+            ((StateManager)stateManager).LoadLevel(((MenuLevelItem)SelectedItem).Level);
             stateManager.CurrentState = GameStates.Loading;
         }
 

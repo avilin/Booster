@@ -6,7 +6,7 @@ namespace Booster.States.Menus
 {
     public class ChallengesMenu : ScrolleableMenu
     {
-        public ChallengesMenu(GameStateContext stateManager)
+        public ChallengesMenu(StateManager stateManager)
             : base(stateManager)
         {
             
@@ -40,7 +40,7 @@ namespace Booster.States.Menus
             {
                 return;
             }
-            ((GameStateContext)stateManager).LoadLevel(((MenuLevelItem)SelectedItem).Level);
+            ((StateManager)stateManager).LoadLevel(((MenuLevelItem)SelectedItem).Level);
             stateManager.CurrentState = GameStates.Loading;
         }
 

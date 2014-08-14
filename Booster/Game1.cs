@@ -14,9 +14,8 @@ namespace Booster
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private SpriteFont spriteFont;
 
-        private GameStateContext gameStateContext;
+        private IStateManager gameStateContext;
         private Resources resources;
 
         public Game1()
@@ -37,7 +36,7 @@ namespace Booster
 
             base.Initialize();
 
-            gameStateContext = new GameStateContext(this, resources);
+            gameStateContext = new StateManager(this, resources);
 
             gameStateContext.Initialize();
         }
@@ -54,8 +53,6 @@ namespace Booster
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Services.AddService(typeof(SpriteBatch), spriteBatch);
             // TODO: use this.Content to load your game content here
-            spriteFont = Content.Load<SpriteFont>(@"Fonts\menu");
-            Services.AddService(typeof(SpriteFont), spriteFont);
 
             Services.AddService(typeof(GraphicsDeviceManager), graphics);
         }

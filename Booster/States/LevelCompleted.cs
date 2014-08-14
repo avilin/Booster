@@ -8,11 +8,11 @@ namespace Booster.States
 {
     public class LevelCompleted : IGameState
     {
-        private IGameStateContext stateManager;
+        private IStateManager stateManager;
         private string mensaje;
         private XElement levelCompleted;
 
-        public LevelCompleted(IGameStateContext stateManager)
+        public LevelCompleted(IStateManager stateManager)
         {
             this.stateManager = stateManager;
         }
@@ -32,7 +32,7 @@ namespace Booster.States
             {
                 if (levelCompleted.Parent.Name == "StoryLevels" && levelCompleted.NextNode != null)
                 {
-                    ((GameStateContext)stateManager).LoadLevel(levelCompleted.NodesAfterSelf().OfType<XElement>().First());
+                    ((StateManager)stateManager).LoadLevel(levelCompleted.NodesAfterSelf().OfType<XElement>().First());
                     stateManager.CurrentState = GameStates.Loading;
                 }
                 else
@@ -46,7 +46,7 @@ namespace Booster.States
         {
             stateManager.Game.GraphicsDevice.Clear(Color.Black);
             SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
-            SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
+            SpriteFont spriteFont = stateManager.Resources.SpriteFont;
             Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
             spriteBatch.Begin();
             Vector2 size = spriteFont.MeasureString(mensaje);

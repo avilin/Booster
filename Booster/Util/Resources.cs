@@ -5,6 +5,7 @@ using Booster.Levels.Entities.EntityFactoryMethod;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 namespace Booster.Util
@@ -12,10 +13,11 @@ namespace Booster.Util
     public class Resources
     {
         private Game game;
+        public SpriteFont SpriteFont;
         public Dictionary<string, SpriteSheetInfo> SpriteSheets { get; set; }
 
         public Dictionary<string, SoundEffect> SoundEffects { get; set; }
-        public Dictionary<string, SoundEffectInstance> Songs { get; set; }
+        public Dictionary<string, Song> Songs { get; set; }
 
         public Dictionary<string, EntityType> StringType { get; set; }
         public Dictionary<EntityType, EntityCreator> EntityTypeCreator { get; set; }
@@ -25,13 +27,13 @@ namespace Booster.Util
         public Resources(Game game)
         {
             this.game = game;
-
+            SpriteFont = game.Content.Load<SpriteFont>(@"Fonts\menu");
             LoadGraphics();
             LoadSounds();
             LoadFactortMethod();
         }
 
-        public void LoadGraphics()
+        private void LoadGraphics()
         {
             SpriteSheets = new Dictionary<string, SpriteSheetInfo>();
 
@@ -44,13 +46,13 @@ namespace Booster.Util
             Backgrounds.Add("level_background", game.Content.Load<Texture2D>(@"Graphics\level_background"));
         }
 
-        public void LoadSpriteSheet(string spriteSheetName)
+        private void LoadSpriteSheet(string spriteSheetName)
         {
             SpriteSheetInfo spriteSheetInfo = new SpriteSheetInfo(game, spriteSheetName);
             SpriteSheets[spriteSheetName] = spriteSheetInfo;
         }
 
-        public void LoadSounds()
+        private void LoadSounds()
         {
             SoundEffects = new Dictionary<string, SoundEffect>();
             SoundEffects["coin"] = game.Content.Load<SoundEffect>(@"Sounds\coin.wav");
@@ -61,14 +63,14 @@ namespace Booster.Util
             SoundEffects["door"] = game.Content.Load<SoundEffect>(@"Sounds\door.wav");
             SoundEffects["key"] = game.Content.Load<SoundEffect>(@"Sounds\key.wav");
 
-            Songs = new Dictionary<string, SoundEffectInstance>();
-            Songs["menu_music"] = game.Content.Load<SoundEffect>(@"Sounds\menu_music.wav").CreateInstance();
-            Songs["menu_music"].IsLooped = true;
-            Songs["level_music"] = game.Content.Load<SoundEffect>(@"Sounds\level_music.wav").CreateInstance();
-            Songs["level_music"].IsLooped = true;
+            Songs = new Dictionary<string, Song>();
+            Songs["menu_music"] = game.Content.Load<Song>(@"Sounds\menu_music.wav");
+            //Songs["menu_music"].IsLooped = true;
+            Songs["level_music"] = game.Content.Load<Song>(@"Sounds\level_music.wav");
+            //Songs["level_music"].IsLooped = true;
         }
 
-        public void LoadFactortMethod()
+        private void LoadFactortMethod()
         {
             StringType = new Dictionary<string, EntityType>();
             StringType.Add("PLA", EntityType.Player);

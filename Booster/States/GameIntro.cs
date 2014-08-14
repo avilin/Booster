@@ -6,9 +6,9 @@ namespace Booster.States
 {
     public class GameIntro : IGameState
     {
-        private IGameStateContext stateManager;
+        private IStateManager stateManager;
 
-        public GameIntro(IGameStateContext stateManager)
+        public GameIntro(IStateManager stateManager)
         {
             this.stateManager = stateManager;
         }
@@ -32,7 +32,7 @@ namespace Booster.States
         {
             stateManager.Game.GraphicsDevice.Clear(Color.Black);
             SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
-            SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
+            SpriteFont spriteFont = stateManager.Resources.SpriteFont;
             Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
             string mensaje = "Pulsa Start";
             spriteBatch.Begin();

@@ -7,12 +7,12 @@ namespace Booster.States
 {
     public class LoadingState : IGameState
     {
-        private IGameStateContext stateManager;
+        private IStateManager stateManager;
         private string mensaje;
         private XElement level;
         private Duration waitTime;
 
-        public LoadingState(IGameStateContext stateManager)
+        public LoadingState(IStateManager stateManager)
         {
             this.stateManager = stateManager;
         }
@@ -38,7 +38,7 @@ namespace Booster.States
         {
             stateManager.Game.GraphicsDevice.Clear(Color.Black);
             SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
-            SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
+            SpriteFont spriteFont = stateManager.Resources.SpriteFont;
             Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
             spriteBatch.Begin();
             Vector2 size = spriteFont.MeasureString(mensaje);

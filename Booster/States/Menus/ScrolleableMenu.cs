@@ -9,7 +9,7 @@ namespace Booster.States.Menus
         protected Camera2D camera2D;
         protected int menuHeight;
 
-        public ScrolleableMenu(IGameStateContext stateManager)
+        public ScrolleableMenu(IStateManager stateManager)
             : base(stateManager)
         {
             camera2D = new Camera2D();
@@ -21,7 +21,6 @@ namespace Booster.States.Menus
         protected override void PositionMenuItems()
         {
             currentItem = 0;
-            SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
             Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
             MenuItem item;
             for (int i = 0; i < items.Count; i++)
@@ -30,7 +29,7 @@ namespace Booster.States.Menus
                 item = items[i];
                 item.Scale = scale;
                 item.Color = Color.Green;
-                Vector2 size = spriteFont.MeasureString(item.Name);
+                Vector2 size = stateManager.Resources.SpriteFont.MeasureString(item.Name);
                 Vector2 position = new Vector2(viewport.Width / 2, viewport.Height / 2);
                 position.Y -= viewport.Height / 4;
                 position.Y += i * (size.Y * 1.2f) * scale;
@@ -58,7 +57,7 @@ namespace Booster.States.Menus
         {
             stateManager.Game.GraphicsDevice.Clear(Color.Black);
             SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
-            SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
+            SpriteFont spriteFont = stateManager.Resources.SpriteFont;
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, camera2D.Transform);
             for (int i = 0; i < items.Count; i++)
             {

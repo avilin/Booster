@@ -1,12 +1,13 @@
 ﻿using Booster.Input;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 namespace Booster.States.Menus
 {
     public abstract class Menu : IGameState
     {
-        protected IGameStateContext stateManager;
+        protected IStateManager stateManager;
 
         protected List<MenuItem> items;
         protected int currentItem;
@@ -19,7 +20,7 @@ namespace Booster.States.Menus
             }
         }
 
-        public Menu(IGameStateContext stateManager)
+        public Menu(IStateManager stateManager)
         {
             this.stateManager = stateManager;
             items = new List<MenuItem>();
@@ -51,7 +52,7 @@ namespace Booster.States.Menus
         {
             LoadMenuItems();
 
-            stateManager.Resources.Songs["menu_music"].Play();
+            MediaPlayer.Play(stateManager.Resources.Songs["menu_music"]);
 
             PositionMenuItems();
         }

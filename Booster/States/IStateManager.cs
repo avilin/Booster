@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Booster.States
 {
-    public interface IGameStateContext
+    public interface IStateManager
     {
         Resources Resources { get; set; }
         Game Game { get; set; }

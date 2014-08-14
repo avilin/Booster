@@ -2,13 +2,14 @@
 using Booster.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
 namespace Booster.States
 {
-    public class GameStateContext : IGameStateContext
+    public class StateManager : IStateManager
     {
         public Resources Resources { get; set; }
         public Game Game { get; set; }
@@ -24,15 +25,12 @@ namespace Booster.States
             set
             {
                 currentState = value;
-                foreach (KeyValuePair<string, SoundEffectInstance> song in Resources.Songs.Where(song => song.Value.State == SoundState.Playing))
-                {
-                    song.Value.Stop();
-                }
+                MediaPlayer.Stop();
                 InitializeCurrentGameState();
             }
         }
 
-        public GameStateContext(Game game, Resources resources)
+        public StateManager(Game game, Resources resources)
         {
             Game = game;
             this.Resources = resources;

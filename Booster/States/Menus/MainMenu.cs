@@ -8,7 +8,7 @@ namespace Booster.States.Menus
 {
     public class MainMenu : StaticMenu
     {
-        public MainMenu(GameStateContext stateManager)
+        public MainMenu(StateManager stateManager)
             : base(stateManager)
         {
             
