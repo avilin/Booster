@@ -13,7 +13,7 @@ namespace Booster.Util
     public class Resources
     {
         private Game game;
-        public SpriteFont SpriteFont;
+        public SpriteFont SpriteFont { get; set; }
         public Dictionary<string, SpriteSheetInfo> SpriteSheets { get; set; }
 
         public Dictionary<string, SoundEffect> SoundEffects { get; set; }
@@ -30,7 +30,7 @@ namespace Booster.Util
             SpriteFont = game.Content.Load<SpriteFont>(@"Fonts\menu");
             LoadGraphics();
             LoadSounds();
-            LoadFactortMethod();
+            LoadFactoryMethod();
         }
 
         private void LoadGraphics()
@@ -70,7 +70,7 @@ namespace Booster.Util
             //Songs["level_music"].IsLooped = true;
         }
 
-        private void LoadFactortMethod()
+        private void LoadFactoryMethod()
         {
             StringType = new Dictionary<string, EntityType>();
             StringType.Add("PLA", EntityType.Player);

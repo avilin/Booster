@@ -8,8 +8,8 @@
   <Input virtual_button ="Down" key="Down" button="DPadDown"/>
   <Input virtual_button ="A" key="Space" button="A"/>
   <Input virtual_button ="B" key="B" button="B"/>
-  <Input virtual_button ="X" key="L" button="X"/>
-  <Input virtual_button ="Y" key="I" button="Y"/>
+  <Input virtual_button ="X" key="V" button="X"/>
+  <Input virtual_button ="Y" key="C" button="Y"/>
   <Input virtual_button ="LB" key="LeftShift" button="LeftShoulder"/>
   <Input virtual_button ="RB" key="RightShift" button="RightShoulder"/>
   <Input virtual_button ="LT" key="LeftControl" button="LeftTrigger"/>

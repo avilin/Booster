@@ -10,15 +10,15 @@ namespace Booster
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Game
+    public class Booster : Game
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        private IStateManager gameStateContext;
+        private IStateManager stateManager;
         private Resources resources;
 
-        public Game1()
+        public Booster()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -36,9 +36,9 @@ namespace Booster
 
             base.Initialize();
 
-            gameStateContext = new StateManager(this, resources);
+            stateManager = new StateManager(this, resources);
 
-            gameStateContext.Initialize();
+            stateManager.Initialize();
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Booster
             }
 
             // TODO: Add your update logic here
-            gameStateContext.Update(gameTime);
+            stateManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -94,7 +94,7 @@ namespace Booster
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
-            gameStateContext.Draw(gameTime);
+            stateManager.Draw(gameTime);
 
             base.Draw(gameTime);
         }
@@ -102,11 +102,11 @@ namespace Booster
         protected override void OnDeactivated(Object sender, EventArgs args)
         {
             base.OnDeactivated(sender, args);
-            if (gameStateContext != null 
-                && gameStateContext.CurrentState == GameStates.Level 
-                && ((Level)gameStateContext.States[GameStates.Level]).CurrentState == GameStates.Playing)
+            if (stateManager != null 
+                && stateManager.CurrentState == GameStates.Level 
+                && ((Level)stateManager.States[GameStates.Level]).CurrentState == GameStates.Playing)
             {
-                ((Level)gameStateContext.States[GameStates.Level]).CurrentState = GameStates.Pause;
+                ((Level)stateManager.States[GameStates.Level]).CurrentState = GameStates.Pause;
             }
         }
     }

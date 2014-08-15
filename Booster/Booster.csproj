@@ -127,7 +127,7 @@
     <Compile Include="Util\Animations\IAnimationBuilder.cs" />
     <Compile Include="States\Menus\StateLevelPause.cs" />
     <Compile Include="States\StateLevelPlaying.cs" />
-    <Compile Include="States\IGameStateContext.cs" />
+    <Compile Include="States\IStateManager.cs" />
     <Compile Include="Util\Animations\Animation.cs" />
     <Compile Include="Util\Animations\PlayerAnimationHurtBuilder.cs" />
     <Compile Include="Util\Animations\PlayerAnimationJumpBuilder.cs" />
@@ -135,7 +135,7 @@
     <Compile Include="Util\Animations\PlayerAnimationWalkBuilder.cs" />
     <Compile Include="Util\Camera2D.cs" />
     <Compile Include="Util\Animations\Frame.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="Booster.cs" />
     <Compile Include="Input\InputSystem.cs" />
     <Compile Include="Input\VirtualButtonConfig.cs" />
     <Compile Include="Input\VirtualButtons.cs" />
@@ -183,7 +183,7 @@
     <Compile Include="States\GameIntro.cs" />
     <Compile Include="States\GameStates.cs" />
     <Compile Include="States\IGameState.cs" />
-    <Compile Include="States\GameStateContext.cs" />
+    <Compile Include="States\StateManager.cs" />
     <Compile Include="Util\Resources.cs" />
     <Compile Include="Util\SpriteSheetInfo.cs" />
   </ItemGroup>
