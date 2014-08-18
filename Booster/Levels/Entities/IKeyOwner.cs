@@ -1,6 +1,6 @@
 ﻿namespace Booster.Levels.Entities
 {
-    public interface IHaveKeys
+    public interface IKeyOwner
     {
         int Keys { get; set; }
     }

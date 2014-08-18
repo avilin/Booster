@@ -6,11 +6,11 @@ namespace Booster.Levels.StateMove
 {
     public abstract class StateMovePlayer : IStateMove
     {
-        public abstract void Move(ICollisionableObject player, Vector2 nextPosition, Map map);
+        public abstract void Move(ICollisionable player, Vector2 nextPosition, Map map);
 
-        protected Dictionary<CollisionTypes, List<ICollisionableObject>> GetPlayerBorderCollisions(Player player, Rectangle playerBorderRectangle, Map map)
+        protected Dictionary<CollisionTypes, List<ICollisionable>> GetPlayerBorderCollisions(Player player, Rectangle playerBorderRectangle, Map map)
         {
-            Dictionary<CollisionTypes, List<ICollisionableObject>> collisions = new Dictionary<CollisionTypes, List<ICollisionableObject>>();
+            Dictionary<CollisionTypes, List<ICollisionable>> collisions = new Dictionary<CollisionTypes, List<ICollisionable>>();
 
             int firstXTileToCheck = playerBorderRectangle.X / map.TileSide;
             firstXTileToCheck = (int)MathHelper.Clamp(firstXTileToCheck, 0, map.Tiles.GetLength(0) - 1);
@@ -25,7 +25,7 @@ namespace Booster.Levels.StateMove
             {
                 for (int j = firstYTileToCheck; j <= lastYTileToCheck; j++)
                 {
-                    ICollisionableObject tile = map.Tiles[i, j];
+                    ICollisionable tile = map.Tiles[i, j];
                     if (tile == null)
                     {
                         continue;
@@ -36,7 +36,7 @@ namespace Booster.Levels.StateMove
                         {
                             if (!collisions.ContainsKey(CollisionTypes.Block))
                             {
-                                collisions.Add(CollisionTypes.Block, new List<ICollisionableObject>());
+                                collisions.Add(CollisionTypes.Block, new List<ICollisionable>());
                             }
                             collisions[CollisionTypes.Block].Add(tile);
                         }
@@ -44,7 +44,7 @@ namespace Booster.Levels.StateMove
                         {
                             if (!collisions.ContainsKey(CollisionTypes.None))
                             {
-                                collisions.Add(CollisionTypes.None, new List<ICollisionableObject>());
+                                collisions.Add(CollisionTypes.None, new List<ICollisionable>());
                             }
                             collisions[CollisionTypes.None].Add(tile);
                         }
@@ -55,18 +55,18 @@ namespace Booster.Levels.StateMove
         }
 
         protected void CheckCollisionsRight(int firstXTileToCheck, int firstYTileToCheck, int lastXTileToCheck, int lastYTileToCheck, bool xBlocked,
-            Map map, List<ICollisionableObject>[,] collisions, Player player)
+            Map map, List<ICollisionable>[,] collisions, Player player)
         {
             for (int i = firstXTileToCheck; i <= lastXTileToCheck; i++)
             {
                 for (int j = firstYTileToCheck; j <= lastYTileToCheck; j++)
                 {
-                    List<ICollisionableObject> list = collisions[i, j];
+                    List<ICollisionable> list = collisions[i, j];
                     if (list == null)
                     {
                         continue;
                     }
-                    foreach (ICollisionableObject tile in list)
+                    foreach (ICollisionable tile in list)
                     {
                         if (map.Tiles[i, j] == tile)
                         {
@@ -100,18 +100,18 @@ namespace Booster.Levels.StateMove
         }
 
         protected void CheckCollisionsLeft(int firstXTileToCheck, int firstYTileToCheck, int lastXTileToCheck, int lastYTileToCheck, bool xBlocked,
-            Map map, List<ICollisionableObject>[,] collisions, Player player)
+            Map map, List<ICollisionable>[,] collisions, Player player)
         {
             for (int i = firstXTileToCheck; i >= lastXTileToCheck; i--)
             {
                 for (int j = firstYTileToCheck; j <= lastYTileToCheck; j++)
                 {
-                    List<ICollisionableObject> list = collisions[i, j];
+                    List<ICollisionable> list = collisions[i, j];
                     if (list == null)
                     {
                         continue;
                     }
-                    foreach (ICollisionableObject tile in list)
+                    foreach (ICollisionable tile in list)
                     {
                         if (map.Tiles[i, j] == tile)
                         {
@@ -145,18 +145,18 @@ namespace Booster.Levels.StateMove
         }
 
         protected void CheckCollisionsDown(int firstXTileToCheck, int firstYTileToCheck, int lastXTileToCheck, int lastYTileToCheck, bool yBlocked,
-            Map map, List<ICollisionableObject>[,] collisions, Player player)
+            Map map, List<ICollisionable>[,] collisions, Player player)
         {
             for (int j = firstYTileToCheck; j <= lastYTileToCheck; j++)
             {
                 for (int i = firstXTileToCheck; i <= lastXTileToCheck; i++)
                 {
-                    List<ICollisionableObject> list = collisions[i, j];
+                    List<ICollisionable> list = collisions[i, j];
                     if (list == null)
                     {
                         continue;
                     }
-                    foreach (ICollisionableObject tile in list)
+                    foreach (ICollisionable tile in list)
                     {
                         if (map.Tiles[i, j] == tile)
                         {
@@ -190,18 +190,18 @@ namespace Booster.Levels.StateMove
         }
 
         protected void CheckCollisionsUp(int firstXTileToCheck, int firstYTileToCheck, int lastXTileToCheck, int lastYTileToCheck, bool yBlocked,
-            Map map, List<ICollisionableObject>[,] collisions, Player player)
+            Map map, List<ICollisionable>[,] collisions, Player player)
         {
             for (int j = firstYTileToCheck; j >= lastYTileToCheck; j--)
             {
                 for (int i = firstXTileToCheck; i <= lastXTileToCheck; i++)
                 {
-                    List<ICollisionableObject> list = collisions[i, j];
+                    List<ICollisionable> list = collisions[i, j];
                     if (list == null)
                     {
                         continue;
                     }
-                    foreach (ICollisionableObject tile in list)
+                    foreach (ICollisionable tile in list)
                     {
                         if (map.Tiles[i, j] == tile)
                         {
@@ -234,13 +234,13 @@ namespace Booster.Levels.StateMove
             }
         }
 
-        protected void AddMovableElementsForCollision(Map map, Player player, Vector2 oldPosition, ref List<ICollisionableObject>[,] collisions)
+        protected void AddMovableElementsForCollision(Map map, Player player, Vector2 oldPosition, ref List<ICollisionable>[,] collisions)
         {
             Rectangle rectangle = Rectangle.Union(player.BoundingBox.BoxInPosition(oldPosition), player.BoundingBox.BoxInPosition(player.Position));
             for (int k = 0; k < map.MovableElements.Count; k++)
             {
-                IMovable movable = map.MovableElements[k];
-                if (!(movable is ICollisionableObject))
+                IMoveable movable = map.MovableElements[k];
+                if (!(movable is ICollisionable))
                 {
                     continue;
                 }
@@ -248,7 +248,7 @@ namespace Booster.Levels.StateMove
                 {
                     continue;
                 }
-                ICollisionableObject collisionableObject = movable as ICollisionableObject;
+                ICollisionable collisionableObject = movable as ICollisionable;
                 if (collisionableObject.HitBox.Intersects(rectangle))
                 {
                     List<Point> coordinates = map.GetEntityCoordinatesOnMap(collisionableObject);
@@ -262,7 +262,7 @@ namespace Booster.Levels.StateMove
                         }
                         if (collisions[i, j] == null)
                         {
-                            collisions[i, j] = new List<ICollisionableObject>();
+                            collisions[i, j] = new List<ICollisionable>();
                         }
                         collisions[i, j].Add(collisionableObject);
                     }

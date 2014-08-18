@@ -44,7 +44,7 @@ namespace Booster.States
                     {
                         XDocument xdoc = XDocument.Load(@"Content\Levels\Levels.xml");
                         XElement score = new XElement("Score");
-                        score.Add(new XAttribute("score", ((StateLevelPlaying)States[GameStates.Playing]).Map.Player.Score));
+                        score.Add(new XAttribute("score", ((LevelRunning)States[GameStates.Playing]).Map.Player.Score));
                         score.Add(new XAttribute("date", XmlConvert.ToString(System.DateTime.Today, "dd-MM-yyyy")));
                         IEnumerable<XElement> levels = xdoc.Descendants("Level").Where(level => level.Parent.Name == this.level.Parent.Name);
 
@@ -81,7 +81,7 @@ namespace Booster.States
         public void LoadMap(XElement level)
         {
             this.level = level;
-            ((StateLevelPlaying)States[GameStates.Playing]).LoadMap(@"Content\Levels\" + level.Attribute("file").Value);
+            ((LevelRunning)States[GameStates.Playing]).LoadMap(@"Content\Levels\" + level.Attribute("file").Value);
             InitializeCurrentGameState();
         }
 
@@ -93,8 +93,8 @@ namespace Booster.States
         public void Initialize()
         {
             States = new Dictionary<GameStates, IGameState>();
-            States[GameStates.Playing] = new StateLevelPlaying(this);
-            States[GameStates.Pause] = new StateLevelPause(this);
+            States[GameStates.Playing] = new LevelRunning(this);
+            States[GameStates.Pause] = new PauseMenu(this);
 
             CurrentState = GameStates.Playing;
         }

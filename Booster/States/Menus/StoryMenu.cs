@@ -6,7 +6,7 @@ namespace Booster.States.Menus
 {
     public class StoryMenu : StaticMenu
     {
-        public StoryMenu(StateManager stateManager)
+        public StoryMenu(IStateManager stateManager)
             : base(stateManager)
         {
 

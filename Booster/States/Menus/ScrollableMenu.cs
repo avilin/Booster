@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Booster.States.Menus
 {
-    public abstract class ScrolleableMenu : Menu
+    public abstract class ScrollableMenu : Menu
     {
         protected Camera2D camera2D;
         protected int menuHeight;
 
-        public ScrolleableMenu(IStateManager stateManager)
+        public ScrollableMenu(IStateManager stateManager)
             : base(stateManager)
         {
             camera2D = new Camera2D();

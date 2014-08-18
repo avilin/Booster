@@ -4,9 +4,9 @@ using System.Xml.Linq;
 
 namespace Booster.States.Menus
 {
-    public class ChallengesMenu : ScrolleableMenu
+    public class ChallengesMenu : ScrollableMenu
     {
-        public ChallengesMenu(StateManager stateManager)
+        public ChallengesMenu(IStateManager stateManager)
             : base(stateManager)
         {
             

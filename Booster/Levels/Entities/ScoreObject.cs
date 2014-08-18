@@ -14,16 +14,16 @@ namespace Booster.Levels.Entities
             Score = 0;
         }
 
-        public override void OnCollision(ICollisionableObject collisionableObject)
+        public override void OnCollision(ICollisionable collisionableObject)
         {
             if (!Active)
             {
                 return;
             }
-            if (collisionableObject is IScoreable)
+            if (collisionableObject is IScore)
             {
                 CollisionSound.Play();
-                ((IScoreable)collisionableObject).Score += Score;
+                ((IScore)collisionableObject).Score += Score;
                 Active = false;
             }
         }

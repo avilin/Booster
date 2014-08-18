@@ -5,6 +5,6 @@ namespace Booster.Levels.StateMove
 {
     public interface IStateMove
     {
-        void Move(ICollisionableObject entity, Vector2 nextPosition, Map map);
+        void Move(ICollisionable entity, Vector2 nextPosition, Map map);
     }
 }

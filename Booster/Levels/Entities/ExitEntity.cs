@@ -10,11 +10,11 @@ namespace Booster.Levels.Entities
 
         }
 
-        public override void OnCollision(ICollisionableObject collisionableObject)
+        public override void OnCollision(ICollisionable collisionableObject)
         {
-            if (collisionableObject is IStateable)
+            if (collisionableObject is Player)
             {
-                ((IStateable)collisionableObject).CurrentEntityStates.Add(EntityStates.Win);
+                ((Player)collisionableObject).CurrentEntityStates.Add(EntityStates.Win);
             }
         }
     }

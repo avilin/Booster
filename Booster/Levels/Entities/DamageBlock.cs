@@ -12,7 +12,7 @@ namespace Booster.Levels.Entities
             Damage = 0;
         }
 
-        public override void OnCollision(ICollisionableObject collisionableObject)
+        public override void OnCollision(ICollisionable collisionableObject)
         {
             if (collisionableObject is IDamageable)
             {

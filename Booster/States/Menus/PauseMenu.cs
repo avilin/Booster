@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Booster.States.Menus
 {
-    public class StateLevelPause : StaticMenu
+    public class PauseMenu : StaticMenu
     {
-        public StateLevelPause(IStateManager stateManager)
+        public PauseMenu(IStateManager stateManager)
             : base(stateManager)
         {
 
@@ -30,8 +30,8 @@ namespace Booster.States.Menus
 
         public void ContinueActivated()
         {
-            stateManager.CurrentState = GameStates.Playing;
             MediaPlayer.Play(stateManager.Resources.Songs["level_music"]);
+            stateManager.CurrentState = GameStates.Playing;
         }
 
         public void QuitLevelActivated()

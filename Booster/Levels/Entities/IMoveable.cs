@@ -2,7 +2,7 @@
 
 namespace Booster.Levels.Entities
 {
-    public interface IMovable
+    public interface IMoveable
     {
         bool Active { get; set; }
         Vector2 Position { get; set; }

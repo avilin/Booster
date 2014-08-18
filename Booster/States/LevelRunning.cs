@@ -5,17 +5,18 @@ using Booster.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using System.IO;
 
 namespace Booster.States
 {
-    public class StateLevelPlaying : IGameState
+    public class LevelRunning : IGameState
     {
         private IStateManager stateManager;
 
         public Map Map { get; set; }
         private Camera2D camera2D;
 
-        public StateLevelPlaying(IStateManager stateManager)
+        public LevelRunning(IStateManager stateManager)
         {
             this.stateManager = stateManager;
 
@@ -25,6 +26,11 @@ namespace Booster.States
 
         public void LoadMap(string file)
         {
+            if (!File.Exists(file))
+            {
+                stateManager.CurrentState = GameStates.GameIntro;
+                return;
+            }
             Map.LoadMap(file);
         }
 

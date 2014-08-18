@@ -12,16 +12,16 @@ namespace Booster.Levels.Entities
         {
 
         }
-        public override void OnCollision(ICollisionableObject collisionableObject)
+        public override void OnCollision(ICollisionable collisionableObject)
         {
             if (!Active)
             {
                 return;
             }
-            if (collisionableObject is IHaveKeys)
+            if (collisionableObject is IKeyOwner)
             {
                 CollisionSound.Play();
-                ((IHaveKeys)collisionableObject).Keys++;
+                ((IKeyOwner)collisionableObject).Keys++;
             }
             Active = false;
         }

@@ -1,17 +1,17 @@
-﻿namespace Booster
+﻿namespace Booster.Util
 {
     public class Range
     {
-        public int Min { get; set; }
-        public int Max { get; set; }
+        public float Min { get; set; }
+        public float Max { get; set; }
 
-        public Range(int min, int max)
+        public Range(float min, float max)
         {
             Min = min;
             Max = max;
         }
 
-        public bool IsInRange(int number)
+        public bool IsInRange(float number)
         {
             if (number < Min)
             {

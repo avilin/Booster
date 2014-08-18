@@ -8,7 +8,7 @@ namespace Booster.States.Menus
 {
     public class MainMenu : StaticMenu
     {
-        public MainMenu(StateManager stateManager)
+        public MainMenu(IStateManager stateManager)
             : base(stateManager)
         {
             
@@ -61,6 +61,7 @@ namespace Booster.States.Menus
             GraphicsDeviceManager graphics = (GraphicsDeviceManager)stateManager.Game.Services.GetService(typeof(GraphicsDeviceManager));
             if (graphics.IsFullScreen)
             {
+                return;
                 //graphics.PreferredBackBufferWidth = 800;
                 //graphics.PreferredBackBufferHeight = 600;
                 //graphics.IsFullScreen = false;

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Booster.Levels.Entities
 {
-    public class Player : AnimatedEntity, IDamageable, ICollisionableObject, IMovable, IScoreable, IStateable, IUpdateableObject, IHaveKeys
+    public class Player : AnimatedEntity, IDamageable, ICollisionable, IMoveable, IScore, IUpdateableObject, IKeyOwner
     {
         private const float MaxSpeed = 0.5f;
 
@@ -481,7 +481,7 @@ namespace Booster.Levels.Entities
             }
         }
 
-        public void OnCollision(ICollisionableObject collisionableObject)
+        public void OnCollision(ICollisionable collisionableObject)
         {
         }
 

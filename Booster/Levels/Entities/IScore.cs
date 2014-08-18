@@ -1,6 +1,6 @@
 ﻿namespace Booster.Levels.Entities
 {
-    public interface IScoreable
+    public interface IScore
     {
         int Score { get; set; }
     }

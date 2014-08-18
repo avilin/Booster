@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace Booster.Levels.Entities
 {
-    public class SimpleTile : StaticEntity, ICollisionableObject
+    public class SimpleTile : StaticEntity, ICollisionable
     {
         public CollisionTypes CollisionType { get; set; }
 
@@ -23,7 +23,7 @@ namespace Booster.Levels.Entities
 
         }
 
-        public virtual void OnCollision(ICollisionableObject collisionableObject)
+        public virtual void OnCollision(ICollisionable collisionableObject)
         {
 
         }

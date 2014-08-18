@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace Booster.Levels.Entities
 {
-    public class Spike : DamageBlock, IMovable
+    public class Spike : DamageBlock, IMoveable
     {
         private Range range;
         private bool onRangeLimit;
@@ -20,7 +20,7 @@ namespace Booster.Levels.Entities
             onRangeLimitDuration = new Duration(2000);
         }
 
-        public override void OnCollision(ICollisionableObject collisionableObject)
+        public override void OnCollision(ICollisionable collisionableObject)
         {
             if (Position.Y == range.Max)
             {

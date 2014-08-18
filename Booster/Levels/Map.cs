@@ -20,9 +20,9 @@ namespace Booster.Levels
         private List<string> levelFile;
 
         public Player Player { get; set; }
-        public ICollisionableObject[,] Tiles { get; set; }
+        public ICollisionable[,] Tiles { get; set; }
 
-        public List<IMovable> MovableElements { get; set; }
+        public List<IMoveable> MovableElements { get; set; }
         private List<IUpdateableObject> updateableElements;
         private List<IDrawableObject> drawableElements;
 
@@ -42,7 +42,7 @@ namespace Booster.Levels
             {
                 return;
             }
-            MovableElements = new List<IMovable>();
+            MovableElements = new List<IMoveable>();
             updateableElements = new List<IUpdateableObject>();
             drawableElements = new List<IDrawableObject>();
 
@@ -50,7 +50,7 @@ namespace Booster.Levels
             int width = row.Count;
             int height = levelFile.Count;
 
-            Tiles = new ICollisionableObject[width, height];
+            Tiles = new ICollisionable[width, height];
 
             for (int j = 0; j < height; j++)
             {
@@ -77,13 +77,13 @@ namespace Booster.Levels
                     {
                         drawableElements.Add((IDrawableObject)entity);
                     }
-                    if (entity is IMovable)
+                    if (entity is IMoveable)
                     {
-                        MovableElements.Add((IMovable)entity);
+                        MovableElements.Add((IMoveable)entity);
                     }
-                    if (!(entity is IMovable) && entity is ICollisionableObject)
+                    if (!(entity is IMoveable) && entity is ICollisionable)
                     {
-                        Tiles[i, j] = (ICollisionableObject)entity;
+                        Tiles[i, j] = (ICollisionable)entity;
                     }
                     if (entity is Player)
                     {
@@ -191,7 +191,7 @@ namespace Booster.Levels
                     {
                         continue;
                     }
-                    ICollisionableObject tile = Tiles[i, j];
+                    ICollisionable tile = Tiles[i, j];
                     if (tile.CollisionType == CollisionTypes.Block)
                     {
                         if (playerRectangle.Intersects(tile.HitBox))
@@ -213,7 +213,7 @@ namespace Booster.Levels
             return false;
         }
 
-        public List<Point> GetEntityCoordinatesOnMap(ICollisionableObject entity)
+        public List<Point> GetEntityCoordinatesOnMap(ICollisionable entity)
         {
             int firstX = entity.HitBox.X / TileSide;
             int firstY = entity.HitBox.Y / TileSide;
@@ -239,7 +239,7 @@ namespace Booster.Levels
                 {
                     drawableElements.RemoveAt(i);
                 }
-                else if (camera2D.isInView(drawableElements[i].DestinationRect))
+                else if (camera2D.IsInView(drawableElements[i].DestinationRect))
                 {
                     drawableElements[i].Draw(spriteBatch);
                 }

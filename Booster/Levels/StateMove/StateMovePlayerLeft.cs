@@ -6,7 +6,7 @@ namespace Booster.Levels.StateMove
 {
     public class StateMovePlayerLeft : StateMovePlayer
     {
-        public override void Move(ICollisionableObject entity, Vector2 nextPosition, Map map)
+        public override void Move(ICollisionable entity, Vector2 nextPosition, Map map)
         {
             Player player = entity as Player;
 
@@ -25,13 +25,13 @@ namespace Booster.Levels.StateMove
             float nextPlayerPositionX = nextPosition.X;
             int playerNextLeftX = playerHitBoxInNextPosition.X;
 
-            List<ICollisionableObject>[,] collisions = new List<ICollisionableObject>[firstXTileToCheck + 1, lastYTileToCheck + 1];
+            List<ICollisionable>[,] collisions = new List<ICollisionable>[firstXTileToCheck + 1, lastYTileToCheck + 1];
 
             for (int i = firstXTileToCheck; i >= lastXTileToCheck; i--)
             {
                 for (int j = firstYTileToCheck; j <= lastYTileToCheck; j++)
                 {
-                    ICollisionableObject tile = map.Tiles[i, j];
+                    ICollisionable tile = map.Tiles[i, j];
                     if (tile == null)
                     {
                         continue;
@@ -45,7 +45,7 @@ namespace Booster.Levels.StateMove
                     {
                         if (collisions[i, j] == null)
                         {
-                            collisions[i, j] = new List<ICollisionableObject>();
+                            collisions[i, j] = new List<ICollisionable>();
                         }
                         collisions[i, j].Add(tile);
                     }
