@@ -1,0 +1,20 @@
+﻿<TextureAtlas imagePath="enemies_spritesheet">
+  <SubTexture name="blockerBody.png" x="203" y="0" width="51" height="51"/>
+  <SubTexture name="blockerMad.png" x="136" y="66" width="51" height="51"/>
+  <SubTexture name="blockerSad.png" x="188" y="66" width="51" height="51"/>
+  <SubTexture name="fishDead.png" x="0" y="69" width="66" height="42"/>
+  <SubTexture name="fishSwim1.png" x="76" y="0" width="66" height="42"/>
+  <SubTexture name="fishSwim2.png" x="73" y="43" width="62" height="43"/>
+  <SubTexture name="flyDead.png" x="143" y="0" width="59" height="33"/>
+  <SubTexture name="flyFly1.png" x="0" y="32" width="72" height="36"/>
+  <SubTexture name="flyFly2.png" x="0" y="0" width="75" height="31"/>
+  <SubTexture name="pokerMad.png" x="255" y="0" width="48" height="146"/>
+  <SubTexture name="pokerSad.png" x="304" y="0" width="48" height="146"/>
+  <SubTexture name="slimeDead.png" x="0" y="112" width="59" height="12"/>
+  <SubTexture name="slimeWalk1.png" x="52" y="125" width="50" height="28"/>
+  <SubTexture name="slimeWalk2.png" x="0" y="125" width="51" height="26"/>
+  <SubTexture name="snailShell.png" x="103" y="119" width="44" height="30"/>
+  <SubTexture name="snailShell_upsidedown.png" x="148" y="118" width="44" height="30"/>
+  <SubTexture name="snailWalk1.png" x="143" y="34" width="54" height="31"/>
+  <SubTexture name="snailWalk2.png" x="67" y="87" width="57" height="31"/>
+</TextureAtlas>
