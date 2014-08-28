@@ -14,7 +14,7 @@ namespace Booster.Levels.Entities
         public Spike(Vector2 position)
             : base(position)
         {
-            Speed = Vector2.UnitY * 0.01f;
+            Speed = Vector2.UnitY * 0.02f;
             range = new Range((int)position.Y, (int)position.Y + 32);
             onRangeLimit = true;
             onRangeLimitDuration = new Duration(2000);

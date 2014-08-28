@@ -101,7 +101,7 @@ namespace Booster.Levels.Entities
 
             if (acceleration.Y != 0 && !CurrentEntityStates.Contains(EntityStates.OnAir))
             {
-                Speed = Speed * Vector2.UnitX - Vector2.UnitY * 0.75f;
+                Speed = Speed * Vector2.UnitX - Vector2.UnitY * 0.65f;
                 CurrentEntityStates.Add(EntityStates.OnAir);
                 JumpSound.Play();
             }
