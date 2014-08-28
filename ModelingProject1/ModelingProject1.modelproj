@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4a2fb96f-c45a-4526-8613-f6324833287b}</ProjectGuid>
+    <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
+    <Name>ModelingProject1</Name>
+    <RootNamespace>ModelingProject1</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ItemGroup>
+    <Content Include="Animation.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Animation.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Animation.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Camera.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Camera.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Camera.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="DamageBlock.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="DamageBlock.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>DamageBlock.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="DamageBlockBuilder.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="DamageBlockBuilder.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>DamageBlockBuilder.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Door.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Door.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Door.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Entities.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Entities.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Entities.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Exit.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Exit.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Exit.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="FactoryMethod.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="FactoryMethod.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>FactoryMethod.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Level.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Level.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Level.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="ModelDefinition\Package1_1711.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package1_2105.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package2_1711.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package3_1711.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package4_1711.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1708.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1711.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_2105.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Player.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Player.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Player.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="PlayerBuilder.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="PlayerBuilder.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>PlayerBuilder.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Resources.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Resources.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Resources.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="ScoreObject.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ScoreObject.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>ScoreObject.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="ScoreObjectBuilder.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ScoreObjectBuilder.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>ScoreObjectBuilder.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="ScrollMenu.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ScrollMenu.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>ScrollMenu.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="SimpleTile.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SimpleTile.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SimpleTile.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="SimpleTileBuilder.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SimpleTileBuilder.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SimpleTileBuilder.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Spike.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Spike.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Spike.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="StateManager.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="StateManager.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>StateManager.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Menus.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Menus.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Menus.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="ModelDefinition\Package1_0123.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package1_0124.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package1_0127.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package2_0123.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package3_0123.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package4_0123.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package5_0123.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package6_0123.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package7_0123.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package8_0123.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package9_0123.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_0123.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_0124.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_0127.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Input.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Input.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Input.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="ModelDefinition\Package_1243.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="StaticMenu.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="StaticMenu.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>StaticMenu.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Transitions.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Transitions.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Transitions.classdiagram</DependentUpon>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="ModelDefinition\ModelingProject1.uml">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+</Project>
