@@ -1,6 +1,6 @@
 ﻿using Booster.Levels.Entities;
 
-namespace Booster.Levels
+namespace Booster.Levels.Entities.EntityBuilder
 {
     public interface IScoreObjectBuilder
     {

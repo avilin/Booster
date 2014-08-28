@@ -68,8 +68,8 @@ namespace Booster.States.Menus
             }
             else
             {
-                graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
-                graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
+                graphics.PreferredBackBufferWidth = (int)(graphics.GraphicsDevice.DisplayMode.Width * 0.8);
+                graphics.PreferredBackBufferHeight = (int)(graphics.GraphicsDevice.DisplayMode.Height * 0.8);
                 graphics.IsFullScreen = true;
             }
 

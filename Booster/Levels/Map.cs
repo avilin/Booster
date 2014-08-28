@@ -46,7 +46,7 @@ namespace Booster.Levels
             updateableElements = new List<IUpdateableObject>();
             drawableElements = new List<IDrawableObject>();
 
-            List<string> row = new List<string>(levelFile[0].Split(' '));
+            List<string> row = new List<string>(levelFile[0].Split(','));
             int width = row.Count;
             int height = levelFile.Count;
 
@@ -54,7 +54,7 @@ namespace Booster.Levels
 
             for (int j = 0; j < height; j++)
             {
-                row = new List<string>(levelFile[j].Split(' '));
+                row = new List<string>(levelFile[j].Split(','));
                 for (int i = 0; i < width; i++)
                 {
                     Vector2 position = CalculatePositionWithCell(i, j);
@@ -64,7 +64,11 @@ namespace Booster.Levels
                     {
                         if (i < row.Count)
                         {
-                            entityType = resources.StringType.ContainsKey(row[i]) ? resources.StringType[row[i]] : EntityType.Null;
+                            if (!resources.StringType.ContainsKey(row[i]))
+                            {
+                                continue;
+                            }
+                            entityType = resources.StringType[row[i]];
                         }
                     }
 
@@ -98,7 +102,7 @@ namespace Booster.Levels
             return new Vector2(i * TileSide + TileSide / 2, j * TileSide + TileSide / 2);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Vector2 acceleration)
         {
             for (int i = updateableElements.Count - 1; i >= 0; i--)
             {
@@ -111,9 +115,11 @@ namespace Booster.Levels
                     updateableElements[i].Update(gameTime);
                 }
             }
+
+            MoveEntities(gameTime, acceleration);
         }
 
-        public void MovePlayer(GameTime gameTime, Vector2 acceleration)
+        private void MoveEntities(GameTime gameTime, Vector2 acceleration)
         {
             if (Player.CurrentEntityStates.Contains(EntityStates.Dead))
             {
@@ -244,7 +250,6 @@ namespace Booster.Levels
                     drawableElements[i].Draw(spriteBatch);
                 }
             }
-            Player.Draw(spriteBatch);
         }
     }
 }

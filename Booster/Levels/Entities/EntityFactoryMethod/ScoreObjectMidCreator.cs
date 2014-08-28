@@ -1,4 +1,5 @@
-﻿using Booster.Util;
+﻿using Booster.Levels.Entities.EntityBuilder;
+using Booster.Util;
 using Microsoft.Xna.Framework;
 
 namespace Booster.Levels.Entities.EntityFactoryMethod

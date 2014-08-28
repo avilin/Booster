@@ -1,6 +1,6 @@
 ﻿namespace Booster.Util.Animations
 {
-    public class AnimationCreator
+    public class AnimationDirector
     {
         public void Construct(IAnimationBuilder animationBuilder)
         {

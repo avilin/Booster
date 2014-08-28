@@ -5,6 +5,7 @@ using Booster.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using System;
 using System.IO;
 
 namespace Booster.States
@@ -46,13 +47,41 @@ namespace Booster.States
             InputSystem inputSystem = InputSystem.GetInstance();
             inputSystem.GetActions();
 
+            if (CheckPause(inputSystem))
+            {
+                return;
+            }
+
+            Vector2 acceleration = GetPlayerActions(inputSystem);
+            Map.Update(gameTime, acceleration);
+
+            if (CheckWin())
+            {
+                return;
+            }
+
+            if (CheckGameOver())
+            {
+                return;
+            }
+
+            Vector2 cameraPosition = new Vector2((int)Map.Player.Position.X, (int)Map.Player.Position.Y);
+            camera2D.Update(cameraPosition, Map.Tiles.GetLength(0) * Map.TileSide, Map.Tiles.GetLength(1) * Map.TileSide);
+        }
+
+        private Boolean CheckPause(InputSystem inputSystem)
+        {
             if (inputSystem.CurrentActions.Contains(VirtualButtons.Start) &&
                 !inputSystem.PreviousActions.Contains(VirtualButtons.Start))
             {
                 stateManager.CurrentState = GameStates.Pause;
-                return;
+                return true;
             }
+            return false;
+        }
 
+        private Vector2 GetPlayerActions(InputSystem inputSystem)
+        {
             Vector2 acceleration = Vector2.UnitX * inputSystem.LeftThumbSticks;
 
             if (inputSystem.CurrentActions.Contains(VirtualButtons.Left))
@@ -80,31 +109,33 @@ namespace Booster.States
                 }
             }
 
-            Map.Update(gameTime);
-            Map.MovePlayer(gameTime, acceleration);
+            return acceleration;
+        }
 
+        private Boolean CheckWin()
+        {
             if (Map.Player.CurrentEntityStates.Contains(EntityStates.Win))
             {
                 stateManager.CurrentState = GameStates.LevelCompleted;
-                return;
+                return true;
             }
+            return false;
+        }
 
+        private Boolean CheckGameOver()
+        {
             if (!Map.Player.Active)
             {
                 stateManager.CurrentState = GameStates.GameOver;
-                //Initialize();
-                return;
+                return true;
             }
-
-            Vector2 cameraPosition = new Vector2((int)Map.Player.Position.X, (int)Map.Player.Position.Y);
-            camera2D.Update(cameraPosition, Map.Tiles.GetLength(0) * Map.TileSide, Map.Tiles.GetLength(1) * Map.TileSide);
+            return false;
         }
 
         public void Draw(GameTime gameTime)
         {
             stateManager.Game.GraphicsDevice.Clear(Color.White);
             SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
-            SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
 
             spriteBatch.Begin();
             spriteBatch.Draw(stateManager.Resources.Backgrounds["level_background"], stateManager.Game.GraphicsDevice.Viewport.Bounds, Color.White);

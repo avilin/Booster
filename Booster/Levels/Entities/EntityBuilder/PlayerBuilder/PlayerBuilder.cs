@@ -27,7 +27,7 @@ namespace Booster.Levels.Entities.EntityBuilder
         {
             Dictionary<String, Animation> playerAnimations = new Dictionary<string, Animation>();
 
-            AnimationCreator director = new AnimationCreator();
+            AnimationDirector director = new AnimationDirector();
             IAnimationBuilder builder;
 
             builder = new PlayerAnimationStandBuilder(resources, player.Position);

@@ -3,12 +3,12 @@ using Microsoft.Xna.Framework;
 
 namespace Booster.Levels.Entities.EntityBuilder
 {
-    public class DamageObjectSpikeBuilder : IDamageObjectBuilder
+    public class SpikeBuilder : IDamageObjectBuilder
     {
         private DamageBlock damageObject;
         private Resources resources;
 
-        public DamageObjectSpikeBuilder(Resources resources, Vector2 position)
+        public SpikeBuilder(Resources resources, Vector2 position)
         {
             damageObject = new Spike(position);
             this.resources = resources;

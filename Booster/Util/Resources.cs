@@ -41,6 +41,7 @@ namespace Booster.Util
             LoadSpriteSheet("tiles");
             LoadSpriteSheet("items");
             LoadSpriteSheet("hud");
+            LoadSpriteSheet("enemies");
 
             Backgrounds = new Dictionary<string, Texture2D>();
             Backgrounds.Add("level_background", game.Content.Load<Texture2D>(@"Graphics\level_background"));
@@ -73,26 +74,26 @@ namespace Booster.Util
         private void LoadFactoryMethod()
         {
             StringType = new Dictionary<string, EntityType>();
-            StringType.Add("PLA", EntityType.Player);
-            StringType.Add("BLO", EntityType.Block);
-            StringType.Add("BLC", EntityType.BlockCenter);
-            StringType.Add("BLM", EntityType.BlockMid);
-            StringType.Add("BLL", EntityType.BlockLeft);
-            StringType.Add("BLR", EntityType.BlockRight);
-            StringType.Add("OWP", EntityType.Platform);
-            StringType.Add("OWM", EntityType.PlatformMid);
-            StringType.Add("OWL", EntityType.PlatformLeft);
-            StringType.Add("OWR", EntityType.PlatformRight);
-            StringType.Add("SPK", EntityType.Spike);
-            StringType.Add("DBL", EntityType.DamageObjectLow);
-            StringType.Add("DBM", EntityType.DamageObjectMid);
-            StringType.Add("DBH", EntityType.DamageObjectHigh);
-            StringType.Add("SOL", EntityType.ScoreObjectLow);
-            StringType.Add("SOM", EntityType.ScoreObjectMid);
-            StringType.Add("SOH", EntityType.ScoreObjectHigh);
-            StringType.Add("DOR", EntityType.Door);
-            StringType.Add("KEY", EntityType.Key);
-            StringType.Add("EXT", EntityType.Exit);
+            StringType.Add("221", EntityType.Player);
+            StringType.Add("29", EntityType.Block);
+            StringType.Add("155", EntityType.BlockCenter);
+            StringType.Add("135", EntityType.BlockMid);
+            StringType.Add("147", EntityType.BlockLeft);
+            StringType.Add("123", EntityType.BlockRight);
+            StringType.Add("112", EntityType.Platform);
+            StringType.Add("88", EntityType.PlatformMid);
+            StringType.Add("100", EntityType.PlatformLeft);
+            StringType.Add("76", EntityType.PlatformRight);
+            StringType.Add("162", EntityType.Spike);
+            StringType.Add("61", EntityType.DamageObjectLow);
+            StringType.Add("8", EntityType.Lava);
+            StringType.Add("44", EntityType.DamageObjectHigh);
+            StringType.Add("209", EntityType.ScoreObjectLow);
+            StringType.Add("193", EntityType.ScoreObjectMid);
+            StringType.Add("201", EntityType.ScoreObjectHigh);
+            StringType.Add("55", EntityType.Door);
+            StringType.Add("198", EntityType.Key);
+            StringType.Add("65", EntityType.Exit);
 
             PlayerDirector playerDirector = new PlayerDirector();
             SimpleTileDirector simpleTileDirector = new SimpleTileDirector();
@@ -112,7 +113,7 @@ namespace Booster.Util
             EntityTypeCreator.Add(EntityType.PlatformRight, new PlatformRightCreator(simpleTileDirector));
             EntityTypeCreator.Add(EntityType.Spike, new SpikeCreator(damageObjectDirector));
             EntityTypeCreator.Add(EntityType.DamageObjectLow, new DamageBlockLowCreator(damageObjectDirector));
-            EntityTypeCreator.Add(EntityType.DamageObjectMid, new DamageBlockMidCreator(damageObjectDirector));
+            EntityTypeCreator.Add(EntityType.Lava, new LavaCreator(damageObjectDirector));
             EntityTypeCreator.Add(EntityType.DamageObjectHigh, new DamageBlockHighCreator(damageObjectDirector));
             EntityTypeCreator.Add(EntityType.ScoreObjectLow, new ScoreObjectLowCreator(scoreObjectDirector));
             EntityTypeCreator.Add(EntityType.ScoreObjectMid, new ScoreObjectMidCreator(scoreObjectDirector));
@@ -120,7 +121,6 @@ namespace Booster.Util
             EntityTypeCreator.Add(EntityType.Door, new DoorCreator(simpleTileDirector));
             EntityTypeCreator.Add(EntityType.Key, new KeyCreator(simpleTileDirector));
             EntityTypeCreator.Add(EntityType.Exit, new ExitCreator(simpleTileDirector));
-            EntityTypeCreator.Add(EntityType.Null, new NullEntityCreator());
         }
     }
 }

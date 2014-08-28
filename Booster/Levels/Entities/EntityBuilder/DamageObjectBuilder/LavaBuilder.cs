@@ -3,12 +3,12 @@ using Microsoft.Xna.Framework;
 
 namespace Booster.Levels.Entities.EntityBuilder
 {
-    public class DamageObjectMidBuilder : IDamageObjectBuilder
+    public class LavaBuilder : IDamageObjectBuilder
     {
         private DamageBlock damageObject;
         private Resources resources;
 
-        public DamageObjectMidBuilder(Resources resources, Vector2 position)
+        public LavaBuilder(Resources resources, Vector2 position)
         {
             damageObject = new DamageBlock(position);
             this.resources = resources;
@@ -21,7 +21,7 @@ namespace Booster.Levels.Entities.EntityBuilder
 
         public void BuildSourceRect()
         {
-            damageObject.SourceRect = resources.SpriteSheets["tiles"].ObjectLocation["boxExplosive_disabled.png"];
+            damageObject.SourceRect = resources.SpriteSheets["tiles"].ObjectLocation["liquidLava.png"];
         }
 
         public void BuildDestinationRect()
@@ -46,7 +46,7 @@ namespace Booster.Levels.Entities.EntityBuilder
 
         public void BuildDamage()
         {
-            damageObject.Damage = 2;
+            damageObject.Damage = 4;
         }
 
         public DamageBlock GetResult()

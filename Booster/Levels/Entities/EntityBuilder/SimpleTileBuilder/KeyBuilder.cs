@@ -16,13 +16,13 @@ namespace Booster.Levels.Entities.EntityBuilder
 
         public void BuildResources()
         {
-            key.Texture = resources.SpriteSheets["hud"].SpriteSheet;
+            key.Texture = resources.SpriteSheets["items"].SpriteSheet;
             ((Key)key).CollisionSound = resources.SoundEffects["key"];
         }
 
         public void BuildSourceRect()
         {
-            key.SourceRect = resources.SpriteSheets["hud"].ObjectLocation["hud_keyYellow.png"];
+            key.SourceRect = resources.SpriteSheets["items"].ObjectLocation["keyYellow.png"];
         }
 
         public void BuildDestinationRect()

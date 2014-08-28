@@ -2,7 +2,7 @@
 using Booster.Util;
 using Microsoft.Xna.Framework;
 
-namespace Booster.Levels
+namespace Booster.Levels.Entities.EntityBuilder
 {
     public class ScoreObjectMidBuilder : IScoreObjectBuilder
     {

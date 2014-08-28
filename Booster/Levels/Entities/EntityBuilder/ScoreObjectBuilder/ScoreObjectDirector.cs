@@ -1,4 +1,4 @@
-﻿namespace Booster.Levels
+﻿namespace Booster.Levels.Entities.EntityBuilder
 {
     public class ScoreObjectDirector
     {

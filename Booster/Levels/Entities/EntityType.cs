@@ -14,7 +14,7 @@
         PlatformRight,
         Spike,
         DamageObjectLow,
-        DamageObjectMid,
+        Lava,
         DamageObjectHigh,
         ScoreObjectLow,
         ScoreObjectMid,

@@ -1,7 +1,7 @@
 ﻿using Booster.Util;
 using Microsoft.Xna.Framework;
 
-namespace Booster.Levels.Entities.EntityBuilder.SimpleTileBuilder
+namespace Booster.Levels.Entities.EntityBuilder
 {
     public class BlockMidBuilder : ISimpleTileBuilder
     {

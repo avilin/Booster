@@ -1,9 +1,8 @@
 ﻿using Booster.Levels.Entities;
-using Booster.Levels.Entities.EntityBuilder;
 using Booster.Util;
 using Microsoft.Xna.Framework;
 
-namespace Booster.Levels
+namespace Booster.Levels.Entities.EntityBuilder
 {
     public class ExitBuilder : ISimpleTileBuilder
     {

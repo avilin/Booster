@@ -16,12 +16,12 @@ namespace Booster.Levels.Entities.EntityBuilder
 
         public void BuildResources()
         {
-            damageObject.Texture = resources.SpriteSheets["tiles"].SpriteSheet;
+            damageObject.Texture = resources.SpriteSheets["enemies"].SpriteSheet;
         }
 
         public void BuildSourceRect()
         {
-            damageObject.SourceRect = resources.SpriteSheets["tiles"].ObjectLocation["boxExplosive.png"];
+            damageObject.SourceRect = resources.SpriteSheets["enemies"].ObjectLocation["blockerMad.png"];
         }
 
         public void BuildDestinationRect()
@@ -46,7 +46,7 @@ namespace Booster.Levels.Entities.EntityBuilder
 
         public void BuildDamage()
         {
-            damageObject.Damage = 4;
+            damageObject.Damage = 2;
         }
 
         public DamageBlock GetResult()

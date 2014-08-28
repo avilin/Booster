@@ -21,7 +21,7 @@ namespace Booster.Levels.Entities.EntityBuilder
 
         public void BuildSourceRect()
         {
-            damageObject.SourceRect = resources.SpriteSheets["tiles"].ObjectLocation["boxExplosiveAlt.png"];
+            damageObject.SourceRect = resources.SpriteSheets["tiles"].ObjectLocation["boxExplosive.png"];
         }
 
         public void BuildDestinationRect()

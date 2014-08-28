@@ -4,18 +4,18 @@ using Microsoft.Xna.Framework;
 
 namespace Booster.Levels.Entities.EntityFactoryMethod
 {
-    public class DamageBlockMidCreator :EntityCreator
+    public class LavaCreator :EntityCreator
     {
         private DamageObjectDirector director;
 
-        public DamageBlockMidCreator(DamageObjectDirector director)
+        public LavaCreator(DamageObjectDirector director)
         {
             this.director = director;
         }
 
         public override Entity FactoryMethod(Resources resources, Vector2 position)
         {
-            IDamageObjectBuilder builder = new DamageObjectMidBuilder(resources, position);
+            IDamageObjectBuilder builder = new LavaBuilder(resources, position);
             director.Construct(builder);
             return builder.GetResult();
         }

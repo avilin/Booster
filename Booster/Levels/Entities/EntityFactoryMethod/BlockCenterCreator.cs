@@ -1,5 +1,4 @@
 ﻿using Booster.Levels.Entities.EntityBuilder;
-using Booster.Levels.Entities.EntityBuilder.SimpleTileBuilder;
 using Booster.Util;
 using Microsoft.Xna.Framework;
 

@@ -80,7 +80,7 @@
     <Compile Include="Levels\Entities\EntityFactoryMethod\BlockRightCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\DamageBlockHighCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\DamageBlockLowCreator.cs" />
-    <Compile Include="Levels\Entities\EntityFactoryMethod\DamageBlockMidCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\LavaCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\DoorCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\ExitCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\KeyCreator.cs" />
@@ -97,8 +97,8 @@
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageObjectDirector.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageObjectLowBuilder.cs" />
-    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageObjectMidBuilder.cs" />
-    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageObjectSpikeBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\LavaBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\SpikeBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\IPlayerBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\PlayerBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\PlayerDirector.cs" />
@@ -123,7 +123,7 @@
     <Compile Include="States\Menus\MenuLevelItem.cs" />
     <Compile Include="States\Menus\ScrollableMenu.cs" />
     <Compile Include="States\Menus\StaticMenu.cs" />
-    <Compile Include="Util\Animations\AnimationCreator.cs" />
+    <Compile Include="Util\Animations\AnimationDirector.cs" />
     <Compile Include="Util\Animations\IAnimationBuilder.cs" />
     <Compile Include="States\Menus\PauseMenu.cs" />
     <Compile Include="States\LevelRunning.cs" />
@@ -144,7 +144,6 @@
     <Compile Include="Util\Box.cs" />
     <Compile Include="Levels\Entities\CollisionTypes.cs" />
     <Compile Include="Levels\Entities\DamageBlock.cs" />
-    <Compile Include="Levels\Entities\EntityFactoryMethod\NullEntityCreator.cs" />
     <Compile Include="Util\Duration.cs" />
     <Compile Include="Levels\Entities\Entity.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\EntityCreator.cs" />
@@ -209,6 +208,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Config\Config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\enemies_spritesheet.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Levels\Level 4.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Levels\Level 5.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Levels\Levels.xml">
@@ -297,6 +305,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Booster_ClaveTemporal.pfx" />
+    <Content Include="Content\Graphics\enemies_spritesheet.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
