@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace Booster.Levels.StateMove
+namespace Booster.Levels.StrategyMove
 {
-    public class StateMovePlayerLeft : StateMovePlayer
+    public class StrategyMovePlayerLeft : StrategyMovePlayer
     {
         public override void Move(ICollisionable entity, Vector2 nextPosition, Map map)
         {

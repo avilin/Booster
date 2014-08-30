@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace Booster.Levels.StateMove
+namespace Booster.Levels.StrategyMove
 {
-    public abstract class StateMovePlayer : IStateMove
+    public abstract class StrategyMovePlayer : IStrategyMove
     {
         public abstract void Move(ICollisionable player, Vector2 nextPosition, Map map);
 

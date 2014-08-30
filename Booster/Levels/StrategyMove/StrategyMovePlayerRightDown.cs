@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace Booster.Levels.StateMove
+namespace Booster.Levels.StrategyMove
 {
-    public class StateMovePlayerLeftDown : StateMovePlayer
+    public class StrategyMovePlayerRightDown : StrategyMovePlayer
     {
         public override void Move(ICollisionable entity, Vector2 nextPosition, Map map)
         {
@@ -12,11 +12,12 @@ namespace Booster.Levels.StateMove
 
             bool xBlocked = false;
             bool yBlocked = false;
+
             Rectangle playerHitBoxInNextPosition = player.BoundingBox.BoxInPosition(nextPosition);
 
-            int firstXTileToCheck = (player.HitBox.X + player.HitBox.Width - 1) / map.TileSide;
+            int firstXTileToCheck = player.HitBox.X / map.TileSide;
             firstXTileToCheck = (int)MathHelper.Clamp(firstXTileToCheck, 0, map.Tiles.GetLength(0) - 1);
-            int lastXTileToCheck = playerHitBoxInNextPosition.X / map.TileSide;
+            int lastXTileToCheck = (playerHitBoxInNextPosition.X + playerHitBoxInNextPosition.Width) / map.TileSide;
             lastXTileToCheck = (int)MathHelper.Clamp(lastXTileToCheck, 0, map.Tiles.GetLength(0) - 1);
             int firstYTileToCheck = player.HitBox.Y / map.TileSide;
             firstYTileToCheck = (int)MathHelper.Clamp(firstYTileToCheck, 0, map.Tiles.GetLength(1) - 1);
@@ -24,13 +25,13 @@ namespace Booster.Levels.StateMove
             lastYTileToCheck = (int)MathHelper.Clamp(lastYTileToCheck, 0, map.Tiles.GetLength(1) - 1);
 
             Vector2 nextPlayerPosition = player.Position;
-            int playerLeftX = player.HitBox.X;
+            int playerRightX = player.HitBox.X + player.HitBox.Width;
             int playerBottomY = player.HitBox.Y + player.HitBox.Height;
             int playerNextBottomY = playerHitBoxInNextPosition.Y + playerHitBoxInNextPosition.Height;
 
-            List<ICollisionable>[,] collisions = new List<ICollisionable>[firstXTileToCheck + 1, lastYTileToCheck + 1];
+            List<ICollisionable>[,] collisions = new List<ICollisionable>[lastXTileToCheck + 1, lastYTileToCheck + 1];
 
-            for (int i = firstXTileToCheck; i >= lastXTileToCheck; i--)
+            for (int i = firstXTileToCheck; i <= lastXTileToCheck; i++)
             {
                 for (int j = firstYTileToCheck; j <= lastYTileToCheck; j++)
                 {
@@ -51,8 +52,6 @@ namespace Booster.Levels.StateMove
 
                         hitBoxInNextPositionToCheck = player.BoundingBox.BoxInPosition(playerIntermediatePosition);
                         borderHitBox = new Rectangle(hitBoxInNextPositionToCheck.X, hitBoxInNextPositionToCheck.Y + hitBoxInNextPositionToCheck.Height, hitBoxInNextPositionToCheck.Width, 1);
-
-
                         if (tile.HitBox.Intersects(borderHitBox))
                         {
                             if (tile.CollisionType == CollisionTypes.None)
@@ -66,20 +65,19 @@ namespace Booster.Levels.StateMove
                             if (tile.CollisionType == CollisionTypes.Block || tile.CollisionType == CollisionTypes.Top)
                             {
                                 nextPlayerPosition = playerIntermediatePosition;
-                                lastXTileToCheck = hitBoxInNextPositionToCheck.X / map.TileSide;
+                                lastXTileToCheck = (hitBoxInNextPositionToCheck.X + hitBoxInNextPositionToCheck.Width - 1) / map.TileSide;
                                 lastYTileToCheck = (hitBoxInNextPositionToCheck.Y + hitBoxInNextPositionToCheck.Height - 1) / map.TileSide;
                                 yBlocked = true;
                             }
                         }
                     }
-                    if (playerLeftX >= (tile.HitBox.X + tile.HitBox.Width))
+                    if (playerRightX <= tile.HitBox.X)
                     {
-                        float intermediatePlayerPositionXToCheck = tile.HitBox.X + tile.HitBox.Width + player.BoundingBox.OffSetLeft;
+                        float intermediatePlayerPositionXToCheck = tile.HitBox.X - player.BoundingBox.OffSetRight;
                         playerIntermediatePosition = player.GetIntermediatePositionWithX(nextPosition, intermediatePlayerPositionXToCheck);
 
                         hitBoxInNextPositionToCheck = player.BoundingBox.BoxInPosition(playerIntermediatePosition);
-                        borderHitBox = new Rectangle(hitBoxInNextPositionToCheck.X - 1, hitBoxInNextPositionToCheck.Y, 1, hitBoxInNextPositionToCheck.Height);
-
+                        borderHitBox = new Rectangle(hitBoxInNextPositionToCheck.X + hitBoxInNextPositionToCheck.Width, hitBoxInNextPositionToCheck.Y, 1, hitBoxInNextPositionToCheck.Height);
                         if (tile.HitBox.Intersects(borderHitBox))
                         {
                             if (tile.CollisionType == CollisionTypes.None)
@@ -93,7 +91,7 @@ namespace Booster.Levels.StateMove
                             if (tile.CollisionType == CollisionTypes.Block)
                             {
                                 nextPlayerPosition = playerIntermediatePosition;
-                                lastXTileToCheck = hitBoxInNextPositionToCheck.X / map.TileSide;
+                                lastXTileToCheck = (hitBoxInNextPositionToCheck.X + hitBoxInNextPositionToCheck.Width - 1) / map.TileSide;
                                 lastYTileToCheck = (hitBoxInNextPositionToCheck.Y + hitBoxInNextPositionToCheck.Height - 1) / map.TileSide;
                                 xBlocked = true;
                             }
@@ -101,13 +99,11 @@ namespace Booster.Levels.StateMove
                     }
                     if (!xBlocked && !yBlocked)
                     {
-                        float intermediatePlayerPositionXToCheck = tile.HitBox.X + tile.HitBox.Width + player.BoundingBox.OffSetLeft;
+                        float intermediatePlayerPositionXToCheck = tile.HitBox.X - player.BoundingBox.OffSetRight;
                         playerIntermediatePosition = player.GetIntermediatePositionWithX(nextPosition, intermediatePlayerPositionXToCheck);
 
                         hitBoxInNextPositionToCheck = player.BoundingBox.BoxInPosition(playerIntermediatePosition);
-                        borderHitBox = new Rectangle(hitBoxInNextPositionToCheck.X - 1, hitBoxInNextPositionToCheck.Y + hitBoxInNextPositionToCheck.Height, 1, 1);
-
-
+                        borderHitBox = new Rectangle(hitBoxInNextPositionToCheck.X + hitBoxInNextPositionToCheck.Width, hitBoxInNextPositionToCheck.Y + hitBoxInNextPositionToCheck.Height, 1, 1);
                         if (tile.HitBox.Intersects(borderHitBox))
                         {
                             if (tile.CollisionType == CollisionTypes.None)
@@ -121,7 +117,7 @@ namespace Booster.Levels.StateMove
                             if (tile.CollisionType == CollisionTypes.Block)
                             {
                                 nextPlayerPosition = playerIntermediatePosition;
-                                lastXTileToCheck = hitBoxInNextPositionToCheck.X / map.TileSide;
+                                lastXTileToCheck = (hitBoxInNextPositionToCheck.X + hitBoxInNextPositionToCheck.Width - 1) / map.TileSide;
                                 lastYTileToCheck = (hitBoxInNextPositionToCheck.Y + hitBoxInNextPositionToCheck.Height - 1) / map.TileSide;
 
                                 xBlocked = true;
@@ -130,6 +126,7 @@ namespace Booster.Levels.StateMove
                     }
                 }
             }
+
             if (!xBlocked && !yBlocked)
             {
                 Vector2 oldPosition = player.Position;
@@ -137,7 +134,7 @@ namespace Booster.Levels.StateMove
 
                 AddMovableElementsForCollision(map, player, oldPosition, ref collisions);
 
-                CheckCollisions(lastXTileToCheck, firstYTileToCheck, map, collisions, player);
+                CheckCollisions(firstXTileToCheck, firstYTileToCheck, map, collisions, player);
             }
             else
             {
@@ -145,11 +142,12 @@ namespace Booster.Levels.StateMove
                 player.Position = Vector2.UnitX * nextPlayerPosition + Vector2.UnitY * nextPlayerPosition;
 
                 AddMovableElementsForCollision(map, player, oldPosition, ref collisions);
+
                 if (xBlocked)
                 {
-                    Rectangle playerLeftSide = new Rectangle(player.HitBox.X - 1, player.HitBox.Y, 1, player.HitBox.Height);
-                    Dictionary<CollisionTypes, List<ICollisionable>> borderCollisions = GetPlayerBorderCollisions(player, playerLeftSide, map);
-                    CheckCollisions(lastXTileToCheck, firstYTileToCheck, map, collisions, player, borderCollisions);
+                    Rectangle playerRightSide = new Rectangle(player.HitBox.X + player.HitBox.Width, player.HitBox.Y, 1, player.HitBox.Height);
+                    Dictionary<CollisionTypes, List<ICollisionable>> borderCollisions = GetPlayerBorderCollisions(player, playerRightSide, map);
+                    CheckCollisions(firstXTileToCheck, firstYTileToCheck, map, collisions, player, borderCollisions);
                     player.Speed *= Vector2.UnitY;
                     MovePlayerDown(player, nextPosition, map);
                 }
@@ -157,15 +155,15 @@ namespace Booster.Levels.StateMove
                 {
                     Rectangle playerBottomSide = new Rectangle(player.HitBox.X, player.HitBox.Y + player.HitBox.Height, player.HitBox.Width, 1);
                     Dictionary<CollisionTypes, List<ICollisionable>> borderCollisions = GetPlayerBorderCollisions(player, playerBottomSide, map);
-                    CheckCollisions(lastXTileToCheck, firstYTileToCheck, map, collisions, player, borderCollisions);
-                    MovePlayerLeft(player, nextPosition, map);
+                    CheckCollisions(firstXTileToCheck, firstYTileToCheck, map, collisions, player, borderCollisions);
+                    MovePlayerRight(player, nextPosition, map);
                 }
             }
         }
 
-        private void CheckCollisions(int lastXTileToCheck, int firstYTileToCheck, Map map, List<ICollisionable>[,] collisions, Player player)
+        private void CheckCollisions(int firstXTileToCheck, int firstYTileToCheck, Map map, List<ICollisionable>[,] collisions, Player player)
         {
-            for (int i = collisions.GetLength(0) - 1; i >= lastXTileToCheck; i--)
+            for (int i = firstXTileToCheck; i < collisions.GetLength(0); i++)
             {
                 for (int j = firstYTileToCheck; j < collisions.GetLength(1); j++)
                 {
@@ -186,9 +184,9 @@ namespace Booster.Levels.StateMove
             }
         }
 
-        private void CheckCollisions(int lastXTileToCheck, int firstYTileToCheck, Map map, List<ICollisionable>[,] collisions, Player player, Dictionary<CollisionTypes, List<ICollisionable>> borderCollisions)
+        private void CheckCollisions(int firstXTileToCheck, int firstYTileToCheck, Map map, List<ICollisionable>[,] collisions, Player player, Dictionary<CollisionTypes, List<ICollisionable>> borderCollisions)
         {
-            for (int i = collisions.GetLength(0) - 1; i >= lastXTileToCheck; i--)
+            for (int i = firstXTileToCheck; i < collisions.GetLength(0); i++)
             {
                 for (int j = firstYTileToCheck; j < collisions.GetLength(1); j++)
                 {
@@ -229,15 +227,15 @@ namespace Booster.Levels.StateMove
             }
         }
 
-        private void MovePlayerLeft(Player player, Vector2 nextPosition, Map map)
+        private void MovePlayerRight(Player player, Vector2 nextPosition, Map map)
         {
             bool canMoveDown = false;
             bool xBlocked = false;
             Rectangle playerHitBoxInNextPosition = player.BoundingBox.BoxInPosition(nextPosition);
 
-            int firstXTileToCheck = player.HitBox.X / map.TileSide;
+            int firstXTileToCheck = (player.HitBox.X + player.HitBox.Width - 1) / map.TileSide;
             firstXTileToCheck = (int)MathHelper.Clamp(firstXTileToCheck, 0, map.Tiles.GetLength(0) - 1);
-            int lastXTileToCheck = playerHitBoxInNextPosition.X / map.TileSide;
+            int lastXTileToCheck = (playerHitBoxInNextPosition.X + playerHitBoxInNextPosition.Width - 1) / map.TileSide;
             lastXTileToCheck = (int)MathHelper.Clamp(lastXTileToCheck, 0, map.Tiles.GetLength(0) - 1);
             int firstYTileToCheck = player.HitBox.Y / map.TileSide;
             firstYTileToCheck = (int)MathHelper.Clamp(firstYTileToCheck, 0, map.Tiles.GetLength(1) - 1);
@@ -245,11 +243,11 @@ namespace Booster.Levels.StateMove
             lastYTileToCheck = (int)MathHelper.Clamp(lastYTileToCheck, 0, map.Tiles.GetLength(1) - 1);
 
             float nextPlayerPositionX = nextPosition.X;
-            int playerNextLeftX = playerHitBoxInNextPosition.X;
+            int playerNextRightX = playerHitBoxInNextPosition.X + playerHitBoxInNextPosition.Width;
 
-            List<ICollisionable>[,] collisions = new List<ICollisionable>[firstXTileToCheck + 1, lastYTileToCheck];
+            List<ICollisionable>[,] collisions = new List<ICollisionable>[lastXTileToCheck + 1, lastYTileToCheck];
 
-            for (int i = firstXTileToCheck; i >= lastXTileToCheck; i--)
+            for (int i = firstXTileToCheck; i <= lastXTileToCheck; i++)
             {
                 ICollisionable tile;
                 for (int j = firstYTileToCheck; j <= lastYTileToCheck; j++)
@@ -261,7 +259,7 @@ namespace Booster.Levels.StateMove
                         {
                             continue;
                         }
-                        if (playerNextLeftX >= (tile.HitBox.X + tile.HitBox.Width))
+                        if (playerNextRightX <= tile.HitBox.X)
                         {
                             continue;
                         }
@@ -275,7 +273,7 @@ namespace Booster.Levels.StateMove
                         }
                         if (tile.CollisionType == CollisionTypes.Block)
                         {
-                            nextPlayerPositionX = tile.HitBox.X + tile.HitBox.Width + player.BoundingBox.OffSetLeft;
+                            nextPlayerPositionX = tile.HitBox.X - player.BoundingBox.OffSetRight;
                             player.Speed *= Vector2.UnitY;
                             lastXTileToCheck = i;
                             xBlocked = true;
@@ -287,7 +285,7 @@ namespace Booster.Levels.StateMove
                         {
                             continue;
                         }
-                        if (nextPlayerPositionX <= i * map.TileSide + player.BoundingBox.OffSetLeft)
+                        if (nextPlayerPositionX >= i * map.TileSide + player.BoundingBox.OffSetLeft)
                         {
                             nextPlayerPositionX = i * map.TileSide + player.BoundingBox.OffSetLeft;
                             player.Speed *= Vector2.UnitY;
@@ -305,7 +303,7 @@ namespace Booster.Levels.StateMove
 
             AddMovableElementsForCollision(map, player, oldPosition, ref collisions);
 
-            CheckCollisionsLeft(firstXTileToCheck, firstYTileToCheck, lastXTileToCheck, lastYTileToCheck - 1, xBlocked, map, collisions, player);
+            CheckCollisionsRight(firstXTileToCheck, firstYTileToCheck, lastXTileToCheck, lastYTileToCheck - 1, xBlocked, map, collisions, player);
             if (canMoveDown)
             {
                 Move(player, nextPosition, map);
@@ -314,13 +312,13 @@ namespace Booster.Levels.StateMove
 
         private void MovePlayerDown(Player player, Vector2 nextPosition, Map map)
         {
-            bool canMoveLeft = false;
+            bool canMoveRight = false;
             bool yBlocked = false;
             Rectangle playerHitBoxInNextPosition = player.BoundingBox.BoxInPosition(nextPosition);
 
-            int firstXTileToCheck = (player.HitBox.X + player.HitBox.Width - 1) / map.TileSide;
+            int firstXTileToCheck = player.HitBox.X / map.TileSide;
             firstXTileToCheck = (int)MathHelper.Clamp(firstXTileToCheck, 0, map.Tiles.GetLength(0) - 1);
-            int lastXTileToCheck = player.HitBox.X / map.TileSide - 1;
+            int lastXTileToCheck = (player.HitBox.X + player.HitBox.Width - 1) / map.TileSide + 1;
             lastXTileToCheck = (int)MathHelper.Clamp(lastXTileToCheck, 0, map.Tiles.GetLength(0) - 1);
             int firstYTileToCheck = (player.HitBox.Y + player.HitBox.Height - 1) / map.TileSide + 1;
             firstYTileToCheck = (int)MathHelper.Clamp(firstYTileToCheck, 0, map.Tiles.GetLength(1) - 1);
@@ -331,12 +329,12 @@ namespace Booster.Levels.StateMove
             int playerBottomY = player.HitBox.Y + player.HitBox.Height;
             int playerNextBottomY = playerHitBoxInNextPosition.Y + playerHitBoxInNextPosition.Height;
 
-            List<ICollisionable>[,] collisions = new List<ICollisionable>[firstXTileToCheck + 1, lastYTileToCheck + 1];
+            List<ICollisionable>[,] collisions = new List<ICollisionable>[lastXTileToCheck, lastYTileToCheck + 1];
 
             for (int j = firstYTileToCheck; j <= lastYTileToCheck; j++)
             {
                 ICollisionable tile;
-                for (int i = firstXTileToCheck; i >= lastXTileToCheck; i--)
+                for (int i = firstXTileToCheck; i <= lastXTileToCheck; i++)
                 {
                     tile = map.Tiles[i, j];
                     if (i != lastXTileToCheck)
@@ -373,25 +371,24 @@ namespace Booster.Levels.StateMove
                         {
                             if (nextPosition.Y >= j * map.TileSide)
                             {
-                                nextPlayerPositionY = j * map.TileSide;
-                                canMoveLeft = true;
+                                nextPlayerPositionY = j * map.TileSide > nextPlayerPositionY ? j * map.TileSide : nextPlayerPositionY;
+                                canMoveRight = true;
                             }
                         }
                     }
                 }
-                if (canMoveLeft)
+                if (canMoveRight)
                 {
                     break;
                 }
             }
-
             Vector2 oldPosition = player.Position;
             player.Position = Vector2.UnitX * player.Position + Vector2.UnitY * nextPlayerPositionY;
 
             AddMovableElementsForCollision(map, player, oldPosition, ref collisions);
 
-            CheckCollisionsDown(firstXTileToCheck, firstYTileToCheck, lastXTileToCheck + 1, lastYTileToCheck, yBlocked, map, collisions, player);
-            if (canMoveLeft)
+            CheckCollisionsDown(firstXTileToCheck, firstYTileToCheck, lastXTileToCheck - 1, lastYTileToCheck, yBlocked, map, collisions, player);
+            if (canMoveRight)
             {
                 Move(player, nextPosition, map);
             }

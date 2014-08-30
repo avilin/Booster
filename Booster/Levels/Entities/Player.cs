@@ -1,4 +1,4 @@
-﻿using Booster.Levels.StateMove;
+﻿using Booster.Levels.StrategyMove;
 using Booster.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -11,7 +11,7 @@ namespace Booster.Levels.Entities
     {
         private const float MaxSpeed = 0.5f;
 
-        private IStateMove stateMovePlayer;
+        private IStrategyMove strategyMovePlayer;
 
         public int Keys { get; set; }
         public int Score { get; set; }
@@ -37,7 +37,7 @@ namespace Booster.Levels.Entities
         public Player(Vector2 position)
             : base(position)
         {
-            stateMovePlayer = null;
+            strategyMovePlayer = null;
 
             Keys = 0;
             Score = 0;
@@ -162,44 +162,44 @@ namespace Booster.Levels.Entities
 
             if (playerMovement.X > 0 && playerMovement.Y > 0)
             {
-                stateMovePlayer = new StateMovePlayerRightDown();
+                strategyMovePlayer = new StrategyMovePlayerRightDown();
             }
             else if (playerMovement.X > 0 && playerMovement.Y < 0)
             {
-                stateMovePlayer = new StateMovePlayerRightUp();
+                strategyMovePlayer = new StrategyMovePlayerRightUp();
             }
             else if (playerMovement.X > 0)
             {
-                stateMovePlayer = new StateMovePlayerRight();
+                strategyMovePlayer = new StrategyMovePlayerRight();
             }
             else if (playerMovement.X < 0 && playerMovement.Y > 0)
             {
-                stateMovePlayer = new StateMovePlayerLeftDown();
+                strategyMovePlayer = new StrategyMovePlayerLeftDown();
             }
             else if (playerMovement.X < 0 && playerMovement.Y < 0)
             {
-                stateMovePlayer = new StateMovePlayerLeftUp();
+                strategyMovePlayer = new StrategyMovePlayerLeftUp();
             }
             else if (playerMovement.X < 0)
             {
-                stateMovePlayer = new StateMovePlayerLeft();
+                strategyMovePlayer = new StrategyMovePlayerLeft();
             }
             else if (playerMovement.Y > 0)
             {
-                stateMovePlayer = new StateMovePlayerDown();
+                strategyMovePlayer = new StrategyMovePlayerDown();
             }
             else if (playerMovement.Y < 0)
             {
-                stateMovePlayer = new StateMovePlayerUp();
+                strategyMovePlayer = new StrategyMovePlayerUp();
             }
             else
             {
-                stateMovePlayer = null;
+                strategyMovePlayer = null;
             }
 
-            if (stateMovePlayer != null)
+            if (strategyMovePlayer != null)
             {
-                stateMovePlayer.Move(this, nextPosition, map);
+                strategyMovePlayer.Move(this, nextPosition, map);
             }
         }
 

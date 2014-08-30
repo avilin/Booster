@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace Booster.Levels.StateMove
+namespace Booster.Levels.StrategyMove
 {
-    public class StateMovePlayerUp : StateMovePlayer
+    public class StrategyMovePlayerDown : StrategyMovePlayer
     {
         public override void Move(ICollisionable entity, Vector2 nextPosition, Map map)
         {
@@ -17,17 +17,18 @@ namespace Booster.Levels.StateMove
             firstXTileToCheck = (int)MathHelper.Clamp(firstXTileToCheck, 0, map.Tiles.GetLength(0) - 1);
             int lastXTileToCheck = (player.HitBox.X + player.HitBox.Width - 1) / map.TileSide;
             lastXTileToCheck = (int)MathHelper.Clamp(lastXTileToCheck, 0, map.Tiles.GetLength(0) - 1);
-            int firstYTileToCheck = (player.HitBox.Y + player.HitBox.Height - 1) / map.TileSide;
+            int firstYTileToCheck = player.HitBox.Y / map.TileSide;
             firstYTileToCheck = (int)MathHelper.Clamp(firstYTileToCheck, 0, map.Tiles.GetLength(1) - 1);
-            int lastYTileToCheck = playerHitBoxInNextPosition.Y / map.TileSide;
+            int lastYTileToCheck = (playerHitBoxInNextPosition.Y + playerHitBoxInNextPosition.Height - 1) / map.TileSide;
             lastYTileToCheck = (int)MathHelper.Clamp(lastYTileToCheck, 0, map.Tiles.GetLength(1) - 1);
 
             float nextPlayerPositionY = nextPosition.Y;
-            int playerNextTopY = playerHitBoxInNextPosition.Y;
+            int playerBottomY = player.HitBox.Y + player.HitBox.Height;
+            int playerNextBottomY = playerHitBoxInNextPosition.Y + playerHitBoxInNextPosition.Height;
 
-            List<ICollisionable>[,] collisions = new List<ICollisionable>[lastXTileToCheck + 1, firstYTileToCheck + 1];
+            List<ICollisionable>[,] collisions = new List<ICollisionable>[lastXTileToCheck + 1, lastYTileToCheck + 1];
 
-            for (int j = firstYTileToCheck; j >= lastYTileToCheck; j--)
+            for (int j = firstYTileToCheck; j <= lastYTileToCheck; j++)
             {
                 for (int i = firstXTileToCheck; i <= lastXTileToCheck; i++)
                 {
@@ -36,36 +37,31 @@ namespace Booster.Levels.StateMove
                     {
                         continue;
                     }
-                    if (playerNextTopY >= (tile.HitBox.Y + tile.HitBox.Height))
+                    if (playerNextBottomY <= tile.HitBox.Y || playerBottomY > tile.HitBox.Y)
                     {
                         continue;
                     }
-
-                    if (tile.CollisionType != CollisionTypes.Top)
+                    if (collisions[i, j] == null)
                     {
-                        if (collisions[i, j] == null)
-                        {
-                            collisions[i, j] = new List<ICollisionable>();
-                        }
-                        collisions[i, j].Add(tile);
+                        collisions[i, j] = new List<ICollisionable>();
                     }
+                    collisions[i, j].Add(tile);
 
-                    if (tile.CollisionType == CollisionTypes.Block)
+                    if (tile.CollisionType == CollisionTypes.Block || tile.CollisionType == CollisionTypes.Top)
                     {
-                        nextPlayerPositionY = tile.HitBox.Y + tile.HitBox.Height + player.BoundingBox.OffSetTop;
-                        player.Speed *= Vector2.UnitX;
+                        nextPlayerPositionY = tile.HitBox.Y - player.BoundingBox.OffSetBottom;
+                        //player.Speed *= Vector2.UnitX;
                         lastYTileToCheck = j;
                         yBlocked = true;
                     }
                 }
             }
-
             Vector2 oldPosition = player.Position;
             player.Position = Vector2.UnitX * player.Position + Vector2.UnitY * nextPlayerPositionY;
 
             AddMovableElementsForCollision(map, player, oldPosition, ref collisions);
 
-            CheckCollisionsUp(firstXTileToCheck, firstYTileToCheck, lastXTileToCheck, lastYTileToCheck, yBlocked, map, collisions, player);
+            CheckCollisionsDown(firstXTileToCheck, firstYTileToCheck, lastXTileToCheck, lastYTileToCheck, yBlocked, map, collisions, player);
         }
     }
 }
