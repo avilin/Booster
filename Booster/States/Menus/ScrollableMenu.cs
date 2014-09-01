@@ -28,7 +28,7 @@ namespace Booster.States.Menus
                 float scale = 0.7f;
                 item = items[i];
                 item.Scale = scale;
-                item.Color = Color.Green;
+                //item.Color = Color.YellowGreen;
                 Vector2 size = stateManager.Resources.SpriteFont.MeasureString(item.Name);
                 Vector2 position = new Vector2(viewport.Width / 2, viewport.Height / 2);
                 position.Y -= viewport.Height / 4;
@@ -58,6 +58,9 @@ namespace Booster.States.Menus
             stateManager.Game.GraphicsDevice.Clear(Color.Black);
             SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
             SpriteFont spriteFont = stateManager.Resources.SpriteFont;
+            spriteBatch.Begin();
+            spriteBatch.Draw(stateManager.Resources.Backgrounds["menu_background"], stateManager.Game.GraphicsDevice.Viewport.Bounds, Color.White);
+            spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, camera2D.Transform);
             for (int i = 0; i < items.Count; i++)
             {

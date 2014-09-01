@@ -1050,7 +1050,7 @@
         <referencesInternal>
           <reference
             Id="0337ba0a-e761-4776-aeb7-f065a31ff37a"
-            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FDebug%2FBooster.exe Namespace%3DBooster.Levels.Entities Type%3DICollisionable"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FRelease%2FBooster.exe Namespace%3DBooster.Levels.Entities Type%3DICollisionable"
             tag="ViewCode" />
         </referencesInternal>
         <appliedStereotypesInternal>
@@ -2780,7 +2780,7 @@
         <referencesInternal>
           <reference
             Id="c89a2846-34ee-4248-837d-35fc8c307c8d"
-            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FDebug%2FBooster.exe Namespace%3DBooster.Levels.Entities Type%3DCollisionTypes"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FRelease%2FBooster.exe Namespace%3DBooster.Levels.Entities Type%3DCollisionTypes"
             tag="ViewCode" />
         </referencesInternal>
         <appliedStereotypesInternal>
@@ -4771,7 +4771,7 @@
         <referencesInternal>
           <reference
             Id="5037bbf0-5204-4d1c-b86d-9d718110dbe1"
-            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FDebug%2FBooster.exe Namespace%3DBooster.Levels.Entities Type%3DPlayer"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FRelease%2FBooster.exe Namespace%3DBooster.Levels.Entities Type%3DPlayer"
             tag="ViewCode" />
         </referencesInternal>
         <appliedStereotypesInternal>

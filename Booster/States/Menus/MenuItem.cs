@@ -18,7 +18,7 @@ namespace Booster.States.Menus
             Name = "Menu Option";
             Enabled = true;
             Scale = 0.7f;
-            Color = Color.Green;
+            Color = Color.DarkCyan;
             Position = Vector2.Zero;
         }
 

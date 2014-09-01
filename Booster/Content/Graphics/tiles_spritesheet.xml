@@ -89,7 +89,7 @@
 	<SubTexture name="hill_smallAlt.png" x="792" y="720" width="48" height="106"/>
 	<SubTexture name="ladder_mid.png" x="504" y="144" width="70" height="70"/>
 	<SubTexture name="ladder_top.png" x="504" y="72" width="70" height="70"/>
-	<SubTexture name="liquidLava.png" x="504" y="0" width="70" height="70"/>
+	<SubTexture name="liquidLava.png" x="505" y="1" width="68" height="68"/>
 	<SubTexture name="liquidLavaTop.png" x="432" y="864" width="70" height="70"/>
 	<SubTexture name="liquidLavaTop_mid.png" x="432" y="792" width="70" height="70"/>
 	<SubTexture name="liquidWater.png" x="504" y="216" width="70" height="70"/>

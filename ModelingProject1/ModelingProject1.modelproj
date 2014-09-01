@@ -36,6 +36,13 @@
       <SubType>Content</SubType>
       <DependentUpon>Camera.classdiagram</DependentUpon>
     </Content>
+    <Content Include="Collisions.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Collisions.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Collisions.classdiagram</DependentUpon>
+    </Content>
     <Content Include="DamageBlock.classdiagram">
       <SubType>Content</SubType>
     </Content>
@@ -104,6 +111,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\Package_1711.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1740.uml">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\Package_2105.uml">

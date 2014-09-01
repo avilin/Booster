@@ -32,14 +32,15 @@ namespace Booster.States
         {
             stateManager.Game.GraphicsDevice.Clear(Color.Black);
             SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
-            SpriteFont spriteFont = stateManager.Resources.SpriteFont;
+            //SpriteFont spriteFont = stateManager.Resources.SpriteFont;
             Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
-            string mensaje = "Game Over";
+            //string mensaje = "Game Over";
             spriteBatch.Begin();
-            Vector2 size = spriteFont.MeasureString(mensaje);
-            Vector2 position = new Vector2(viewport.Width / 2, viewport.Height / 2);
-            position = position - size * 0.5f;
-            spriteBatch.DrawString(spriteFont, mensaje, position, Color.Green, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
+            spriteBatch.Draw(stateManager.Resources.Backgrounds["gameover_background"], viewport.Bounds, Color.White);
+            //Vector2 size = spriteFont.MeasureString(mensaje);
+            //Vector2 position = new Vector2(viewport.Width / 2, viewport.Height / 2);
+            //position = position - size * 0.5f;
+            //spriteBatch.DrawString(spriteFont, mensaje, position, Color.Red, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
             spriteBatch.End();
         }
     }

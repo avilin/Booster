@@ -49,10 +49,11 @@ namespace Booster.States
             SpriteFont spriteFont = stateManager.Resources.SpriteFont;
             Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
             spriteBatch.Begin();
+            spriteBatch.Draw(stateManager.Resources.Backgrounds["intro_background"], viewport.Bounds, Color.White);
             Vector2 size = spriteFont.MeasureString(mensaje);
             Vector2 position = new Vector2(viewport.Width / 2, viewport.Height / 2);
             position = position - size * 0.5f;
-            spriteBatch.DrawString(spriteFont, mensaje, position, Color.Green, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(spriteFont, mensaje, position, Color.Yellow, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
             spriteBatch.End();
         }
 

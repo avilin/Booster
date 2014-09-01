@@ -27,7 +27,7 @@
         <referencesInternal>
           <reference
             Id="79e6d31d-fd62-41d1-9438-a68c36ce194d"
-            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FDebug%2FBooster.exe Namespace%3DBooster.Levels Type%3DMap"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FRelease%2FBooster.exe Namespace%3DBooster.Levels Type%3DMap"
             tag="ViewCode" />
         </referencesInternal>
         <appliedStereotypesInternal>
@@ -1622,6 +1622,12 @@
         Id="bc707a73-b741-44d7-9669-6f134d403bba"
         LastKnownName="StateMove"
         LastKnownLocation="Package1_2105.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="2069d0b7-59e4-4799-b918-5af5f90bb2a8"
+        LastKnownName="StrategyMove"
+        LastKnownLocation="Package_1740.uml" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

@@ -48,10 +48,11 @@ namespace Booster.States
             Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
             string mensaje = "Press Start";
             spriteBatch.Begin();
+            spriteBatch.Draw(stateManager.Resources.Backgrounds["intro_background"], viewport.Bounds, Color.White);
             Vector2 size = spriteFont.MeasureString(mensaje);
             Vector2 position = new Vector2(viewport.Width / 2, viewport.Height / 2);
             position = position - size * 0.5f;
-            Color color = Color.Green * opacity;
+            Color color = Color.White * opacity;
             spriteBatch.DrawString(spriteFont, mensaje, position, color, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
             spriteBatch.End();
         }

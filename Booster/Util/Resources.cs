@@ -45,6 +45,9 @@ namespace Booster.Util
 
             Backgrounds = new Dictionary<string, Texture2D>();
             Backgrounds.Add("level_background", game.Content.Load<Texture2D>(@"Graphics\level_background"));
+            Backgrounds.Add("intro_background", game.Content.Load<Texture2D>(@"Graphics\intro_background"));
+            Backgrounds.Add("menu_background", game.Content.Load<Texture2D>(@"Graphics\menu_background"));
+            Backgrounds.Add("gameover_background", game.Content.Load<Texture2D>(@"Graphics\gameover_background"));
         }
 
         private void LoadSpriteSheet(string spriteSheetName)
