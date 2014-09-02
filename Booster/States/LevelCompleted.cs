@@ -28,7 +28,7 @@ namespace Booster.States
         {
             InputSystem inputSystem = InputSystem.GetInstance();
             inputSystem.GetActions();
-            if (inputSystem.CurrentActions.Contains(VirtualButtons.Start))
+            if (inputSystem.CurrentActions.Contains(VirtualButtons.A))
             {
                 if (levelCompleted.Parent.Name == "StoryLevels" && levelCompleted.NextNode != null)
                 {

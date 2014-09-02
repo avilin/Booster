@@ -66,7 +66,7 @@ namespace Booster.States.Menus
                 {
                     if (item.Scale < 1.0f)
                     {
-                        item.Color = Color.Cyan;
+                        item.Color = Color.White;
                         item.Scale += 0.001f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                     }
                     else
@@ -76,7 +76,7 @@ namespace Booster.States.Menus
                 }
                 else if (item.Scale > 0.7f)
                 {
-                    item.Color = Color.DarkCyan;
+                    item.Color = Color.Red;
                     item.Scale -= 0.001f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 }
                 else

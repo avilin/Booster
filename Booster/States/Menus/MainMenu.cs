@@ -31,17 +31,17 @@ namespace Booster.States.Menus
             items.Add(item);
 
             item = new MenuItem();
-            item.Name = "Change resolution";
+            item.Name = "Change to Fullscreen";
             item.MenuItemAction = ChangeResolutionActivated;
             items.Add(item);
 
             item = new MenuItem();
-            item.Name = "Reset progress";
+            item.Name = "Reset Progress";
             item.MenuItemAction = ResetProgressActivated;
             items.Add(item);
 
             item = new MenuItem();
-            item.Name = "Quit";
+            item.Name = "Exit";
             item.MenuItemAction = QuitActivated;
             items.Add(item);
         }
