@@ -15,7 +15,7 @@ namespace Booster.Levels.Entities.EntityFactoryMethod
 
         public override Entity FactoryMethod(Resources resources, Vector2 position)
         {
-            IDamageObjectBuilder builder = new DamageObjectHighBuilder(resources, position);
+            IDamageObjectBuilder builder = new DamageBlockHighBuilder(resources, position);
             director.Construct(builder);
             return builder.GetResult();
         }
