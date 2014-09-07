@@ -61,10 +61,10 @@ namespace Booster.States.Menus
             GraphicsDeviceManager graphics = (GraphicsDeviceManager)stateManager.Game.Services.GetService(typeof(GraphicsDeviceManager));
             if (graphics.IsFullScreen)
             {
-                return;
                 //graphics.PreferredBackBufferWidth = 800;
                 //graphics.PreferredBackBufferHeight = 600;
                 //graphics.IsFullScreen = false;
+                return;
             }
             else
             {
@@ -79,7 +79,7 @@ namespace Booster.States.Menus
 
             graphics.ApplyChanges();
 
-            Initialize();
+            stateManager.CurrentState = GameStates.GameIntro;
         }
 
         public void ResetProgressActivated()
