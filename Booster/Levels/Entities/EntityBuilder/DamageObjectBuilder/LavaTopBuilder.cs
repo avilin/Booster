@@ -1,14 +1,18 @@
 ﻿using Booster.Util;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Booster.Levels.Entities.EntityBuilder
+namespace Booster.Levels.Entities.EntityBuilder.DamageObjectBuilder
 {
-    public class LavaBuilder : IDamageObjectBuilder
+    public class LavaTopBuilder : IDamageObjectBuilder
     {
         private DamageObject damageObject;
         private Resources resources;
 
-        public LavaBuilder(Resources resources, Vector2 position)
+        public LavaTopBuilder(Resources resources, Vector2 position)
         {
             damageObject = new DamageObject(position);
             this.resources = resources;
@@ -21,7 +25,7 @@ namespace Booster.Levels.Entities.EntityBuilder
 
         public void BuildSourceRect()
         {
-            damageObject.SourceRect = resources.SpriteSheets["tiles"].ObjectLocation["liquidLava.png"];
+            damageObject.SourceRect = resources.SpriteSheets["tiles"].ObjectLocation["liquidLavaTop_mid.png"];
         }
 
         public void BuildDestinationRect()
@@ -36,7 +40,7 @@ namespace Booster.Levels.Entities.EntityBuilder
 
         public void BuildBoundingBox()
         {
-            damageObject.BoundingBox = new Box(16, 16, 16, 16);
+            damageObject.BoundingBox = new Box(16, 0, 16, 16);
         }
 
         public void BuildCollisionType()

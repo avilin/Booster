@@ -15,6 +15,7 @@
         Spike,
         DamageObjectLow,
         Lava,
+        LavaTop,
         DamageObjectHigh,
         ScoreObjectLow,
         ScoreObjectMid,

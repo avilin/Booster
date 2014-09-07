@@ -65,6 +65,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Levels\Entities\Door.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\LavaTopBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockCenterBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockLeftBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockMidBuilder.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Levels\Entities\EntityFactoryMethod\DoorCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\ExitCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\KeyCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\LavaTopCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformLeftCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformMidCreator.cs" />
@@ -94,10 +96,10 @@
     <Compile Include="Levels\Entities\EntityFactoryMethod\ScoreObjectLowCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\ScoreObjectMidCreator.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\SpikeCreator.cs" />
-    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageObjectHighBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageBlockHighBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageObjectDirector.cs" />
-    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageObjectLowBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageBlockLowBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\LavaBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\SpikeBuilder.cs" />
     <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\IPlayerBuilder.cs" />
@@ -144,7 +146,7 @@
     <Compile Include="Levels\Entities\SimpleTile.cs" />
     <Compile Include="Util\Box.cs" />
     <Compile Include="Levels\Entities\CollisionTypes.cs" />
-    <Compile Include="Levels\Entities\DamageBlock.cs" />
+    <Compile Include="Levels\Entities\DamageObject.cs" />
     <Compile Include="Util\Duration.cs" />
     <Compile Include="Levels\Entities\Entity.cs" />
     <Compile Include="Levels\Entities\EntityFactoryMethod\EntityCreator.cs" />

@@ -90,6 +90,7 @@ namespace Booster.Util
             StringType.Add("162", EntityType.Spike);
             StringType.Add("61", EntityType.DamageObjectLow);
             StringType.Add("8", EntityType.Lava);
+            StringType.Add("139", EntityType.LavaTop);
             StringType.Add("44", EntityType.DamageObjectHigh);
             StringType.Add("209", EntityType.ScoreObjectLow);
             StringType.Add("193", EntityType.ScoreObjectMid);
@@ -117,6 +118,7 @@ namespace Booster.Util
             EntityTypeCreator.Add(EntityType.Spike, new SpikeCreator(damageObjectDirector));
             EntityTypeCreator.Add(EntityType.DamageObjectLow, new DamageBlockLowCreator(damageObjectDirector));
             EntityTypeCreator.Add(EntityType.Lava, new LavaCreator(damageObjectDirector));
+            EntityTypeCreator.Add(EntityType.LavaTop, new LavaTopCreator(damageObjectDirector));
             EntityTypeCreator.Add(EntityType.DamageObjectHigh, new DamageBlockHighCreator(damageObjectDirector));
             EntityTypeCreator.Add(EntityType.ScoreObjectLow, new ScoreObjectLowCreator(scoreObjectDirector));
             EntityTypeCreator.Add(EntityType.ScoreObjectMid, new ScoreObjectMidCreator(scoreObjectDirector));
