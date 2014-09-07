@@ -48,6 +48,7 @@ namespace Booster.States
             States[GameStates.GameOver] = new GameOver(this);
             States[GameStates.LevelCompleted] = new LevelCompleted(this);
 
+            Resources.Songs["menu_music"].Play();
             CurrentState = GameStates.GameIntro;
         }
 

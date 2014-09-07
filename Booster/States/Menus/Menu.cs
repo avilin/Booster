@@ -52,7 +52,7 @@ namespace Booster.States.Menus
         {
             LoadMenuItems();
 
-            MediaPlayer.Play(stateManager.Resources.Songs["menu_music"]);
+            //MediaPlayer.Play(stateManager.Resources.Songs["menu_music"]);
 
             PositionMenuItems();
         }

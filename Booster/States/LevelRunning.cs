@@ -37,7 +37,7 @@ namespace Booster.States
 
         public void Initialize()
         {
-            MediaPlayer.Play(stateManager.Resources.Songs["level_music"]);
+            //MediaPlayer.Play(stateManager.Resources.Songs["level_music"]);
             camera2D.Initialize(stateManager.Game.GraphicsDevice.Viewport);
             Map.Initialize();
         }
@@ -74,6 +74,8 @@ namespace Booster.States
             if (inputSystem.CurrentActions.Contains(VirtualButtons.Start) &&
                 !inputSystem.PreviousActions.Contains(VirtualButtons.Start))
             {
+                stateManager.Resources.Songs["level_music"].Pause();
+                stateManager.Resources.Songs["menu_music"].Play();
                 stateManager.CurrentState = GameStates.Pause;
                 return true;
             }

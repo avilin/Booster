@@ -24,6 +24,8 @@ namespace Booster.States
             inputSystem.GetActions();
             if (inputSystem.CurrentActions.Contains(VirtualButtons.A))
             {
+                stateManager.Resources.Songs["level_music"].Stop();
+                stateManager.Resources.Songs["menu_music"].Play();
                 stateManager.CurrentState = GameStates.MainMenu;
             }
         }

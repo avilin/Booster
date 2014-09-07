@@ -40,6 +40,8 @@ namespace Booster.States.Menus
             {
                 return;
             }
+            stateManager.Resources.Songs["menu_music"].Stop();
+            stateManager.Resources.Songs["level_music"].Play();
             ((StateManager)stateManager).LoadLevel(((MenuLevelItem)SelectedItem).Level);
             stateManager.CurrentState = GameStates.Loading;
         }

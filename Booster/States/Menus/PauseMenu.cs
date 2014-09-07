@@ -30,12 +30,16 @@ namespace Booster.States.Menus
 
         public void ContinueActivated()
         {
-            MediaPlayer.Play(stateManager.Resources.Songs["level_music"]);
+            //MediaPlayer.Play(stateManager.Resources.Songs["level_music"]);
+            stateManager.Resources.Songs["menu_music"].Stop();
+            stateManager.Resources.Songs["level_music"].Resume();
             stateManager.CurrentState = GameStates.Playing;
         }
 
         public void QuitLevelActivated()
         {
+            stateManager.Resources.Songs["level_music"].Stop();
+            stateManager.Resources.Songs["menu_music"].Play();
             stateManager.CurrentState = GameStates.MainMenu;
         }
     }
