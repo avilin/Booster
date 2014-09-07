@@ -5,7 +5,7 @@ namespace Booster.Levels.Entities.EntityBuilder
 {
     public class SpikeBuilder : IDamageObjectBuilder
     {
-        private DamageBlock damageObject;
+        private DamageObject damageObject;
         private Resources resources;
 
         public SpikeBuilder(Resources resources, Vector2 position)
@@ -49,7 +49,7 @@ namespace Booster.Levels.Entities.EntityBuilder
             damageObject.Damage = 1;
         }
 
-        public DamageBlock GetResult()
+        public DamageObject GetResult()
         {
             return damageObject;
         }

@@ -9,6 +9,6 @@
         void BuildBoundingBox();
         void BuildCollisionType();
         void BuildDamage();
-        DamageBlock GetResult();
+        DamageObject GetResult();
     }
 }

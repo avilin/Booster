@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace Booster.Levels.Entities
 {
-    public class Spike : DamageBlock, IMoveable
+    public class Spike : DamageObject, IMoveable
     {
         private Range range;
         private bool onRangeLimit;

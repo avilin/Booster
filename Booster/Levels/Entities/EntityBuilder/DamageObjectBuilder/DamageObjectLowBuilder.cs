@@ -5,12 +5,12 @@ namespace Booster.Levels.Entities.EntityBuilder
 {
     public class DamageObjectLowBuilder : IDamageObjectBuilder
     {
-        private DamageBlock damageObject;
+        private DamageObject damageObject;
         private Resources resources;
 
         public DamageObjectLowBuilder(Resources resources, Vector2 position)
         {
-            damageObject = new DamageBlock(position);
+            damageObject = new DamageObject(position);
             this.resources = resources;
         }
 
@@ -49,7 +49,7 @@ namespace Booster.Levels.Entities.EntityBuilder
             damageObject.Damage = 1;
         }
 
-        public DamageBlock GetResult()
+        public DamageObject GetResult()
         {
             return damageObject;
         }

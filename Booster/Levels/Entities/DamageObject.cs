@@ -2,11 +2,11 @@
 
 namespace Booster.Levels.Entities
 {
-    public class DamageBlock : SimpleTile
+    public class DamageObject : SimpleTile
     {
         public int Damage { get; set; }
 
-        public DamageBlock(Vector2 position)
+        public DamageObject(Vector2 position)
             : base(position)
         {
             Damage = 0;
