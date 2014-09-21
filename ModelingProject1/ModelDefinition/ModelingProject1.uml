@@ -10817,6 +10817,16 @@
         </ownedOperations>
       </Interface>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="55ec1a32-0153-4cea-957a-b73a856986b1"
+        name="ModelingProject1::System::Collections::Generic::Dictionary&lt;String, SoundEffectInstance&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="7fb0423d-f821-41f6-8199-ab4c8f2332d3"
+        name="Dictionary&lt;String, SoundEffectInstance&gt;" />
+    </packageHasNamedElement>
   </packagedElements>
   <primitiveType
     Id="220a3521-e091-4221-bae9-3ef9018e845c"

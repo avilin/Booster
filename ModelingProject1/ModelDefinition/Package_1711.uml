@@ -9944,7 +9944,7 @@
             isSubstitutable="false">
             <classMoniker
               Id="02cf7d60-5c3b-47e2-bb91-7b95bede00c1"
-              LastKnownName="DamageBlock"
+              LastKnownName="DamageObject"
               LastKnownLocation="Package_1711.uml" />
           </generalization>
         </generalsInternal>
@@ -10583,7 +10583,7 @@
     <packageHasNamedElement>
       <class
         Id="02cf7d60-5c3b-47e2-bb91-7b95bede00c1"
-        name="DamageBlock"
+        name="DamageObject"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -10817,7 +10817,7 @@
           </operation>
           <operation
             Id="99dd8ea3-7433-418c-961a-33eb298fd12e"
-            name="DamageBlock"
+            name="DamageObject"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -10882,15 +10882,10 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="6232fbd7-c011-4a74-8728-b0dbe742e153"
+                  Id="cdc5f446-38d6-43ac-8b65-077e835cb800"
                   name="position"
-                  direction="In">
-                  <referencesInternal>
-                    <reference
-                      Id="8762fdf8-ff3f-4aaf-b1ea-c228881543df"
-                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FDebug%2FBooster.exe Namespace%3DBooster.Levels.Entities Type%3DDamageBlock Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FMonoGame%2Fv3.0%2FAssemblies%2FWindowsGL%2FMonoGame.Framework.dll&quot; Namespace%3DMicrosoft.Xna.Framework Type%3DVector2)]) ParameterIdentifier%3Dposition"
-                      tag="ViewCode" />
-                  </referencesInternal>
+                  direction="In"
+                  isUnique="false">
                   <type_NamedElement>
                     <classMoniker
                       Id="808cbd53-b882-45db-b04f-aed398421fae"

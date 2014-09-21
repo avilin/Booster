@@ -1,25 +1,15 @@
 ﻿<Levels>
   <StoryLevels>
-   <Level name="Mission 1" file="Level 1.txt" enabled="true">
-      <Score score="0" date="16-08-2014" />
-    </Level>
-    <Level name="Mission 2" file="Level 2.txt" enabled="false"/>
-    <Level name="Mission 3" file="Level 3.txt" enabled="false"/>
+    <Level name="Mission 1" file="Mission 1.txt" enabled="true"/>
+    <Level name="Mission 2" file="Mission 2.txt" enabled="false"/>
+    <Level name="Mission 3" file="Mission 3.txt" enabled="false"/>
   </StoryLevels>
   <Challenges>
-    <Level name="Challenge 1" file="Level 1.txt" enabled="true">
-      <Score score="0" date="16-08-2014" />
-    </Level>
-    <Level name="Challenge 2" file="Level 2.txt" enabled="true"/>
-    <Level name="Challenge 3" file="Level 3.txt" enabled="true"/>
-    <Level name="Challenge 4" file="Level 4.txt" enabled="true"/>
-    <Level name="Challenge 5" file="Level 5.txt" enabled="true"/>
-    <Level name="Challenge 6" file="Level 6.txt" enabled="true"/>
-    <Level name="Challenge 7" file="Level 7.txt" enabled="true"/>
-    <Level name="Challenge 8" file="Level 8.txt" enabled="true"/>
-    <Level name="Challenge 9" file="Level 9.txt" enabled="true"/>
-    <Level name="Challenge 10" file="Level 10.txt" enabled="true"/>
-    <Level name="Challenge 11" file="Level 11.txt" enabled="true"/>
-    <Level name="Challenge 12" file="Level 12.txt" enabled="true"/>
+    <Level name="Challenge 1" file="Mission 1.txt" enabled="true"/>
+    <Level name="Challenge 2" file="Mission 2.txt" enabled="true"/>
+    <Level name="Challenge 3" file="Mission 3.txt" enabled="true"/>
+    <Level name="Challenge 4" file="Level 1.txt" enabled="true"/>
+    <Level name="Challenge 5" file="Level 2.txt" enabled="true"/>
+    <Level name="Challenge 6" file="Level 3.txt" enabled="true"/>
   </Challenges>
 </Levels>

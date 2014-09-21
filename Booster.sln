@@ -146,7 +146,6 @@ Global
 		{51319B81-0692-481E-9B11-2B247E5405FB}.PSM|x86.ActiveCfg = Release
 		{51319B81-0692-481E-9B11-2B247E5405FB}.Release|Any CPU.ActiveCfg = Release
 		{51319B81-0692-481E-9B11-2B247E5405FB}.Release|Mixed Platforms.ActiveCfg = Release
-		{51319B81-0692-481E-9B11-2B247E5405FB}.Release|Mixed Platforms.Build.0 = Release
 		{51319B81-0692-481E-9B11-2B247E5405FB}.Release|x86.ActiveCfg = Release
 		{51319B81-0692-481E-9B11-2B247E5405FB}.Windows|Any CPU.ActiveCfg = Release
 		{51319B81-0692-481E-9B11-2B247E5405FB}.Windows|Mixed Platforms.ActiveCfg = Release

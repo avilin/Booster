@@ -1,25 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="80e4e9b3-c1c3-42e4-ab2e-c84b26f5762b" name="Resources" linkedPackageId="499403d6-4de9-4a32-9f4d-184a983163a6" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="d9ecbc82-9e52-44cc-aa3a-3758eaa5e06a">
-      <profileInstance Id="824da45c-cb28-4b83-90e6-f541d3bdde5d" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="2d98c07e-53c7-4b20-a112-f46c23a43378">
-      <profileInstance Id="8a03af5a-3bc1-41ab-a1f2-38c07eb3fb7d" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="8f58419e-e068-4284-ab88-45b6b6f9a430">
-      <profileInstance Id="e3ba3f3c-8248-4269-94cb-ec2db7056333" name="CSharpProfile">
-        <elementDefinition Id="cd64dc82-f4c5-4f37-a3fb-9e40cf059045" />
-      </profileInstance>
-      <elementDefinition Id="bd02a2a9-42ca-472e-83d2-52250d699e9c" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="80e4e9b3-c1c3-42e4-ab2e-c84b26f5762b" name="Resources" linkedPackageId="499403d6-4de9-4a32-9f4d-184a983163a6" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="b0ecffbd-2066-42d3-86d4-46a15e6a889d" name="Resources" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -187,7 +167,7 @@
               <referencedTypeMoniker Id="9f2f0674-a38f-4eb9-be79-8c6c5c3befd6" LastKnownName="Dictionary&lt;EntityType‎, EntityCreator‎&gt;" />
             </type_NamedElement>
           </property>
-          <property Id="c7ab9001-a81b-47f3-a706-af8858a20b6e" name="Songs" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="c7ab9001-a81b-47f3-a706-af8858a20b6e" name="Songs" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
               <reference Id="d47d27ed-2f12-46cf-bc39-e64e0a026396" handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FDebug%2FBooster.exe Namespace%3DBooster.Util Type%3DResources Member%3DSongs" tag="ViewCode">
                 <elementDefinition Id="22ea3931-3722-49f7-ae14-5e23035e6100" />
@@ -244,7 +224,7 @@
             </appliedStereotypesInternal>
             <elementDefinition Id="bb68f454-475e-4b2d-bd90-513cb42b2d08" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="8c5f1be0-3fc1-4eb9-b147-50e83b97bf12" LastKnownName="Dictionary&lt;String‎, Song‎&gt;" />
+              <referencedTypeMoniker Id="2ba75123-de77-4408-99b3-b235946a5df0" LastKnownName="Dictionary&lt;String, SoundEffectInstance&gt;" />
             </type_NamedElement>
           </property>
           <property Id="70cae12d-cba5-407a-aa44-6a4d2815fdef" name="SoundEffects" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -821,11 +801,6 @@
     <packageHasNamedElement>
       <referencedType Id="9f2f0674-a38f-4eb9-be79-8c6c5c3befd6" name="Dictionary&lt;EntityType‎, EntityCreator‎&gt;" isAbstract="false" isLeaf="false" cachedFullName="ModelingProject1::System::Collections::Generic::Dictionary&lt;EntityType‎, EntityCreator‎&gt;">
         <elementDefinition Id="7dcffc20-dc9e-43a6-9ad1-69ebacae547a" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="8c5f1be0-3fc1-4eb9-b147-50e83b97bf12" name="Dictionary&lt;String‎, Song‎&gt;" isAbstract="false" isLeaf="false" cachedFullName="ModelingProject1::System::Collections::Generic::Dictionary&lt;String‎, Song‎&gt;">
-        <elementDefinition Id="d64172cb-b5c8-44f6-8eae-f99160cefc38" />
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1456,56 +1431,56 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
-          <operation Id="c2f5596e-428a-4480-8cc0-8740ceb96961" name="EntityCreator" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="716bbb41-c73b-4881-bf3e-542214ff8e90" name="EntityCreator" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <referencesInternal>
-              <reference Id="f7aaa85c-d063-4e54-8f5d-6b00a53ad8e4" handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FDebug%2FBooster.exe Namespace%3DBooster.Levels.Entities.EntityFactoryMethod Type%3DEntityCreator Member%3D.ctor" tag="ViewCode">
-                <elementDefinition Id="bf7c685e-04dc-4514-bfb7-75b336f45d7c" />
+              <reference Id="e2db2363-cda8-4867-9ebb-ce80630e9389" handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FDebug%2FBooster.exe Namespace%3DBooster.Levels.Entities.EntityFactoryMethod Type%3DEntityCreator Member%3D.ctor" tag="ViewCode">
+                <elementDefinition Id="a943d534-3371-4726-9469-b171e42a6113" />
               </reference>
             </referencesInternal>
             <appliedStereotypesInternal>
-              <stereotypeInstance Id="8c51d7ff-9ea9-41ac-8dcf-c935faec9a3b" name="method" profile="CSharpProfile">
-                <elementDefinition Id="74dae5f0-5e93-4726-b544-c3c14d49368d" />
+              <stereotypeInstance Id="51e61761-4d66-4109-b0bd-8708b9979bdd" name="method" profile="CSharpProfile">
+                <elementDefinition Id="ee990472-2e01-443e-8784-d942dca19c6e" />
                 <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="0cc28f5d-6c76-4d5b-8b44-9b1971def314">
-                    <propertyInstance Id="ffce602f-1be0-4be8-8fbb-3679321e1d40" name="ClrAttributes">
-                      <elementDefinition Id="238c7efe-f714-4c74-b311-5bc8b843b35b" />
+                  <stereotypeInstanceHasPropertyInstances Id="02ae4c98-ddf1-496e-9b89-14cce97f1b4e">
+                    <propertyInstance Id="df06bc57-57a3-40f3-9bba-a22ad5a311ef" name="ClrAttributes">
+                      <elementDefinition Id="18ab4b6b-5e27-4047-b757-089fdfc6a63f" />
                     </propertyInstance>
-                    <elementDefinition Id="c2ebac4a-9914-43bd-beb2-3a7eeac00018" />
+                    <elementDefinition Id="1c11adb6-5361-4c81-9a8d-7c4d3781dde1" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="106c12a1-6b88-4269-a138-c2028c67f3ff">
-                    <propertyInstance Id="40bc3efd-bbf5-4249-8935-4cdfa54452c0" name="IsPartial" value="false">
-                      <elementDefinition Id="45a82516-2cf6-4d7e-a3fa-50dbb4a0985b" />
+                  <stereotypeInstanceHasPropertyInstances Id="4528eb77-a010-4952-8e3f-b2e4824411b5">
+                    <propertyInstance Id="17ac1e6e-e64c-4497-ac1a-fc45e04ea6d1" name="IsPartial" value="false">
+                      <elementDefinition Id="5115aa43-4561-4c59-965c-172a678b2412" />
                     </propertyInstance>
-                    <elementDefinition Id="aed182da-e7df-4ca3-9ebe-b5fa304aba38" />
+                    <elementDefinition Id="45e23bbe-e783-49e2-9d1b-8daf7f432138" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="2681ee74-c182-4bed-ab69-a00dd0cb21b0">
-                    <propertyInstance Id="37883230-c155-47db-a5a4-2f984313577d" name="IsUnsafe" value="false">
-                      <elementDefinition Id="38d3a973-6444-4588-8e28-9a47fee61698" />
+                  <stereotypeInstanceHasPropertyInstances Id="475fde55-3fba-46c8-8b25-168dea5212e4">
+                    <propertyInstance Id="1af8a233-e2d4-4880-9f86-a38c7e49e135" name="IsUnsafe" value="false">
+                      <elementDefinition Id="d1d083ac-c7ca-42e5-83b4-5d1fb18b8dd3" />
                     </propertyInstance>
-                    <elementDefinition Id="4dd22e1a-033e-40d3-be6d-4997dc92cfa1" />
+                    <elementDefinition Id="1abb9c58-99f1-4590-b12a-c11f90fa7c32" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="394b9932-ca69-490f-a6a5-08e38139fd72">
-                    <propertyInstance Id="46c91f52-1b47-4c50-bf44-270bc0620c23" name="Inheritance" value="none">
-                      <elementDefinition Id="fa677f33-a146-4373-afa6-b028c397bf55" />
+                  <stereotypeInstanceHasPropertyInstances Id="0ac340ee-39f4-4f43-933d-50b431e67c24">
+                    <propertyInstance Id="af76d5b2-c467-4063-89dd-5c481fb115a8" name="Inheritance" value="none">
+                      <elementDefinition Id="3538648a-fc3c-4078-8c42-9cfde60c7bf0" />
                     </propertyInstance>
-                    <elementDefinition Id="2affaf2a-34b7-4829-85f9-f412d6ad9f17" />
+                    <elementDefinition Id="b4ed0c91-ef8a-46a0-8bed-d6326c57dd97" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="e636b968-dcff-46a9-99f9-e2ed256f4a64">
-                    <propertyInstance Id="ca9ea05f-511e-4ddc-9e95-cc917305d1da" name="PackageVisibility" value="internal">
-                      <elementDefinition Id="dd5aa6e1-c137-4a16-b1bd-05866d9f47ac" />
+                  <stereotypeInstanceHasPropertyInstances Id="c41947e7-8a2c-45da-aa2a-8c1f499dd7b4">
+                    <propertyInstance Id="1e88b6bd-2942-4dc7-85cf-91ccc06ab14e" name="PackageVisibility" value="internal">
+                      <elementDefinition Id="e0e58763-4352-4f09-8602-f977b45c3033" />
                     </propertyInstance>
-                    <elementDefinition Id="663fea23-ac89-4df4-9bea-5e49cae9da8f" />
+                    <elementDefinition Id="210815cb-a9aa-4729-b995-ee4fa5968df5" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="ceccecea-df77-41fa-8ffe-92c72f19d086">
-                    <propertyInstance Id="828fc0ee-1760-4edd-9b04-a79f5bec4715" name="params" value="false">
-                      <elementDefinition Id="3e60e073-705e-4da3-9a78-db29ff83f94e" />
+                  <stereotypeInstanceHasPropertyInstances Id="bb2eb1e9-8342-4c8c-8eca-6338bc168057">
+                    <propertyInstance Id="ab74d7cc-197f-4cb3-830d-707c3d14f04d" name="params" value="false">
+                      <elementDefinition Id="8952a50f-11dd-4c05-993b-8515508113c2" />
                     </propertyInstance>
-                    <elementDefinition Id="88339ca9-49eb-456d-acec-5bb211492ce3" />
+                    <elementDefinition Id="90efc4db-018c-4a32-ad9b-5e6e07d73e58" />
                   </stereotypeInstanceHasPropertyInstances>
                 </propertyInstances>
               </stereotypeInstance>
             </appliedStereotypesInternal>
-            <elementDefinition Id="9971c982-ff8a-46b4-ba64-5b924e78a5fa" />
+            <elementDefinition Id="f9d56eca-8337-4901-b9ad-b3ba04a92b00" />
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -1525,8 +1500,33 @@
         <elementDefinition Id="808cbd53-b882-45db-b04f-aed398421fae" />
       </referencedType>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="2ba75123-de77-4408-99b3-b235946a5df0" name="Dictionary&lt;String, SoundEffectInstance&gt;" isAbstract="false" isLeaf="false" cachedFullName="Dictionary&lt;String, SoundEffectInstance&gt;">
+        <elementDefinition Id="7fb0423d-f821-41f6-8199-ab4c8f2332d3" />
+      </referencedType>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="499403d6-4de9-4a32-9f4d-184a983163a6" name="ModelingProject1">
     <elementDefinition Id="a6e37191-5d88-48bd-8f88-fdcd0a3ef96a" />
+    <profileInstances>
+      <packageHasProfileInstances Id="d9ecbc82-9e52-44cc-aa3a-3758eaa5e06a">
+        <profileInstance Id="824da45c-cb28-4b83-90e6-f541d3bdde5d" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="2d98c07e-53c7-4b20-a112-f46c23a43378">
+        <profileInstance Id="8a03af5a-3bc1-41ab-a1f2-38c07eb3fb7d" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="8f58419e-e068-4284-ab88-45b6b6f9a430">
+        <profileInstance Id="e3ba3f3c-8248-4269-94cb-ec2db7056333" name="CSharpProfile">
+          <elementDefinition Id="cd64dc82-f4c5-4f37-a3fb-9e40cf059045" />
+        </profileInstance>
+        <elementDefinition Id="bd02a2a9-42ca-472e-83d2-52250d699e9c" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>
