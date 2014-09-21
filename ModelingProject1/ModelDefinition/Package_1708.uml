@@ -4982,7 +4982,7 @@
             <type_NamedElement>
               <classMoniker
                 Id="02cf7d60-5c3b-47e2-bb91-7b95bede00c1"
-                LastKnownName="DamageBlock"
+                LastKnownName="DamageObject"
                 LastKnownLocation="Package_1711.uml" />
             </type_NamedElement>
           </property>
@@ -5687,7 +5687,7 @@
                   <type_NamedElement>
                     <classMoniker
                       Id="02cf7d60-5c3b-47e2-bb91-7b95bede00c1"
-                      LastKnownName="DamageBlock"
+                      LastKnownName="DamageObject"
                       LastKnownLocation="Package_1711.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -6273,7 +6273,7 @@
                   <type_NamedElement>
                     <classMoniker
                       Id="02cf7d60-5c3b-47e2-bb91-7b95bede00c1"
-                      LastKnownName="DamageBlock"
+                      LastKnownName="DamageObject"
                       LastKnownLocation="Package_1711.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -6412,7 +6412,7 @@
             <type_NamedElement>
               <classMoniker
                 Id="02cf7d60-5c3b-47e2-bb91-7b95bede00c1"
-                LastKnownName="DamageBlock"
+                LastKnownName="DamageObject"
                 LastKnownLocation="Package_1711.uml" />
             </type_NamedElement>
           </property>
@@ -7117,7 +7117,7 @@
                   <type_NamedElement>
                     <classMoniker
                       Id="02cf7d60-5c3b-47e2-bb91-7b95bede00c1"
-                      LastKnownName="DamageBlock"
+                      LastKnownName="DamageObject"
                       LastKnownLocation="Package_1711.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -7467,7 +7467,7 @@
             <type_NamedElement>
               <classMoniker
                 Id="02cf7d60-5c3b-47e2-bb91-7b95bede00c1"
-                LastKnownName="DamageBlock"
+                LastKnownName="DamageObject"
                 LastKnownLocation="Package_1711.uml" />
             </type_NamedElement>
           </property>
@@ -8172,7 +8172,7 @@
                   <type_NamedElement>
                     <classMoniker
                       Id="02cf7d60-5c3b-47e2-bb91-7b95bede00c1"
-                      LastKnownName="DamageBlock"
+                      LastKnownName="DamageObject"
                       LastKnownLocation="Package_1711.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -8311,7 +8311,7 @@
             <type_NamedElement>
               <classMoniker
                 Id="02cf7d60-5c3b-47e2-bb91-7b95bede00c1"
-                LastKnownName="DamageBlock"
+                LastKnownName="DamageObject"
                 LastKnownLocation="Package_1711.uml" />
             </type_NamedElement>
           </property>
@@ -9016,7 +9016,7 @@
                   <type_NamedElement>
                     <classMoniker
                       Id="02cf7d60-5c3b-47e2-bb91-7b95bede00c1"
-                      LastKnownName="DamageBlock"
+                      LastKnownName="DamageObject"
                       LastKnownLocation="Package_1711.uml" />
                   </type_NamedElement>
                 </parameter>

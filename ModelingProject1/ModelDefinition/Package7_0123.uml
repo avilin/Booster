@@ -632,6 +632,7 @@
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
+            isUnique="false"
             isDerived="false"
             isDerivedUnion="false"
             aggregation="None"
@@ -700,10 +701,10 @@
               </stereotypeInstance>
             </appliedStereotypesInternal>
             <type_NamedElement>
-              <classMoniker
-                Id="d64172cb-b5c8-44f6-8eae-f99160cefc38"
-                LastKnownName="Dictionary&lt;String‎, Song‎&gt;"
-                LastKnownLocation="Package9_0123.uml" />
+              <undefinedTypeMoniker
+                Id="7fb0423d-f821-41f6-8199-ab4c8f2332d3"
+                LastKnownName="Dictionary&lt;String, SoundEffectInstance&gt;"
+                LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
           <property

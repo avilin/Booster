@@ -1,25 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="691598db-9383-43f1-8eee-317f15daf41a" name="DamageBlock" linkedPackageId="53ab8f0d-4971-41d6-b29b-050de7d39d8c" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="1b547c5c-43ce-44ca-89b7-33c839b01581">
-      <profileInstance Id="7c6c1b97-3ce8-453f-ae13-83bd1e64fcee" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="60f4e4d9-245d-4c51-abcb-5c5163a9715f">
-      <profileInstance Id="a023ea7b-358b-4824-a2d0-a6c6f44ba777" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="56218006-5314-4de5-b952-8a44f7ef25d0">
-      <profileInstance Id="f6e59b44-4433-4ae6-a810-510a259d80fe" name="CSharpProfile">
-        <elementDefinition Id="cd64dc82-f4c5-4f37-a3fb-9e40cf059045" />
-      </profileInstance>
-      <elementDefinition Id="bd02a2a9-42ca-472e-83d2-52250d699e9c" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <packageHasNamedElement>
       <referencedType Id="d1f7edbe-0a62-4aa3-8661-39b9b2f2a3a0" name="Box" isAbstract="false" isLeaf="false" cachedFullName="ModelingProject1::Booster::Util::Box">
@@ -52,7 +32,7 @@
       </referencedType>
     </packageHasNamedElement>
     <logicalClassDesignerModelHasTypes>
-      <class Id="7a94b47b-6af8-42ce-af3b-ede94cf20aeb" name="DamageBlock" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="7a94b47b-6af8-42ce-af3b-ede94cf20aeb" name="DamageObject" isAbstract="false" isLeaf="false" isActiveClass="false">
         <referencesInternal>
           <reference Id="2db18963-6aba-4099-96bf-a001565dbee8" handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FDebug%2FBooster.exe Namespace%3DBooster.Levels.Entities Type%3DDamageBlock" tag="ViewCode">
             <elementDefinition Id="4d956aed-ba43-4b6d-9b2f-0f50c99492de" />
@@ -231,7 +211,7 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
-          <operation Id="6d7decc3-14bf-4d6d-9e92-975030930273" name="DamageBlock" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="6d7decc3-14bf-4d6d-9e92-975030930273" name="DamageObject" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <referencesInternal>
               <reference Id="827e7a32-35c7-40f3-9b6f-356153dc747e" handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FDebug%2FBooster.exe Namespace%3DBooster.Levels.Entities Type%3DDamageBlock Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FMonoGame%2Fv3.0%2FAssemblies%2FWindowsGL%2FMonoGame.Framework.dll&quot; Namespace%3DMicrosoft.Xna.Framework Type%3DVector2)])" tag="ViewCode">
                 <elementDefinition Id="c9f3ff7e-b705-4b0b-917e-89b657e6b0a8" />
@@ -283,13 +263,8 @@
             <elementDefinition Id="99dd8ea3-7433-418c-961a-33eb298fd12e" />
             <ownedParameters>
               <operationHasOwnedParameters>
-                <parameter Id="4be572e2-4395-442a-91eb-c085ae206168" name="position" direction="In">
-                  <referencesInternal>
-                    <reference Id="2e6beb74-8523-4f8d-a2a6-3aa68f087f5a" handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2Fworkspaces%2FVisualStudio%2FProjects%2FBooster%2FBooster%2Fbin%2FWindowsGL%2FDebug%2FBooster.exe Namespace%3DBooster.Levels.Entities Type%3DDamageBlock Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FMonoGame%2Fv3.0%2FAssemblies%2FWindowsGL%2FMonoGame.Framework.dll&quot; Namespace%3DMicrosoft.Xna.Framework Type%3DVector2)]) ParameterIdentifier%3Dposition" tag="ViewCode">
-                      <elementDefinition Id="8762fdf8-ff3f-4aaf-b1ea-c228881543df" />
-                    </reference>
-                  </referencesInternal>
-                  <elementDefinition Id="6232fbd7-c011-4a74-8728-b0dbe742e153" />
+                <parameter Id="96a971b3-7deb-49e2-86c9-ad73cca018ce" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="cdc5f446-38d6-43ac-8b65-077e835cb800" />
                   <type_NamedElement>
                     <referencedTypeMoniker Id="24fa9482-b04e-4a0a-9f0f-3d10e133f727" LastKnownName="Vector2" />
                   </type_NamedElement>
@@ -666,5 +641,25 @@
   </packagedElements>
   <package Id="53ab8f0d-4971-41d6-b29b-050de7d39d8c" name="ModelingProject1">
     <elementDefinition Id="a6e37191-5d88-48bd-8f88-fdcd0a3ef96a" />
+    <profileInstances>
+      <packageHasProfileInstances Id="1b547c5c-43ce-44ca-89b7-33c839b01581">
+        <profileInstance Id="7c6c1b97-3ce8-453f-ae13-83bd1e64fcee" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="60f4e4d9-245d-4c51-abcb-5c5163a9715f">
+        <profileInstance Id="a023ea7b-358b-4824-a2d0-a6c6f44ba777" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="56218006-5314-4de5-b952-8a44f7ef25d0">
+        <profileInstance Id="f6e59b44-4433-4ae6-a810-510a259d80fe" name="CSharpProfile">
+          <elementDefinition Id="cd64dc82-f4c5-4f37-a3fb-9e40cf059045" />
+        </profileInstance>
+        <elementDefinition Id="bd02a2a9-42ca-472e-83d2-52250d699e9c" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>
