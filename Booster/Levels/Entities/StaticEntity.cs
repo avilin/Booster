@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Booster.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Booster.Util;
 
 namespace Booster.Levels.Entities
 {
@@ -20,12 +19,9 @@ namespace Booster.Levels.Entities
             }
         }
 
-        protected StaticEntity(Vector2 position, Texture2D texture, Rectangle sourceRect, Box destinationRect) : base(position)
+        protected StaticEntity(Vector2 position) : base(position)
         {
-            Texture = texture;
-            SourceRect = sourceRect;
-            this.destinationRect = destinationRect;
-            LayerDepth = 0;
+
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

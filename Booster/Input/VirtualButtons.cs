@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Booster.Input
+﻿namespace Booster.Input
 {
     public enum VirtualButtons
     {

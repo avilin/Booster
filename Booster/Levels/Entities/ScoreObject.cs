@@ -1,49 +1,31 @@
-﻿using Booster.Util;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Booster.Levels.Entities
 {
-    public class ScoreObject : StaticEntity, ICollisionableObject
+    public class ScoreObject : SimpleTile
     {
         public int Score { get; set; }
+        public SoundEffect CollisionSound { get; set; }
 
-        public CollisionTypes CollisionType
+        public ScoreObject(Vector2 position)
+            : base(position)
         {
-            get
-            {
-                return CollisionTypes.None;
-            }
+            Score = 0;
         }
 
-        public Box BoundingBox { get; set; }
-
-        public Rectangle HitBox
+        public override void OnCollision(ICollisionable collisionableObject)
         {
-            get
+            if (!Active)
             {
-                return BoundingBox.BoxInPosition(Position);
+                return;
             }
-        }
-
-        public ScoreObject(Vector2 position, Texture2D texture, Rectangle sourceRect, Box box, Box boundingBox, int score)
-            : base(position, texture, sourceRect, box)
-        {
-            BoundingBox = boundingBox;
-            Score = score;
-        }
-
-        public void OnCollision(ICollisionableObject collisionableObject)
-        {
-            if (collisionableObject is IScoreable)
+            if (collisionableObject is IScore)
             {
-                ((IScoreable)collisionableObject).IncrementScore(Score);
+                CollisionSound.Play();
+                ((IScore)collisionableObject).Score += Score;
+                Active = false;
             }
-            Active = false;
         }
     }
 }

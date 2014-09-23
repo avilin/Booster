@@ -1,91 +1,72 @@
-﻿using System.Collections.Generic;
+﻿using Booster.Input;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Booster.States;
-using Booster.Input;
-using System;
+using Microsoft.Xna.Framework.Media;
+using System.Collections.Generic;
 
 namespace Booster.States.Menus
 {
-    public class Menu : IGameState
+    public abstract class Menu : IGameState
     {
-        protected IGameStateContext stateManager;
+        protected IStateManager stateManager;
 
-        public List<MenuItem> Items { get; set; }
-        private int currentItem;
+        protected List<MenuItem> items;
+        protected int currentItem;
 
-        public MenuItem SelectedItem
+        protected MenuItem SelectedItem
         {
-            get {
-                return Items.Count > 0 ? Items[currentItem] : null;
+            get
+            {
+                return items.Count > 0 ? items[currentItem] : null;
             }
         }
 
-        public Menu(IGameStateContext stateManager)
+        public Menu(IStateManager stateManager)
         {
             this.stateManager = stateManager;
-
-            Items = new List<MenuItem>();
+            items = new List<MenuItem>();
         }
 
-        public void SelectNext()
+        private void SelectNext()
         {
-            if (Items.Count > 0)
+            if (items.Count > 0)
             {
                 do
                 {
-                    currentItem = (currentItem + 1) % Items.Count;
+                    currentItem = (currentItem + 1) % items.Count;
                 } while (!SelectedItem.Enabled);
             }
         }
 
-        public void SelectPrevious()
+        private void SelectPrevious()
         {
-            if (Items.Count > 0)
+            if (items.Count > 0)
             {
                 do
                 {
-                    currentItem = (currentItem - 1 + Items.Count) % Items.Count;
+                    currentItem = (currentItem - 1 + items.Count) % items.Count;
                 } while (!SelectedItem.Enabled);
             }
         }
 
         public void Initialize()
         {
-            currentItem = 0;
-            SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
-            Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
-            for (int i = 0; i < Items.Count; i++)
-            {
-                float scale = 0.7f;
-                MenuItem item = Items[i];
-                item.Scale = scale;
-                item.Color = Color.Green;
-                Vector2 size = spriteFont.MeasureString(item.Name);
-                Vector2 position = new Vector2(viewport.Width / 2, viewport.Height / 2);
-                position.Y -= (Items.Count - 1) * (size.Y * 1.2f) / 2 * scale;
-                position.Y += i * (size.Y * 1.2f) * scale;
+            LoadMenuItems();
 
-                item.Position = position;
+            //MediaPlayer.Play(stateManager.Resources.Songs["menu_music"]);
 
-                if (!item.Enabled)
-                {
-                    item.Color = Color.DarkGray;
-                }
-            }
+            PositionMenuItems();
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
-            for (int i = 0; i < Items.Count; i++)
+            for (int i = 0; i < items.Count; i++)
             {
-                MenuItem item = Items[i];
+                MenuItem item = items[i];
                 if (item == SelectedItem)
                 {
                     if (item.Scale < 1.0f)
                     {
-                        item.Color = Color.Yellow;
+                        item.Color = Color.White;
                         item.Scale += 0.001f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                     }
                     else
@@ -95,7 +76,7 @@ namespace Booster.States.Menus
                 }
                 else if (item.Scale > 0.7f)
                 {
-                    item.Color = Color.Green;
+                    item.Color = Color.Red;
                     item.Scale -= 0.001f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 }
                 else
@@ -117,29 +98,14 @@ namespace Booster.States.Menus
             }
             if (inputSystem.CurrentActions.Contains(VirtualButtons.A) && !inputSystem.PreviousActions.Contains(VirtualButtons.A))
             {
+                stateManager.Resources.SoundEffects["menu"].Play();
                 SelectedItem.DoAction();
             }
         }
 
-        public void Draw(GameTime gameTime)
-        {
-            stateManager.Game.GraphicsDevice.Clear(Color.Black);
-            SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
-            SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
-            spriteBatch.Begin();
-            for (int i = 0; i < Items.Count; i++)
-            {
-                MenuItem item = Items[i];
-                Vector2 size = spriteFont.MeasureString(item.Name);
-                Vector2 position = item.Position - size * 0.5f * item.Scale;
-                spriteBatch.DrawString(spriteFont, item.Name, position, item.Color, 0, Vector2.Zero, item.Scale, SpriteEffects.None, 0);
-                //if (item == SelectedItem)
-                //{
-                //    Vector2 vector = new Vector2(25, 0);
-                //    spriteBatch.DrawString(spriteFont, ">", position - vector, item.Color, 0, Vector2.Zero, item.Scale, SpriteEffects.None, 0.0f);
-                //}
-            }
-            spriteBatch.End();
-        }
+        public abstract void Draw(GameTime gameTime);
+
+        protected abstract void LoadMenuItems();
+        protected abstract void PositionMenuItems();
     }
 }

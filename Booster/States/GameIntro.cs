@@ -1,29 +1,37 @@
 ﻿using Booster.Input;
+using Booster.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Booster.States
 {
     public class GameIntro : IGameState
     {
-        private IGameStateContext stateManager;
+        private IStateManager stateManager;
+        private float opacity;
+        private float showningSpeed;
+        private Range range;
 
-        public GameIntro(IGameStateContext stateManager)
+        public GameIntro(IStateManager stateManager)
         {
             this.stateManager = stateManager;
         }
 
         public void Initialize()
         {
-
+            opacity = 0.25f;
+            showningSpeed = 0.001f;
+            range = new Range(0.25f, 1f);
         }
 
         public void Update(GameTime gameTime)
         {
+            opacity += showningSpeed * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (!range.IsInRange(opacity))
+            {
+                showningSpeed *= -1;
+            }
+
             InputSystem inputSystem = InputSystem.GetInstance();
             inputSystem.GetActions();
             if (inputSystem.CurrentActions.Contains(VirtualButtons.Start))
@@ -36,14 +44,16 @@ namespace Booster.States
         {
             stateManager.Game.GraphicsDevice.Clear(Color.Black);
             SpriteBatch spriteBatch = (SpriteBatch)stateManager.Game.Services.GetService(typeof(SpriteBatch));
-            SpriteFont spriteFont = (SpriteFont)stateManager.Game.Services.GetService(typeof(SpriteFont));
+            SpriteFont spriteFont = stateManager.Resources.SpriteFont;
             Viewport viewport = stateManager.Game.GraphicsDevice.Viewport;
-            string mensaje = "Pulsa Start";
+            string mensaje = "Press Start";
             spriteBatch.Begin();
+            spriteBatch.Draw(stateManager.Resources.Backgrounds["intro_background"], viewport.Bounds, Color.White);
             Vector2 size = spriteFont.MeasureString(mensaje);
             Vector2 position = new Vector2(viewport.Width / 2, viewport.Height / 2);
             position = position - size * 0.5f;
-            spriteBatch.DrawString(spriteFont, mensaje, position, Color.Green, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
+            Color color = Color.White * opacity;
+            spriteBatch.DrawString(spriteFont, mensaje, position, color, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
             spriteBatch.End();
         }
     }

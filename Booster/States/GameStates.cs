@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Booster.States
+﻿namespace Booster.States
 {
     public enum GameStates
     {
         MainMenu,
         StoryMenu,
-        LevelsMenu,
+        ChallengesMenu,
         Level,
         Playing,
         Pause,
         Options,
         GameIntro,
         Loading,
+        LevelCompleted,
         GameOver
     }
 }

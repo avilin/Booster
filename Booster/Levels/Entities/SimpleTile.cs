@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Booster.Util;
 using Microsoft.Xna.Framework;
-using Booster.Util;
 
 namespace Booster.Levels.Entities
 {
-    public class SimpleTile : StaticEntity, ICollisionableObject
+    public class SimpleTile : StaticEntity, ICollisionable
     {
         public CollisionTypes CollisionType { get; set; }
 
@@ -22,15 +17,13 @@ namespace Booster.Levels.Entities
             }
         }
 
-        public SimpleTile(Vector2 position, Texture2D texture, Rectangle sourceRect, Box box, Box boundingBox, CollisionTypes collisionType)
-            : base(position, texture, sourceRect, box)
+        public SimpleTile(Vector2 position)
+            : base(position)
         {
-            CollisionType = collisionType;
-            BoundingBox = boundingBox;
-            LayerDepth = 0.5f;
+
         }
 
-        public void OnCollision(ICollisionableObject collisionableObject)
+        public virtual void OnCollision(ICollisionable collisionableObject)
         {
 
         }

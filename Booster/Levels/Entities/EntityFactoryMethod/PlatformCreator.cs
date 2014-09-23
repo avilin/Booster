@@ -1,0 +1,23 @@
+﻿using Booster.Levels.Entities.EntityBuilder;
+using Booster.Util;
+using Microsoft.Xna.Framework;
+
+namespace Booster.Levels.Entities.EntityFactoryMethod
+{
+    public class PlatformCreator : EntityCreator
+    {
+        private SimpleTileDirector director;
+
+        public PlatformCreator(SimpleTileDirector director)
+        {
+            this.director = director;
+        }
+
+        public override Entity FactoryMethod(Resources resources, Vector2 position)
+        {
+            ISimpleTileBuilder builder = new PlatformBuilder(resources, position);
+            director.Construct(builder);
+            return builder.GetResult();
+        }
+    }
+}

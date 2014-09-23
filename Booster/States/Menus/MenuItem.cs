@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 
 namespace Booster.States.Menus
 {
@@ -15,17 +13,21 @@ namespace Booster.States.Menus
         public Vector2 Position { get; set; }
         public MenuItemDelegate MenuItemAction;
 
-        public MenuItem(string name)
+        public MenuItem()
         {
-            Name = name;
+            Name = "Menu Option";
             Enabled = true;
             Scale = 0.7f;
-            Color = Color.Green;
+            Color = Color.Red;
             Position = Vector2.Zero;
         }
 
-        public virtual void DoAction()
+        public void DoAction()
         {
+            if (Enabled == false)
+            {
+                return;
+            }
             MenuItemAction();
         }
     }

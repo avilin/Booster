@@ -1,33 +1,49 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Booster.States;
-using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace Booster.States.Menus
 {
-    public class MainMenu : Menu
+    public class MainMenu : StaticMenu
     {
-        public MainMenu(GameStateContext stateManager)
+        public MainMenu(IStateManager stateManager)
             : base(stateManager)
         {
+            
+        }
+
+        protected override void LoadMenuItems()
+        {
+            items = new List<MenuItem>();
+
             MenuItem item;
 
-            item = new MenuItem("Story Mode");
+            item = new MenuItem();
+            item.Name = "Story Mode";
             item.MenuItemAction = StoryModeActivated;
-            Items.Add(item);
+            items.Add(item);
 
-            item = new MenuItem("Play Level");
-            item.MenuItemAction = CustomLevelActivated;
-            Items.Add(item);
+            item = new MenuItem();
+            item.Name = "Challenges";
+            item.MenuItemAction = ChallengesActivated;
+            items.Add(item);
 
-            item = new MenuItem("Options");
-            item.MenuItemAction = OptionsActivated;
-            Items.Add(item);
+            item = new MenuItem();
+            item.Name = "Change to Fullscreen";
+            item.MenuItemAction = ChangeResolutionActivated;
+            items.Add(item);
 
-            item = new MenuItem("Quit");
+            item = new MenuItem();
+            item.Name = "Reset Progress";
+            item.MenuItemAction = ResetProgressActivated;
+            items.Add(item);
+
+            item = new MenuItem();
+            item.Name = "Exit";
             item.MenuItemAction = QuitActivated;
-            Items.Add(item);
+            items.Add(item);
         }
 
         public void StoryModeActivated()
@@ -35,23 +51,54 @@ namespace Booster.States.Menus
             stateManager.CurrentState = GameStates.StoryMenu;
         }
 
-        public void CustomLevelActivated()
+        public void ChallengesActivated()
         {
+            stateManager.CurrentState = GameStates.ChallengesMenu;
         }
 
-        public void OptionsActivated()
+        public void ChangeResolutionActivated()
         {
-            //GraphicsDeviceManager graphics = (GraphicsDeviceManager)Game.Services.GetService(typeof(GraphicsDeviceManager));
-            //graphics.PreferredBackBufferWidth = 800;
-            //graphics.PreferredBackBufferHeight = 600;
+            GraphicsDeviceManager graphics = (GraphicsDeviceManager)stateManager.Game.Services.GetService(typeof(GraphicsDeviceManager));
+            if (graphics.IsFullScreen)
+            {
+                //graphics.PreferredBackBufferWidth = 800;
+                //graphics.PreferredBackBufferHeight = 600;
+                //graphics.IsFullScreen = false;
+                return;
+            }
+            else
+            {
+                graphics.PreferredBackBufferWidth = (int)(graphics.GraphicsDevice.DisplayMode.Width * 0.8);
+                graphics.PreferredBackBufferHeight = (int)(graphics.GraphicsDevice.DisplayMode.Height * 0.8);
+                graphics.IsFullScreen = true;
+            }
 
-            //graphics.GraphicsDevice.PresentationParameters.BackBufferWidth = graphics.PreferredBackBufferWidth;
-            //graphics.GraphicsDevice.PresentationParameters.BackBufferHeight = graphics.PreferredBackBufferHeight;
-            //graphics.GraphicsDevice.Viewport = new Viewport(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            graphics.GraphicsDevice.PresentationParameters.BackBufferWidth = graphics.PreferredBackBufferWidth;
+            graphics.GraphicsDevice.PresentationParameters.BackBufferHeight = graphics.PreferredBackBufferHeight;
+            graphics.GraphicsDevice.Viewport = new Viewport(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
-            //graphics.ApplyChanges();
+            graphics.ApplyChanges();
 
-            //Initialize();
+            stateManager.CurrentState = GameStates.GameIntro;
+        }
+
+        public void ResetProgressActivated()
+        {
+            XDocument xdoc = XDocument.Load(@"Content\Levels\Levels.xml");
+            foreach (XElement level in xdoc.Descendants("Level"))
+            {
+                level.Elements("Score").Remove();
+            }
+
+            foreach (XElement level in xdoc.Descendants("Level").Where(l => l.Parent.Name == "StoryLevels"))
+            {
+                if (xdoc.Descendants("StoryLevels").First().Descendants("Level").First() == level)
+                {
+                    continue;
+                }
+                level.Attribute("enabled").Value = "false";
+            }
+            xdoc.Save(@"Content\Levels\Levels.xml");
         }
 
         public void QuitActivated()

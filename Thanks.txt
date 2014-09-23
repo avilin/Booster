@@ -1,0 +1,18 @@
+The development of this videogame wouldn't be possible without the graphic content, the sounds and the music, which were made by others.
+
+Sprites:
+    Twitter:   @KenneyWings
+    Facebook:  facebook.com/KenneyNL
+    E-mail:    assets@kenney.nl
+    Website:   www.kenney.nl
+Sounds:
+    Website:   http://www.superflashbros.net/as3sfxr/
+Music:
+    Website:   http://soundimage.org/
+
+All this content has the Creative Commons license.
+
+And thanks too to my family and friends, who have been the testers of this videogame.
+
+Twitter:   @avilin92
+Website:   https://github.com/avilin

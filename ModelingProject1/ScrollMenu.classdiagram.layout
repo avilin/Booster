@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ScrollMenu">
+  <logicalClassDesignerModelMoniker Id="c53969e7-53b5-4929-81e3-4ed60eec6cff" />
+  <nestedChildShapes>
+    <classShape Id="aa29939c-77cd-403c-aa2c-cd3f5e287f63" absoluteBounds="4, 0.5, 2.875, 1.6683043545484542" hideQualifiedName="true" increaseHeight="0.18800345897674561" customColor="181, 193, 223">
+      <classMoniker Id="bfc963dc-ce2c-4db0-8bcb-a73853c64d1c" LastKnownName="ChallengesMenu" />
+      <nestedChildShapes>
+        <AttributeElementListCompartment Id="709f3576-237d-4dc3-bc69-8efdda8d5428" absoluteBounds="4.015, 1.0153356393178306, 2.8449999999999998, 0.2011718675494194" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="05174e14-1b50-46d4-acc5-789b25566fef" absoluteBounds="4.015, 1.2265075068672497, 2.8449999999999998, 0.84179684768120444" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a3107aaa-1475-4d87-a668-e32a3d500e74" absoluteBounds="0.5, 0.5, 2.875, 2.1487730896472925" hideQualifiedName="true" increaseHeight="0.18800345897674561" customColor="181, 193, 223">
+      <classMoniker Id="3a192e06-654e-494c-af50-990b402a7d6d" LastKnownName="ScrollableMenu" />
+      <nestedChildShapes>
+        <AttributeElementListCompartment Id="9acda91d-2646-4e1e-aaa4-07398d242fc9" absoluteBounds="0.515, 1.0153356393178306, 2.8449999999999998, 0.52148435761531176" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="fc83c940-6ed7-4920-8a23-cf26fd6199cd" absoluteBounds="0.515, 1.5468199969331424, 2.8449999999999998, 1.0019530927141507" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <generalizationConnector edgePoints="[(4 : 1.33415217727423); (3.375 : 1.33415217727423)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110">
+      <generalizationMoniker Id="d5a15313-5f18-443c-9bff-1b5102a333f2" />
+      <relativeChildShapes />
+      <nodes>
+        <classShapeMoniker Id="aa29939c-77cd-403c-aa2c-cd3f5e287f63" />
+        <classShapeMoniker Id="a3107aaa-1475-4d87-a668-e32a3d500e74" />
+      </nodes>
+    </generalizationConnector>
+  </nestedChildShapes>
+</logicalClassDesignerDiagram>

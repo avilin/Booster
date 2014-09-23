@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Booster.Util;
 
 namespace Booster.Levels.Entities
 {
-    public interface ICollisionableObject
+    public interface ICollisionable
     {
-        Boolean Active { get; set; }
+        bool Active { get; set; }
         CollisionTypes CollisionType { get; }
         Box BoundingBox { get; set; }
         Rectangle HitBox { get; }
 
-        void OnCollision(ICollisionableObject collisionableObject);
+        void OnCollision(ICollisionable collisionableObject);
     }
 }

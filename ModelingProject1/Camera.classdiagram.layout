@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Camera">
+  <logicalClassDesignerModelMoniker Id="10e89ec0-6fd3-423a-892f-2add13fd8e07" />
+  <nestedChildShapes>
+    <classShape Id="c6abc445-7c70-4f83-8017-f79cca93d399" absoluteBounds="0.5, 0.5, 3.5, 2.6292418247461322" hideQualifiedName="true" increaseHeight="0.18800345897674561" customColor="181, 193, 223">
+      <classMoniker Id="be0c1e4f-5869-4427-b093-3363becf8852" LastKnownName="Camera2D" />
+      <nestedChildShapes>
+        <AttributeElementListCompartment Id="506ac0de-9e7a-4f25-a3d3-74fdf65c3139" absoluteBounds="0.515, 1.0153356393178306, 3.4699999999999998, 1.162109337747097" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="aac9a974-245c-4aeb-9b6c-32430f7fae18" absoluteBounds="0.515, 2.1874449770649278, 3.4699999999999998, 0.84179684768120455" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</logicalClassDesignerDiagram>

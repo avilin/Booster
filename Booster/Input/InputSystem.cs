@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace Booster.Input
 {
@@ -32,28 +31,14 @@ namespace Booster.Input
 
             virtualButtonConfigs = new List<VirtualButtonConfig>();
 
-            AddAction(VirtualButtons.Start, Keys.Enter, Buttons.Start);
-            AddAction(VirtualButtons.Back, Keys.Escape, Buttons.Back);
-            AddAction(VirtualButtons.Guide, Keys.F5, Buttons.BigButton);
-
-            AddAction(VirtualButtons.Left, Keys.Left, Buttons.DPadLeft);
-            AddAction(VirtualButtons.Right, Keys.Right, Buttons.DPadRight);
-            AddAction(VirtualButtons.Up, Keys.Up, Buttons.DPadUp);
-            AddAction(VirtualButtons.Down, Keys.Down, Buttons.DPadDown);
-
-            AddAction(VirtualButtons.A, Keys.Space, Buttons.A);
-            AddAction(VirtualButtons.B, Keys.Back, Buttons.B);
-            AddAction(VirtualButtons.X, Keys.J, Buttons.X);
-            AddAction(VirtualButtons.Y, Keys.I, Buttons.Y);
-
-            AddAction(VirtualButtons.LB, Keys.LeftShift, Buttons.LeftShoulder);
-            AddAction(VirtualButtons.RB, Keys.RightShift, Buttons.RightShoulder);
-
-            AddAction(VirtualButtons.LT, Keys.LeftControl, Buttons.LeftTrigger);
-            AddAction(VirtualButtons.RT, Keys.RightControl, Buttons.RightTrigger);
-
-            AddAction(VirtualButtons.LeftStick, Keys.X, Buttons.LeftStick);
-            AddAction(VirtualButtons.RightStick, Keys.M, Buttons.RightStick);
+            XDocument xdoc = XDocument.Load(@"Content\Config\Config.xml");
+            foreach (XElement element in xdoc.Descendants("Input"))
+            {
+                VirtualButtons virtualButton = (VirtualButtons)Enum.Parse(typeof(VirtualButtons), element.Attribute("virtual_button").Value);
+                Keys key = (Keys)Enum.Parse(typeof(Keys), element.Attribute("key").Value);
+                Buttons button = (Buttons)Enum.Parse(typeof(Buttons), element.Attribute("button").Value);
+                AddAction(virtualButton, key, button);
+            }
 
             LeftThumbSticks = Vector2.Zero;
             RightThumbSticks = Vector2.Zero;
@@ -98,60 +83,60 @@ namespace Booster.Input
             RightTrigger = gamePadState.Triggers.Right;
         }
 
-        public void AddAction(VirtualButtons virtualButton, Keys key, Buttons button)
+        private void AddAction(VirtualButtons virtualButton, Keys key, Buttons button)
         {
             VirtualButtonConfig virtualButtonConfig = new VirtualButtonConfig(virtualButton, key, button);
             virtualButtonConfigs.Add(virtualButtonConfig);
         }
 
-        public void ChangeKeyConfig(VirtualButtons virtualButton, Keys key)
-        {
-            int configToChange = -1;
-            int configWithKey = -1;
+        //public void ChangeKeyConfig(VirtualButtons virtualButton, Keys key)
+        //{
+        //    int configToChange = -1;
+        //    int configWithKey = -1;
 
-            foreach (VirtualButtonConfig virtualButtonConfig in virtualButtonConfigs)
-            {
-                if (virtualButtonConfig.VirtualButton == virtualButton)
-                {
-                    configToChange = virtualButtonConfigs.IndexOf(virtualButtonConfig);
-                }
-                if (virtualButtonConfig.Key == key)
-                {
-                    configWithKey = virtualButtonConfigs.IndexOf(virtualButtonConfig);
-                }
-            }
+        //    foreach (VirtualButtonConfig virtualButtonConfig in virtualButtonConfigs)
+        //    {
+        //        if (virtualButtonConfig.VirtualButton == virtualButton)
+        //        {
+        //            configToChange = virtualButtonConfigs.IndexOf(virtualButtonConfig);
+        //        }
+        //        if (virtualButtonConfig.Key == key)
+        //        {
+        //            configWithKey = virtualButtonConfigs.IndexOf(virtualButtonConfig);
+        //        }
+        //    }
 
-            if (configWithKey != -1)
-            {
-                virtualButtonConfigs[configWithKey].Key = virtualButtonConfigs[configToChange].Key;
-            }
+        //    if (configWithKey != -1)
+        //    {
+        //        virtualButtonConfigs[configWithKey].Key = virtualButtonConfigs[configToChange].Key;
+        //    }
 
-            virtualButtonConfigs[configToChange].Key = key;
-        }
+        //    virtualButtonConfigs[configToChange].Key = key;
+        //}
 
-        public void ChangeButtonConfig(VirtualButtons virtualButton, Buttons button)
-        {
-            int configToChange = -1;
-            int configWithButton = -1;
+        //public void ChangeButtonConfig(VirtualButtons virtualButton, Buttons button)
+        //{
+        //    int configToChange = -1;
+        //    int configWithButton = -1;
 
-            foreach (VirtualButtonConfig virtualButtonConfig in virtualButtonConfigs)
-            {
-                if (virtualButtonConfig.VirtualButton == virtualButton)
-                {
-                    configToChange = virtualButtonConfigs.IndexOf(virtualButtonConfig);
-                }
-                if (virtualButtonConfig.Button == button)
-                {
-                    configWithButton = virtualButtonConfigs.IndexOf(virtualButtonConfig);
-                }
-            }
+        //    foreach (VirtualButtonConfig virtualButtonConfig in virtualButtonConfigs)
+        //    {
+        //        if (virtualButtonConfig.VirtualButton == virtualButton)
+        //        {
+        //            configToChange = virtualButtonConfigs.IndexOf(virtualButtonConfig);
+        //        }
+        //        if (virtualButtonConfig.Button == button)
+        //        {
+        //            configWithButton = virtualButtonConfigs.IndexOf(virtualButtonConfig);
+        //        }
+        //    }
 
-            if (configWithButton != -1)
-            {
-                virtualButtonConfigs[configWithButton].Button = virtualButtonConfigs[configToChange].Button;
-            }
+        //    if (configWithButton != -1)
+        //    {
+        //        virtualButtonConfigs[configWithButton].Button = virtualButtonConfigs[configToChange].Button;
+        //    }
 
-            virtualButtonConfigs[configToChange].Button = button;
-        }
+        //    virtualButtonConfigs[configToChange].Button = button;
+        //}
     }
 }

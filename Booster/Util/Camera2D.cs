@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Booster.Util
@@ -10,40 +6,40 @@ namespace Booster.Util
     public class Camera2D
     {
         public Matrix Transform { get; set; }
-        public Vector2 Position { get; set; }
-        public Vector2 ScreenCenter { get; set; }
-        public Viewport Viewport { get; set; }
-        public float Scale { get; set; }
-        public float Rotation { get; set; }
+        private Vector2 position;
+        private Vector2 screenCenter;
+        private Viewport viewport;
+        private float scale;
+        private float rotation;
 
         public void Initialize(Viewport viewport)
         {
-            Viewport = viewport;
-            Position = Vector2.Zero;
-            ScreenCenter = new Vector2(viewport.Width / 2, viewport.Height / 2);
-            Scale = 1f;
-            Rotation = 0f;
+            this.viewport = viewport;
+            this.position = Vector2.Zero;
+            screenCenter = new Vector2(viewport.Width / 2, viewport.Height / 2);
+            scale = 1f;
+            rotation = 0f;
         }
 
         public void Update(Vector2 position, int width, int height)
         {
-            Position = position;
+            this.position = position;
 
-            float x = MathHelper.Clamp(Position.X, ScreenCenter.X, width - ScreenCenter.X);
-            float y = MathHelper.Clamp(Position.Y, ScreenCenter.Y, height - ScreenCenter.Y);
+            float x = MathHelper.Clamp(this.position.X, screenCenter.X, width - screenCenter.X);
+            float y = MathHelper.Clamp(this.position.Y, screenCenter.Y, height - screenCenter.Y);
 
-            Position = new Vector2(x, y);
+            this.position = new Vector2(x, y);
 
             Transform = Matrix.Identity *
-                Matrix.CreateTranslation(-Position.X, -Position.Y, 0) *
-                Matrix.CreateRotationZ(Rotation) *
-                Matrix.CreateTranslation(ScreenCenter.X, ScreenCenter.Y, 0) *
-                Matrix.CreateScale(Scale, Scale, Scale);
+                Matrix.CreateTranslation(-this.position.X, -this.position.Y, 0) *
+                Matrix.CreateRotationZ(rotation) *
+                Matrix.CreateTranslation(screenCenter.X, screenCenter.Y, 0) *
+                Matrix.CreateScale(scale, scale, scale);
         }
 
-        public Boolean isInView(Rectangle entity)
+        public bool IsInView(Rectangle entity)
         {
-            Rectangle rect = new Rectangle((int)Position.X - Viewport.Width / 2, (int)Position.Y - Viewport.Height / 2  , Viewport.Width, Viewport.Height);
+            Rectangle rect = new Rectangle((int)this.position.X - viewport.Width / 2, (int)this.position.Y - viewport.Height / 2, viewport.Width, viewport.Height);
             if(entity.Intersects(rect))
             {
                 return true;

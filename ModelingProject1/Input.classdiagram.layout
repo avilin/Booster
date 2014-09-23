@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="UMLClassDiagram1">
+  <logicalClassDesignerModelMoniker Id="e8005235-e545-4933-9e6a-bdd0743d2570" />
+  <nestedChildShapes>
+    <enumerationShape Id="997ff270-1539-4a3b-98a9-20bf5ac1f08b" isExpanded="false" absoluteBounds="4.875, 2.875, 1.75, 0.56800345897674565" hideQualifiedName="true" increaseHeight="0.18800345897674564" customColor="161, 150, 103">
+      <enumerationMoniker Id="2a03535e-282d-427f-a28f-7b8ac48e1954" LastKnownName="VirtualButtons" />
+      <nestedChildShapes>
+        <LiteralElementListCompartment Id="15cc4700-99e4-4c90-944b-5bd3253384c7" absoluteBounds="4.8900000000000006, 3.4530034589767458, 1.7200000000000002, 2.9238280331095057" name="LiteralsCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </enumerationShape>
+    <classShape Id="c91fb760-2dc8-4f4b-9999-e22955ec4b31" absoluteBounds="0.5, 0.5, 4.125, 3.2698668048779158" hideQualifiedName="true" increaseHeight="0.18800345897674561" customColor="181, 193, 223">
+      <classMoniker Id="c0853fa3-fbcc-48f9-992b-d78cbe75a30a" LastKnownName="InputSystem" />
+      <nestedChildShapes>
+        <AttributeElementListCompartment Id="c1872aee-1647-4f7f-83bf-94ff9a9cc19e" absoluteBounds="0.51499999999999968, 1.0153356393178306, 4.0950000000000006, 1.8027343178788819" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="913a3b8f-5fc8-4537-a63d-a5dadfbafb80" absoluteBounds="0.51499999999999968, 2.8280699571967123, 4.0950000000000006, 0.84179684768120444" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a834b144-4602-448d-bdc3-3e02ab7ef6ce" absoluteBounds="4.75, 0.5, 4.5, 1.6683043545484546" hideQualifiedName="true" increaseHeight="0.18800345897674561" customColor="181, 193, 223">
+      <classMoniker Id="1fb2f910-f7f4-4aef-aaa2-7914596e5d74" LastKnownName="VirtualButtonConfig" />
+      <nestedChildShapes>
+        <AttributeElementListCompartment Id="7dd73367-0fa4-4d46-bf84-ea6ada9fe30f" absoluteBounds="4.765, 1.0153356393178306, 4.4700000000000006, 0.68164060264825832" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="6ae8c108-578a-4903-8c35-72a9cbdff996" absoluteBounds="4.765, 1.706976241966089, 4.4700000000000006, 0.36132811258236575" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.75 : 2.16830435454845); (5.75 : 2.875)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="*" targetMultiplicity="1">
+      <associationMoniker Id="8c7d08d7-437e-4194-be87-456e4e528c15" />
+      <relativeChildShapes />
+      <nodes>
+        <classShapeMoniker Id="a834b144-4602-448d-bdc3-3e02ab7ef6ce" />
+        <enumerationShapeMoniker Id="997ff270-1539-4a3b-98a9-20bf5ac1f08b" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</logicalClassDesignerDiagram>

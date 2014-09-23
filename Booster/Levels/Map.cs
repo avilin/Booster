@@ -2,7 +2,6 @@
 using Booster.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -17,18 +16,19 @@ namespace Booster.Levels
                 return 32;
             }
         }
-        private Dictionary<string, Texture2D> spriteSheets;
+        private Resources resources;
         private List<string> levelFile;
 
         public Player Player { get; set; }
-        public ICollisionableObject[,] Tiles { get; set; }
+        public ICollisionable[,] Tiles { get; set; }
 
+        public List<IMoveable> MovableElements { get; set; }
         private List<IUpdateableObject> updateableElements;
         private List<IDrawableObject> drawableElements;
 
-        public Map(Dictionary<string, Texture2D> spriteSheets)
+        public Map(Resources resources)
         {
-            this.spriteSheets = spriteSheets;
+            this.resources = resources;
         }
 
         public void LoadMap(string file)
@@ -42,99 +42,67 @@ namespace Booster.Levels
             {
                 return;
             }
-
+            MovableElements = new List<IMoveable>();
             updateableElements = new List<IUpdateableObject>();
             drawableElements = new List<IDrawableObject>();
 
-            List<string> row = new List<string>(levelFile[0].Split(' '));
+            List<string> row = new List<string>(levelFile[0].Split(','));
             int width = row.Count;
             int height = levelFile.Count;
 
-            Tiles = new ICollisionableObject[width, height];
+            Tiles = new ICollisionable[width, height];
 
             for (int j = 0; j < height; j++)
             {
-                row = new List<string>(levelFile[j].Split(' '));
+                row = new List<string>(levelFile[j].Split(','));
                 for (int i = 0; i < width; i++)
                 {
-                    Point mapCell = new Point(i, j);
-                    if (i == 0 || j == 0 || i == width - 1 || j == height - 1)
+                    Vector2 position = CalculatePositionWithCell(i, j);
+                    Entity entity;
+                    EntityType entityType = EntityType.BlockCenter;
+                    if (i != 0 && j != 0 && i != width - 1 && j != height - 1)
                     {
-                        InitializeElement("BLO", mapCell);
-                        continue;
+                        if (i < row.Count)
+                        {
+                            if (!resources.StringType.ContainsKey(row[i]))
+                            {
+                                continue;
+                            }
+                            entityType = resources.StringType[row[i]];
+                        }
                     }
-                    InitializeElement(i >= row.Count ? "BLO" : row[i], mapCell);
+
+                    entity = resources.EntityTypeCreator[entityType].FactoryMethod(resources, position);
+                    if (entity is IUpdateableObject)
+                    {
+                        updateableElements.Add((IUpdateableObject)entity);
+                    }
+                    if (entity is IDrawableObject)
+                    {
+                        drawableElements.Add((IDrawableObject)entity);
+                    }
+                    if (entity is IMoveable)
+                    {
+                        MovableElements.Add((IMoveable)entity);
+                    }
+                    if (!(entity is IMoveable) && entity is ICollisionable)
+                    {
+                        Tiles[i, j] = (ICollisionable)entity;
+                    }
+                    if (entity is Player)
+                    {
+                        Player = (Player)entity;
+                    }
                 }
             }
         }
 
-        public void InitializeElement(string type, Point mapCell)
+        private Vector2 CalculatePositionWithCell(int i, int j)
         {
-            switch (type)
-            {
-                case "PLA":
-                    int playerPositionX = mapCell.X * TileSide + TileSide / 2;
-                    int playerPositionY = mapCell.Y * TileSide + TileSide;
-                    Vector2 playerPosition = new Vector2(playerPositionX, playerPositionY);
-                    Player = EntityFactory.CreatePlayer(spriteSheets["player"], TileSide, playerPosition);
-                    updateableElements.Add((Player));
-                    drawableElements.Add((Player));
-                    break;
-                case "BLO":
-                    SimpleTile block = EntityFactory.CreateBlock(spriteSheets["tiles"], TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = block;
-                    drawableElements.Add(block);
-                    break;
-                case "SPK":
-                    Spike spike = EntityFactory.CreateSpike(spriteSheets["items"], TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = spike;
-                    updateableElements.Add(spike);
-                    drawableElements.Add(spike);
-                    break;
-                case "DBL":
-                    DamageBlock damageBlockLow = EntityFactory.CreateDamageBlockLow(spriteSheets["tiles"], TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = damageBlockLow;
-                    drawableElements.Add(damageBlockLow);
-                    break;
-                case "DBM":
-                    DamageBlock damageBlockMid = EntityFactory.CreateDamageBlockMid(spriteSheets["tiles"], TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = damageBlockMid;
-                    drawableElements.Add(damageBlockMid);
-                    break;
-                case "DBH":
-                    DamageBlock damageBlockHigh = EntityFactory.CreateDamageBlockHigh(spriteSheets["tiles"], TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = damageBlockHigh;
-                    drawableElements.Add(damageBlockHigh);
-                    break;
-                case "OWP":
-                    SimpleTile oneWayPlatform = EntityFactory.CreateOneWayPlatform(spriteSheets["tiles"], TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = oneWayPlatform;
-                    drawableElements.Add(oneWayPlatform);
-                    break;
-                case "SOL":
-                    ScoreObject scoreObjectLow = EntityFactory.CreateScoreObjectLow(spriteSheets["items"], TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = scoreObjectLow;
-                    drawableElements.Add((scoreObjectLow));
-                    break;
-                case "SOM":
-                    ScoreObject scoreObjectMid = EntityFactory.CreateScoreObjectMid(spriteSheets["items"], TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = scoreObjectMid;
-                    drawableElements.Add(scoreObjectMid);
-                    break;
-                case "SOH":
-                    ScoreObject scoreObjectHigh = EntityFactory.CreateScoreObjectHigh(spriteSheets["items"], TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = scoreObjectHigh;
-                    drawableElements.Add(scoreObjectHigh);
-                    break;
-                case "EXT":
-                    ExitEntity exit = EntityFactory.CreateExit(spriteSheets["tiles"], TileSide, mapCell);
-                    Tiles[mapCell.X, mapCell.Y] = exit;
-                    drawableElements.Add(exit);
-                    break;
-            }
+            return new Vector2(i * TileSide + TileSide / 2, j * TileSide + TileSide / 2);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Vector2 acceleration)
         {
             for (int i = updateableElements.Count - 1; i >= 0; i--)
             {
@@ -148,10 +116,10 @@ namespace Booster.Levels
                 }
             }
 
-            Player.Update(gameTime);
+            MoveEntities(gameTime, acceleration);
         }
 
-        public void MovePlayer(GameTime gameTime, Vector2 acceleration)
+        private void MoveEntities(GameTime gameTime, Vector2 acceleration)
         {
             if (Player.CurrentEntityStates.Contains(EntityStates.Dead))
             {
@@ -179,14 +147,24 @@ namespace Booster.Levels
 
             Player.ApplyAcceleration(gameTime, acceleration);
 
-            Player.Move(gameTime, this);
+            for (int i = MovableElements.Count - 1; i >= 0; i--)
+            {
+                if (!MovableElements[i].Active)
+                {
+                    MovableElements.RemoveAt(i);
+                }
+                else
+                {
+                    MovableElements[i].Move(gameTime, this);
+                }
+            }
 
             IsPlayerOnAir();
 
             Player.UpdateAnimation(gameTime);
         }
 
-        public void IsPlayerOnAir()
+        private void IsPlayerOnAir()
         {
             Rectangle playerRectangle = Player.HitBox;
             playerRectangle.Offset(0, 1);
@@ -200,7 +178,7 @@ namespace Booster.Levels
             }
         }
 
-        public Boolean CheckPlayerTilesCollisions(Rectangle playerRectangle)
+        private bool CheckPlayerTilesCollisions(Rectangle playerRectangle)
         {
             int firstXTileToCheck = playerRectangle.X / TileSide;
             firstXTileToCheck = (int)MathHelper.Clamp(firstXTileToCheck, 0, Tiles.GetLength(0) - 1);
@@ -219,7 +197,7 @@ namespace Booster.Levels
                     {
                         continue;
                     }
-                    ICollisionableObject tile = Tiles[i, j];
+                    ICollisionable tile = Tiles[i, j];
                     if (tile.CollisionType == CollisionTypes.Block)
                     {
                         if (playerRectangle.Intersects(tile.HitBox))
@@ -241,6 +219,24 @@ namespace Booster.Levels
             return false;
         }
 
+        public List<Point> GetEntityCoordinatesOnMap(ICollisionable entity)
+        {
+            int firstX = entity.HitBox.X / TileSide;
+            int firstY = entity.HitBox.Y / TileSide;
+            int lastX = (entity.HitBox.X + entity.HitBox.Width - 1) / TileSide;
+            int lastY = (entity.HitBox.Y + entity.HitBox.Height - 1) / TileSide;
+
+            List<Point> points = new List<Point>();
+            for (int i = firstX; i <= lastX; i++)
+            {
+                for (int j = firstY; j <= lastY; j++)
+                {
+                    points.Add(new Point(i, j));
+                }
+            }
+            return points;
+        }
+
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Camera2D camera2D)
         {
             for (int i = drawableElements.Count - 1; i >= 0; i--)
@@ -249,12 +245,11 @@ namespace Booster.Levels
                 {
                     drawableElements.RemoveAt(i);
                 }
-                else if (camera2D.isInView(drawableElements[i].DestinationRect))
+                else if (camera2D.IsInView(drawableElements[i].DestinationRect))
                 {
                     drawableElements[i].Draw(spriteBatch);
                 }
             }
-            Player.Draw(spriteBatch);
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Booster.Levels.Entities
+﻿namespace Booster.Levels.Entities
 {
     public enum EntityStates
     {
@@ -12,6 +7,7 @@ namespace Booster.Levels.Entities
         Move,
         OnAir,
         Boost,
+        Recharge,
         Hit,
         Dead,
         Win

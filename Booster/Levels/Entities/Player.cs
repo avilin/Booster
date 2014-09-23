@@ -1,19 +1,19 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
-using Booster.Levels.StateMove;
+﻿using Booster.Levels.StrategyMove;
 using Booster.Util;
-using Booster.Util.Animations;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Booster.Levels.Entities
 {
-    public class Player : AnimatedEntity, IDamageable, ICollisionableObject, IMovable, IScoreable, IStateable, IUpdateableObject
+    public class Player : AnimatedEntity, IDamageable, ICollisionable, IMoveable, IScore, IUpdateableObject, IKeyOwner
     {
         private const float MaxSpeed = 0.5f;
 
-        private IStateMove stateMovePlayer;
+        private IStrategyMove strategyMovePlayer;
 
+        public int Keys { get; set; }
         public int Score { get; set; }
         public int Health { get; set; }
         public Vector2 Speed { get; set; }
@@ -22,10 +22,7 @@ namespace Booster.Levels.Entities
 
         public Dictionary<EntityStates, Duration> StatesTime { get; set; }
 
-        public CollisionTypes CollisionType
-        {
-            get { return CollisionTypes.Block; }
-        }
+        public CollisionTypes CollisionType { get; set; }
 
         public Box BoundingBox { get; set; }
 
@@ -34,27 +31,23 @@ namespace Booster.Levels.Entities
             get { return BoundingBox.BoxInPosition(Position); }
         }
 
-        public Player(Vector2 position, Dictionary<String, Animation> animations,
-            Box boundingBox)
-            : base(position, animations)
-        {
-            stateMovePlayer = null;
+        public SoundEffect JumpSound { get; set; }
+        public SoundEffect HitSound { get; set; }
 
+        public Player(Vector2 position)
+            : base(position)
+        {
+            strategyMovePlayer = null;
+
+            Keys = 0;
             Score = 0;
-            BoundingBox = boundingBox;
             Position = position;
-            animations[currentAnimation].Position = position;
 
             Speed = Vector2.Zero;
 
             Active = true;
 
-            Health = 10;
-
             CurrentEntityStates = new HashSet<EntityStates>();
-            StatesTime = new Dictionary<EntityStates, Duration>();
-            StatesTime[EntityStates.Hit] = new Duration(animations["hurt"].Frames[0].FrameTime);
-            StatesTime[EntityStates.Dead] = new Duration(animations["dead"].Frames[0].FrameTime);
             CurrentEntityStates.Add(EntityStates.OnAir);
         }
 
@@ -62,7 +55,7 @@ namespace Booster.Levels.Entities
         {
             if (CurrentEntityStates.Contains(EntityStates.Dead))
             {
-                Boolean dead = StatesTime[EntityStates.Dead].Update(gameTime);
+                bool dead = StatesTime[EntityStates.Dead].Update(gameTime);
                 if (dead)
                 {
                     Active = false;
@@ -70,44 +63,72 @@ namespace Booster.Levels.Entities
             }
             if (CurrentEntityStates.Contains(EntityStates.Hit))
             {
-                Boolean hit = StatesTime[EntityStates.Hit].Update(gameTime);
+                bool hit = StatesTime[EntityStates.Hit].Update(gameTime);
                 if (hit)
                 {
                     CurrentEntityStates.Remove(EntityStates.Hit);
+                }
+            }
+            if (CurrentEntityStates.Contains(EntityStates.Recharge))
+            {
+                bool recharge = StatesTime[EntityStates.Recharge].Update(gameTime);
+                if (recharge)
+                {
+                    CurrentEntityStates.Remove(EntityStates.Recharge);
+                }
+            }
+            if (CurrentEntityStates.Contains(EntityStates.Boost))
+            {
+                bool boost = StatesTime[EntityStates.Boost].Update(gameTime);
+                if (boost)
+                {
+                    CurrentEntityStates.Remove(EntityStates.Boost);
+                    CurrentEntityStates.Add(EntityStates.Recharge);
                 }
             }
         }
 
         public void ApplyAcceleration(GameTime gameTime, Vector2 acceleration)
         {
-            Speed += Vector2.UnitX * acceleration / 400 * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (CurrentEntityStates.Contains(EntityStates.Boost))
+            {
+                Speed += Vector2.UnitX * acceleration / 300 * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            }
+            else
+            {
+                Speed += Vector2.UnitX * acceleration / 400 * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            }
 
             if (acceleration.Y != 0 && !CurrentEntityStates.Contains(EntityStates.OnAir))
             {
-                Speed = Speed * Vector2.UnitX - Vector2.UnitY * 0.75f;
+                Speed = Speed * Vector2.UnitX - Vector2.UnitY * 0.65f;
                 CurrentEntityStates.Add(EntityStates.OnAir);
+                JumpSound.Play();
             }
-
-            ApplyGravity(gameTime);
+            if (!CurrentEntityStates.Contains(EntityStates.Boost))
+            {
+                ApplyGravity(gameTime);
+            }
             ApplyFriction(gameTime);
         }
 
-        public void ApplyGravity(GameTime gameTime)
+        private void ApplyGravity(GameTime gameTime)
         {
             Speed += Vector2.UnitY * 0.002f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             Speed = Speed.Y > MaxSpeed ? Speed * Vector2.UnitX + MaxSpeed * Vector2.UnitY : Speed;
         }
 
-        public void ApplyFriction(GameTime gameTime)
+        private void ApplyFriction(GameTime gameTime)
         {
-            //Speed *= 0.05f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            //int x = Speed.X < 0 ? -1 : Speed.X > 0 ? 1 : 0;
-            //Speed -= Speed * 0.01f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             Speed -= Vector2.UnitX * Speed * 0.01f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
         }
 
-        public Vector2 GetNextPosition(GameTime gameTime)
+        private Vector2 GetNextPosition(GameTime gameTime)
         {
+            if (CurrentEntityStates.Contains(EntityStates.Boost))
+            {
+                Speed *= Vector2.UnitX;
+            }
             Vector2 nextPosition = Position + Speed * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             return nextPosition;
         }
@@ -137,51 +158,48 @@ namespace Booster.Levels.Entities
         public void Move(GameTime gameTime, Map map)
         {
             Vector2 nextPosition = GetNextPosition(gameTime);
-            //Position = new Vector2(208.02f, 544);
-            //nextPosition = new Vector2(82f, 441);
             Vector2 playerMovement = nextPosition - Position;
 
             if (playerMovement.X > 0 && playerMovement.Y > 0)
             {
-                stateMovePlayer = new StateMovePlayerRightDown();
+                strategyMovePlayer = new StrategyMovePlayerRightDown();
             }
             else if (playerMovement.X > 0 && playerMovement.Y < 0)
             {
-                stateMovePlayer = new StateMovePlayerRightUp();
+                strategyMovePlayer = new StrategyMovePlayerRightUp();
             }
             else if (playerMovement.X > 0)
             {
-                stateMovePlayer = new StateMovePlayerRight();
+                strategyMovePlayer = new StrategyMovePlayerRight();
             }
             else if (playerMovement.X < 0 && playerMovement.Y > 0)
             {
-                stateMovePlayer = new StateMovePlayerLeftDown();
+                strategyMovePlayer = new StrategyMovePlayerLeftDown();
             }
             else if (playerMovement.X < 0 && playerMovement.Y < 0)
             {
-                stateMovePlayer = new StateMovePlayerLeftUp();
+                strategyMovePlayer = new StrategyMovePlayerLeftUp();
             }
             else if (playerMovement.X < 0)
             {
-                stateMovePlayer = new StateMovePlayerLeft();
+                strategyMovePlayer = new StrategyMovePlayerLeft();
             }
             else if (playerMovement.Y > 0)
             {
-                stateMovePlayer = new StateMovePlayerDown();
+                strategyMovePlayer = new StrategyMovePlayerDown();
             }
             else if (playerMovement.Y < 0)
             {
-                stateMovePlayer = new StateMovePlayerUp();
+                strategyMovePlayer = new StrategyMovePlayerUp();
             }
             else
             {
-                stateMovePlayer = null;
+                strategyMovePlayer = null;
             }
 
-
-            if (stateMovePlayer != null)
+            if (strategyMovePlayer != null)
             {
-                stateMovePlayer.Move(this, nextPosition, map);
+                strategyMovePlayer.Move(this, nextPosition, map);
             }
         }
 
@@ -418,11 +436,11 @@ namespace Booster.Levels.Entities
         public override void UpdateAnimation(GameTime gameTime)
         {
             ChangeAnimation();
-            animations[currentAnimation].Position = Position;
-            animations[currentAnimation].Update(gameTime);
+            Animations[currentAnimation].Position = Position;
+            Animations[currentAnimation].Update(gameTime);
         }
 
-        public void ChangeAnimation()
+        private void ChangeAnimation()
         {
             if (!CurrentEntityStates.Contains(EntityStates.Move))
             {
@@ -430,19 +448,19 @@ namespace Booster.Levels.Entities
             }
             if (CurrentEntityStates.Contains(EntityStates.Move))
             {
-                currentAnimation = animations.ContainsKey("move") ? "move" : currentAnimation;
+                currentAnimation = Animations.ContainsKey("move") ? "move" : currentAnimation;
             }
-            if (CurrentEntityStates.Contains(EntityStates.OnAir))
+            if (CurrentEntityStates.Contains(EntityStates.OnAir) || CurrentEntityStates.Contains(EntityStates.Boost))
             {
-                currentAnimation = animations.ContainsKey("onAir") ? "onAir" : currentAnimation;
+                currentAnimation = Animations.ContainsKey("onAir") ? "onAir" : currentAnimation;
             }
             if (CurrentEntityStates.Contains(EntityStates.Hit))
             {
-                currentAnimation = animations.ContainsKey("hurt") ? "hurt" : currentAnimation;
+                currentAnimation = Animations.ContainsKey("hurt") ? "hurt" : currentAnimation;
             }
             if (CurrentEntityStates.Contains(EntityStates.Dead))
             {
-                currentAnimation = animations.ContainsKey("dead") ? "dead" : currentAnimation;
+                currentAnimation = Animations.ContainsKey("dead") ? "dead" : currentAnimation;
             }
         }
 
@@ -453,6 +471,7 @@ namespace Booster.Levels.Entities
                 return;
             }
             CurrentEntityStates.Add(EntityStates.Hit);
+            HitSound.Play();
             Health -= damage;
             if (Health <= 0)
             {
@@ -462,13 +481,8 @@ namespace Booster.Levels.Entities
             }
         }
 
-        public void OnCollision(ICollisionableObject collisionableObject)
+        public void OnCollision(ICollisionable collisionableObject)
         {
-        }
-
-        public void IncrementScore(int score)
-        {
-            Score += score;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -476,42 +490,8 @@ namespace Booster.Levels.Entities
             if (Active)
             {
                 SpriteEffects flip = CurrentEntityStates.Contains(EntityStates.Left) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                animations[currentAnimation].Draw(spriteBatch, flip);
+                Animations[currentAnimation].Draw(spriteBatch, flip);
             }
-        }
-
-        public void DrawLifes(SpriteBatch spriteBatch, Texture2D spriteSheet)
-        {
-            Rectangle sourceRectFull = new Rectangle(0, 94, 53, 45);
-            Rectangle sourceRectHalf = new Rectangle(0, 0, 53, 45);
-            Rectangle sourceRectEmpty = new Rectangle(0, 47, 53, 45);
-
-            Rectangle sourceRect = sourceRectEmpty;
-            int lifes = Health;
-            Rectangle destinationRect = new Rectangle(2, 2, 53, 45);
-            for (int i = 0; i < 5; i++)
-            {
-                if (i != 0)
-                {
-                    lifes -= 2;
-                }
-                if (lifes < 2)
-                {
-                    sourceRect = lifes <= 0 ? sourceRectEmpty : sourceRectHalf;
-                }
-                else
-                {
-                    sourceRect = sourceRectFull;
-                }
-
-                DrawHeart(spriteBatch, spriteSheet, destinationRect, sourceRect);
-                destinationRect.Offset(55, 0);
-            }
-        }
-
-        public void DrawHeart(SpriteBatch spriteBatch, Texture2D spriteSheet, Rectangle destinationRect, Rectangle sourceRect)
-        {
-            spriteBatch.Draw(spriteSheet, destinationRect, sourceRect, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 1);
         }
     }
 }

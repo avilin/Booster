@@ -11,6 +11,23 @@
     <RootNamespace>Booster</RootNamespace>
     <AssemblyName>Booster</AssemblyName>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>42a26fd6</NuGetPackageImportStamp>
+    <PublishUrl>C:\Users\Andres\Desktop\Booster\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -34,19 +51,94 @@
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>279E970E1415D0CC3AF0D6539AC4AA4FFA66764A</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Booster_ClaveTemporal.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Levels\Entities\EntityBuilder\BlockBuilder.cs" />
-    <Compile Include="Levels\Entities\EntityBuilder\EntityCreator.cs" />
-    <Compile Include="Levels\Entities\EntityBuilder\ISimpleTileBuilder.cs" />
-    <Compile Include="Util\Animations\AnimationBuilder.cs" />
+    <Compile Include="Levels\Entities\Door.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\LavaTopBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockCenterBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockLeftBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockMidBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockRightBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\DoorBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\KeyBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\PlatformLeftBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\PlatformMidBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\PlatformRightBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\BlockCenterCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\BlockCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\BlockLeftCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\BlockMidCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\BlockRightCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\DamageBlockHighCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\DamageBlockLowCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\LavaCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\DoorCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\ExitCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\KeyCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\LavaTopCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformLeftCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformMidCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\PlatformRightCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\PlayerCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\ScoreObjectHighCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\ScoreObjectLowCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\ScoreObjectMidCreator.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\SpikeCreator.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageBlockHighBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\BlockBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageObjectDirector.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\DamageBlockLowBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\LavaBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\SpikeBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\IPlayerBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\PlayerBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\PlayerBuilder\PlayerDirector.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\SimpleTileDirector.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\DamageObjectBuilder\IDamageObjectBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\ISimpleTileBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\PlatformBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\SimpleTileBuilder\ExitBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectBuilder\IScoreObjectBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectBuilder\ScoreObjectHighBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectBuilder\ScoreObjectLowBuilder.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectBuilder\ScoreObjectDirector.cs" />
+    <Compile Include="Levels\Entities\EntityBuilder\ScoreObjectBuilder\ScoreObjectMidBuilder.cs" />
+    <Compile Include="Util\Animations\PlayerAnimationDeadBuilder.cs" />
+    <Compile Include="Levels\Entities\IKeyOwner.cs" />
+    <Compile Include="Levels\Entities\Key.cs" />
+    <Compile Include="Levels\Entities\EntityType.cs" />
+    <Compile Include="States\GameOver.cs" />
+    <Compile Include="States\LevelCompleted.cs" />
+    <Compile Include="States\LoadingState.cs" />
+    <Compile Include="States\Menus\ChallengesMenu.cs" />
+    <Compile Include="States\Menus\MenuLevelItem.cs" />
+    <Compile Include="States\Menus\ScrollableMenu.cs" />
+    <Compile Include="States\Menus\StaticMenu.cs" />
+    <Compile Include="Util\Animations\AnimationDirector.cs" />
     <Compile Include="Util\Animations\IAnimationBuilder.cs" />
-    <Compile Include="States\Menus\StateLevelPause.cs" />
-    <Compile Include="States\StateLevelPlaying.cs" />
-    <Compile Include="States\IGameStateContext.cs" />
+    <Compile Include="States\Menus\PauseMenu.cs" />
+    <Compile Include="States\LevelRunning.cs" />
+    <Compile Include="States\IStateManager.cs" />
     <Compile Include="Util\Animations\Animation.cs" />
+    <Compile Include="Util\Animations\PlayerAnimationHurtBuilder.cs" />
+    <Compile Include="Util\Animations\PlayerAnimationJumpBuilder.cs" />
+    <Compile Include="Util\Animations\PlayerAnimationStandBuilder.cs" />
+    <Compile Include="Util\Animations\PlayerAnimationWalkBuilder.cs" />
     <Compile Include="Util\Camera2D.cs" />
     <Compile Include="Util\Animations\Frame.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="Booster.cs" />
     <Compile Include="Input\InputSystem.cs" />
     <Compile Include="Input\VirtualButtonConfig.cs" />
     <Compile Include="Input\VirtualButtons.cs" />
@@ -54,34 +146,33 @@
     <Compile Include="Levels\Entities\SimpleTile.cs" />
     <Compile Include="Util\Box.cs" />
     <Compile Include="Levels\Entities\CollisionTypes.cs" />
-    <Compile Include="Levels\Entities\DamageBlock.cs" />
+    <Compile Include="Levels\Entities\DamageObject.cs" />
     <Compile Include="Util\Duration.cs" />
     <Compile Include="Levels\Entities\Entity.cs" />
-    <Compile Include="Levels\EntityFactory.cs" />
+    <Compile Include="Levels\Entities\EntityFactoryMethod\EntityCreator.cs" />
     <Compile Include="Levels\Entities\EntityStates.cs" />
     <Compile Include="Levels\Entities\ExitEntity.cs" />
     <Compile Include="Levels\Entities\ICollisionable.cs" />
     <Compile Include="Levels\Entities\IDamageable.cs" />
-    <Compile Include="Levels\Entities\IDrawable.cs" />
-    <Compile Include="Levels\Entities\IMovable.cs" />
-    <Compile Include="Levels\Entities\IScoreable.cs" />
-    <Compile Include="Levels\Entities\IStateable.cs" />
-    <Compile Include="Levels\StateMove\IStateMovePlayer.cs" />
-    <Compile Include="Levels\Entities\IUpdateable.cs" />
-    <Compile Include="Levels\Level.cs" />
+    <Compile Include="Levels\Entities\IDrawableObject.cs" />
+    <Compile Include="Levels\Entities\IMoveable.cs" />
+    <Compile Include="Levels\Entities\IScore.cs" />
+    <Compile Include="Levels\StrategyMove\IStrategyMovePlayer.cs" />
+    <Compile Include="Levels\Entities\IUpdateableObject.cs" />
+    <Compile Include="States\Level.cs" />
     <Compile Include="Levels\Map.cs" />
     <Compile Include="Levels\Entities\Player.cs" />
     <Compile Include="Levels\Entities\ScoreObject.cs" />
     <Compile Include="Levels\Entities\Spike.cs" />
-    <Compile Include="Levels\StateMove\StateMovePlayer.cs" />
-    <Compile Include="Levels\StateMove\StateMovePlayerDown.cs" />
-    <Compile Include="Levels\StateMove\StateMovePlayerLeft.cs" />
-    <Compile Include="Levels\StateMove\StateMovePlayerLeftDown.cs" />
-    <Compile Include="Levels\StateMove\StateMovePlayerLeftUp.cs" />
-    <Compile Include="Levels\StateMove\StateMovePlayerRight.cs" />
-    <Compile Include="Levels\StateMove\StateMovePlayerRightDown.cs" />
-    <Compile Include="Levels\StateMove\StateMovePlayerRightUp.cs" />
-    <Compile Include="Levels\StateMove\StateMovePlayerUp.cs" />
+    <Compile Include="Levels\StrategyMove\StrategyMovePlayer.cs" />
+    <Compile Include="Levels\StrategyMove\StrategyMovePlayerDown.cs" />
+    <Compile Include="Levels\StrategyMove\StrategyMovePlayerLeft.cs" />
+    <Compile Include="Levels\StrategyMove\StrategyMovePlayerLeftDown.cs" />
+    <Compile Include="Levels\StrategyMove\StrategyMovePlayerLeftUp.cs" />
+    <Compile Include="Levels\StrategyMove\StrategyMovePlayerRight.cs" />
+    <Compile Include="Levels\StrategyMove\StrategyMovePlayerRightDown.cs" />
+    <Compile Include="Levels\StrategyMove\StrategyMovePlayerRightUp.cs" />
+    <Compile Include="Levels\StrategyMove\StrategyMovePlayerUp.cs" />
     <Compile Include="Levels\Entities\StaticEntity.cs" />
     <Compile Include="States\Menus\MainMenu.cs" />
     <Compile Include="States\Menus\Menu.cs" />
@@ -93,7 +184,7 @@
     <Compile Include="States\GameIntro.cs" />
     <Compile Include="States\GameStates.cs" />
     <Compile Include="States\IGameState.cs" />
-    <Compile Include="States\GameStateContext.cs" />
+    <Compile Include="States\StateManager.cs" />
     <Compile Include="Util\Resources.cs" />
     <Compile Include="Util\SpriteSheetInfo.cs" />
   </ItemGroup>
@@ -107,6 +198,7 @@
     <Reference Include="Lidgren.Network">
       <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\Lidgren.Network.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="Tao.Sdl">
       <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\Tao.Sdl.dll</HintPath>
     </Reference>
@@ -118,23 +210,33 @@
       <Link>SDL.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Graphics\hud_spritesheet.png">
+    <Content Include="Content\Config\Config.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Graphics\items_spritesheet.png">
+    <Content Include="Content\Graphics\enemies_spritesheet.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Graphics\p1_spritesheet.png">
+    <Content Include="Content\Levels\Mission 1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Graphics\preview.png">
+    <Content Include="Content\Levels\Mission 2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Graphics\spriteSheet.png">
+    <Content Include="Content\Levels\Levels.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Graphics\tiles_spritesheet.png">
+    <Content Include="Content\Graphics\hud_spritesheet.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\items_spritesheet.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\p1_spritesheet.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles_spritesheet.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\Levels\Level 1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -145,16 +247,102 @@
     <Content Include="Content\Levels\Level 3.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Levels\Mission 3.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\boost.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\coin.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\door.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\key.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\level_music.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\hit.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\jump.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\menu.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\menu_music.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Content\Graphics\p1_spritesheet.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\menu.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Graphics\knight-sprites.xnb">
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Graphics\hud_spritesheet.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Graphics\items_spritesheet.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Graphics\tiles_spritesheet.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Booster_ClaveTemporal.pfx" />
+    <Content Include="Content\Graphics\enemies_spritesheet.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\level_background.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\intro_background.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\menu_background.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\gameover_background.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

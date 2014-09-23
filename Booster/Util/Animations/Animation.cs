@@ -1,7 +1,4 @@
-﻿using System;
-using System.Security.Cryptography;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
@@ -14,7 +11,6 @@ namespace Booster.Util.Animations
         public bool Looping { get; set; }
         private int elapsedTime;
         private int currentFrame;
-        public Color Color { get; set; }
         public List<Frame> Frames { get; set; }
         public float LayerDepth { get; set; }
         public Box Box { get; set; }
@@ -27,7 +23,7 @@ namespace Booster.Util.Animations
         }
         public bool Active { get; set; }
         public Vector2 Position { get; set; }
-        public Rectangle SourceRect
+        private Rectangle SourceRect
         {
             get
             {
@@ -35,19 +31,12 @@ namespace Booster.Util.Animations
             }
         }
 
-        public void Initialize(Texture2D spriteSheet, List<Frame> frames, Box box)
+        public void Initialize(Vector2 position)
         {
-            this.SpriteSheet = spriteSheet;
-            this.Frames = frames;
-            Position = Vector2.Zero;
-            this.Box = box;
-            this.Color = Color.White;
-            this.Scale = 1f;
-            this.Looping = true;
+            Position = position;
 
             elapsedTime = 0;
             currentFrame = 0;
-            LayerDepth = 1f;
             Active = true;
         }
 
@@ -77,7 +66,7 @@ namespace Booster.Util.Animations
         {
             if (Active)
             {
-                spriteBatch.Draw(SpriteSheet, DestinationRect, SourceRect, Color, 0.0f, Vector2.Zero, flip, LayerDepth);
+                spriteBatch.Draw(SpriteSheet, DestinationRect, SourceRect, Color.White, 0.0f, Vector2.Zero, flip, LayerDepth);
             }
         }
     }

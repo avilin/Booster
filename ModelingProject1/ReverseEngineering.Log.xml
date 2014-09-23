@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 12.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Registro de generación de código/transformación de texto">
+  <MessageClass Name="Message" Label="Mensaje" Option="Mostrar mensajes informativos" />
+  <MessageClass Name="Warning" Label="Advertencia" Option="Mostrar advertencias" />
+  <MessageClass Name="Error" Label="Error" Option="Mostrar errores" />
+  <MessageClass Name="Property" Label="Propiedad" Option="Mostrar metadatos" />
+  <MessageClass Name="Diagnostic" Label="Mensaje" Option="Mostrar mensajes de diagnóstico" />
+  <Message Timestamp="2014-09-21T19:26:53" Importance="High" Text="Se inició la ingeniería inversa." />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: '27a5b9bd-1b5c-4451-98e7-08cb83ded48b' -  (ClassifierTemplateParameter)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'Integer' -  (PrimitiveType)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster' -  (Package)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States' -  (Package)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::IGameState' -  (Interface)  (ingeniería inversa parcial, definición no actualizada) " />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::IStateManager' -  (Interface)  (ingeniería inversa parcial, definición no actualizada) " />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus' -  (Package)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Medium" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu' -  (Class)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::currentItem' -  (Property)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::Draw' -  (Operation)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::Draw::gameTime' -  (Parameter)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::Initialize' -  (Operation)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::items' -  (Property)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::LoadMenuItems' -  (Operation)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::Menu' -  (Operation)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::Menu::stateManager' -  (Parameter)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::PositionMenuItems' -  (Operation)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::SelectedItem' -  (Property)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::SelectNext' -  (Operation)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::SelectPrevious' -  (Operation)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::stateManager' -  (Property)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::Update' -  (Operation)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::Menu::Update::gameTime' -  (Parameter)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::MenuItem' -  (Class)  (ingeniería inversa parcial, definición no actualizada) " />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Medium" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::StaticMenu' -  (Class)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::StaticMenu::Draw' -  (Operation)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::StaticMenu::Draw::gameTime' -  (Parameter)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::StaticMenu::LoadMenuItems' -  (Operation)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::StaticMenu::PositionMenuItems' -  (Operation)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::StaticMenu::StaticMenu' -  (Operation)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Booster::States::Menus::StaticMenu::StaticMenu::stateManager' -  (Parameter)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Microsoft' -  (Package)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Microsoft::Xna' -  (Package)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Microsoft::Xna::Framework' -  (Package)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::Microsoft::Xna::Framework::GameTime' -  (Class)  (ingeniería inversa parcial, definición no actualizada) " />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::System' -  (Package)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::System::Collections' -  (Package)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::System::Collections::Generic' -  (Package)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::System::Collections::Generic::List' -  (Class)  (ingeniería inversa parcial, definición no actualizada) " />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa del elemento en el modelo UML: 'ModelingProject1::System::Collections::Generic::List&lt;MenuItem‎&gt;' -  (Class)  (ingeniería inversa parcial, definición no actualizada) " />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa de la relación en el modelo UML: ModelingProject1::Booster::States::Menus::Menu a ModelingProject1::Booster::States::IGameState (InterfaceRealization)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa de la relación en el modelo UML: ModelingProject1::Booster::States::Menus::StaticMenu a ModelingProject1::Booster::States::Menus::Menu (Generalization)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa de la relación en el modelo UML: ModelingProject1::Booster::States::Menus::ScrollableMenu a ModelingProject1::Booster::States::Menus::Menu (Generalization)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa de la relación en el modelo UML: ModelingProject1::Booster::States::Menus::MenuLevelItem a ModelingProject1::Booster::States::Menus::MenuItem (Generalization)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa de la relación en el modelo UML: ModelingProject1::Booster::States::Menus::StoryMenu a ModelingProject1::Booster::States::Menus::StaticMenu (Generalization)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa de la relación en el modelo UML: ModelingProject1::Booster::States::Menus::PauseMenu a ModelingProject1::Booster::States::Menus::StaticMenu (Generalization)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="Diagnostic" Text="Se realizó ingeniería inversa de la relación en el modelo UML: ModelingProject1::Booster::States::Menus::MainMenu a ModelingProject1::Booster::States::Menus::StaticMenu (Generalization)" />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="High" Text="Se realizó ingeniería inversa total de los siguientes tipos: (2)." />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="High" Text="Se realizó ingeniería inversa parcial de los siguientes tipos: (6). Estos tipos no se incluyeron en la selección original, por lo que no se realizó ingeniería inversa de sus definiciones completas. En su lugar, esta operación superficial se limita a asegurarse de que estos tipos existen en el modelo UML porque son necesarios para describir a otros elementos por completo." />
+  <Message Timestamp="2014-09-21T19:26:56" Importance="High" Text="La operación de ingeniería inversa se completó con (0) errores y (0) advertencias." />
+</Log>

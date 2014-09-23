@@ -1,39 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Booster.Levels;
-using Booster.States;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace Booster.States.Menus
 {
-    public class StoryMenu : Menu
+    public class StoryMenu : StaticMenu
     {
-        public StoryMenu(GameStateContext stateManager)
+        public StoryMenu(IStateManager stateManager)
             : base(stateManager)
         {
+
+        }
+
+        protected override void LoadMenuItems()
+        {
+            items = new List<MenuItem>();
+
+            XDocument xdoc = XDocument.Load(@"Content\Levels\Levels.xml");
+            IEnumerable<XElement> levels = xdoc.Descendants("Level").Where(level => level.Parent.Name == "StoryLevels");
+
             MenuItem item;
+            foreach (XElement level in levels)
+            {
+                item = new MenuLevelItem(level);
+                item.MenuItemAction = MissionActivated;
+                items.Add(item);
+            }
 
-            item = new MenuItem("Level 1");
-            item.MenuItemAction = MissionActivated;
-            Items.Add(item);
-
-            item = new MenuItem("Level 2");
-            item.MenuItemAction = MissionActivated;
-            Items.Add(item);
-
-            item = new MenuItem("Level 3");
-            item.MenuItemAction = MissionActivated;
-            Items.Add(item);
-
-            item = new MenuItem("Back");
+            item = new MenuItem();
+            item.Name = "Back";
             item.MenuItemAction = BackActivated;
-            Items.Add(item);
+            items.Add(item);
         }
 
         public void MissionActivated()
         {
-            stateManager.CurrentState = GameStates.Level;
-            ((GameStateContext)stateManager).LoadLevel(@"Content\Levels\" + SelectedItem.Name + ".txt");
+            if (!(SelectedItem is MenuLevelItem))
+            {
+                return;
+            }
+            stateManager.Resources.Songs["menu_music"].Stop();
+            stateManager.Resources.Songs["level_music"].Play();
+            ((StateManager)stateManager).LoadLevel(((MenuLevelItem)SelectedItem).Level);
+            stateManager.CurrentState = GameStates.Loading;
         }
 
         public void BackActivated()
